@@ -1,0 +1,49 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#FAFAFA"/>
+  <rect x="0" y="0" width="1200" height="630" fill="none" stroke="#E5E5E5" stroke-width="2"/>
+
+  <text x="60" y="112" font-family="Arial, Helvetica, sans-serif" font-size="64" font-weight="700" fill="#0036A3">PENB</text>
+  <text x="60" y="150" font-family="Arial, Helvetica, sans-serif" font-size="25" fill="#555555">Průkaz energetické náročnosti budovy, třídy A až G</text>
+
+  <!-- Class A -->
+  <polygon points="60,190 340,190 360,214 340,238 60,238" fill="#1D8A3D"/>
+  <text x="84" y="222" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#FFFFFF">A</text>
+  <text x="900" y="222" font-family="Arial, Helvetica, sans-serif" font-size="20" font-style="italic" fill="#777777">nejúspornější</text>
+
+  <!-- Class B -->
+  <polygon points="60,250 380,250 400,274 380,298 60,298" fill="#4FA83C"/>
+  <text x="84" y="282" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#FFFFFF">B</text>
+
+  <!-- Class C -->
+  <polygon points="60,310 460,310 480,334 460,358 60,358" fill="#8DC63F"/>
+  <text x="84" y="342" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#FFFFFF">C</text>
+
+  <!-- Class D -->
+  <polygon points="60,370 540,370 560,394 540,418 60,418" fill="#F9E547"/>
+  <text x="84" y="402" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#4A4A00">D</text>
+
+  <!-- Class E -->
+  <polygon points="60,430 620,430 640,454 620,478 60,478" fill="#F8981D"/>
+  <text x="84" y="462" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#FFFFFF">E</text>
+
+  <!-- Class F -->
+  <polygon points="60,490 700,490 720,514 700,538 60,538" fill="#F26522"/>
+  <text x="84" y="522" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#FFFFFF">F</text>
+
+  <!-- Class G -->
+  <polygon points="60,550 800,550 820,574 800,598 60,598" fill="#ED1C24"/>
+  <text x="84" y="582" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#FFFFFF">G</text>
+  <text x="900" y="582" font-family="Arial, Helvetica, sans-serif" font-size="20" font-style="italic" fill="#777777">nejnáročnější</text>
+
+  <!-- House + certification badge icon -->
+  <polygon points="950,320 1050,220 1150,320" fill="none" stroke="#0036A3" stroke-width="6" stroke-linejoin="round"/>
+  <rect x="970" y="320" width="160" height="130" fill="none" stroke="#0036A3" stroke-width="6"/>
+  <rect x="1030" y="390" width="40" height="60" fill="none" stroke="#0036A3" stroke-width="5"/>
+  <rect x="990" y="340" width="30" height="30" fill="none" stroke="#0036A3" stroke-width="4"/>
+  <rect x="1090" y="340" width="30" height="30" fill="none" stroke="#0036A3" stroke-width="4"/>
+  <circle cx="1140" cy="440" r="34" fill="#E12333"/>
+  <path d="M 1123 440 L 1135 452 L 1159 426" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <text x="1150" y="70" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600" fill="#0036A3">Radek Větrovský | RE/MAX</text>
+  <text x="1150" y="612" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#999999">radek-vetrovsky.cz</text>
+</svg>

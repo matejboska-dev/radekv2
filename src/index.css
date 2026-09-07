@@ -1,0 +1,337 @@
+/* Fonts loaded via index.html with preload for performance */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Base surfaces – bílá zůstává podkladem (přání klienta) */
+    --background: 0 0% 100%;
+    --foreground: 24 12% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 24 12% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 24 12% 12%;
+
+    /* Klidná tmavá modrošedá – texty, ikony, sekundární tlačítka */
+    --primary: 214 32% 20%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Akcent (RE/MAX červená, mírně ztlumená) – jen pro CTA a zvýraznění */
+    --secondary: 355 68% 47%;
+    --secondary-foreground: 0 0% 100%;
+
+    /* Teplé neutrální plochy místo studené šedé */
+    --muted: 36 24% 96%;
+    --muted-foreground: 25 8% 40%;
+
+    --accent: 214 32% 20%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 48%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 30 14% 89%;
+    --input: 30 14% 88%;
+    --ring: 214 32% 20%;
+
+    --radius: 0.625rem;
+
+    /* Custom tokens */
+    --sand: 36 26% 95%;
+    --sand-deep: 32 20% 90%;
+    --remax-red: 355 76% 51%;
+    --remax-blue: 220 100% 32%;
+    --accent-light: 355 68% 57%;
+    --accent-orange: 355 68% 47%;
+    --hero-gradient: linear-gradient(135deg, hsl(36 26% 96%), hsl(0 0% 100%));
+    --card-shadow: 0 1px 2px hsl(24 12% 12% / 0.04), 0 10px 30px -18px hsl(24 12% 12% / 0.28);
+    --card-shadow-hover: 0 2px 4px hsl(24 12% 12% / 0.05), 0 24px 50px -24px hsl(24 12% 12% / 0.35);
+    --glass-bg: hsl(0 0% 100% / 0.96);
+    --glass-border: hsl(30 14% 89% / 0.9);
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 24 12% 12%;
+    --sidebar-primary: 214 32% 20%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 36 24% 96%;
+    --sidebar-accent-foreground: 24 12% 12%;
+    --sidebar-border: 30 14% 89%;
+    --sidebar-ring: 214 32% 20%;
+  }
+
+  .dark {
+    --background: 24 12% 8%;
+    --foreground: 36 20% 97%;
+
+    --card: 24 12% 11%;
+    --card-foreground: 36 20% 97%;
+
+    --popover: 24 12% 11%;
+    --popover-foreground: 36 20% 97%;
+
+    --primary: 36 20% 97%;
+    --primary-foreground: 24 12% 10%;
+
+    --secondary: 355 72% 55%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 24 10% 15%;
+    --muted-foreground: 30 8% 65%;
+
+    --accent: 36 20% 97%;
+    --accent-foreground: 24 12% 10%;
+
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 24 10% 20%;
+    --input: 24 10% 20%;
+    --ring: 36 20% 80%;
+
+    --sand: 24 10% 14%;
+    --sand-deep: 24 10% 18%;
+    --hero-gradient: linear-gradient(135deg, hsl(24 12% 10%), hsl(24 12% 8%));
+    --card-shadow: 0 4px 20px -4px hsl(0 0% 0% / 0.4);
+    --card-shadow-hover: 0 12px 40px -8px hsl(0 0% 0% / 0.5);
+    --glass-bg: hsl(24 12% 11% / 0.95);
+    --glass-border: hsl(24 10% 25% / 0.5);
+
+    --sidebar-background: 24 12% 8%;
+    --sidebar-foreground: 36 20% 97%;
+    --sidebar-primary: 36 20% 97%;
+    --sidebar-primary-foreground: 24 12% 10%;
+    --sidebar-accent: 24 10% 15%;
+    --sidebar-accent-foreground: 36 20% 97%;
+    --sidebar-border: 24 10% 20%;
+    --sidebar-ring: 36 20% 80%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "kern" 1, "liga" 1;
+    /* Horizontální ořez řešíme tady, ne na obsahovém divu –
+       jinak by vznikl vnořený scroll kontejner, který rozbíjí
+       scroll-triggered animace i plynulé scrollování. */
+    overflow-x: hidden;
+  }
+
+  /* ─── Lenis plynulé scrollování ─── */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  ::selection {
+    background: hsl(var(--secondary) / 0.2);
+    color: hsl(var(--foreground));
+  }
+
+  :focus-visible {
+    outline: 2px solid hsl(var(--secondary));
+    outline-offset: 3px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+
+  h1 {
+    letter-spacing: -0.025em;
+  }
+
+  p {
+    @apply font-sans;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      scroll-behavior: auto !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .hero-gradient {
+    background: var(--hero-gradient);
+  }
+
+  .glass-card {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    box-shadow: var(--card-shadow);
+  }
+
+  .text-gradient {
+    color: hsl(var(--secondary));
+  }
+
+  .section-padding {
+    @apply px-4 py-16 md:px-8 md:py-24 lg:px-16 lg:py-28;
+  }
+
+  /* Nadřazený štítek nad nadpisem sekce */
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-secondary;
+  }
+
+  .eyebrow::before {
+    content: '';
+    @apply h-px w-6 bg-secondary/50;
+  }
+
+  /* Teplá písková plocha – střídá se s bílou, aby web nebyl „celý bílý" */
+  .surface-sand {
+    background-color: hsl(var(--sand));
+  }
+
+  .card-soft {
+    @apply rounded-xl border border-border bg-card;
+    box-shadow: var(--card-shadow);
+  }
+
+  .parallax-container {
+    @apply relative overflow-hidden;
+  }
+
+  .property-card {
+    @apply relative overflow-hidden rounded-xl bg-card transition-all duration-500;
+    box-shadow: var(--card-shadow);
+  }
+
+  .property-card:hover {
+    box-shadow: var(--card-shadow-hover);
+    @apply -translate-y-1.5;
+  }
+
+  .cta-pulse {
+    @apply relative;
+  }
+
+  .cta-pulse::before {
+    content: '';
+    @apply absolute inset-0 rounded-full bg-primary opacity-0 animate-ping;
+  }
+
+  .floating-cta {
+    @apply fixed bottom-6 right-6 z-50;
+  }
+
+  /* Animated underline for nav links */
+  .nav-underline {
+    @apply relative;
+  }
+  .nav-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-0.5 bg-secondary origin-left scale-x-0 transition-transform duration-300;
+  }
+  .nav-underline:hover::after {
+    @apply scale-x-100;
+  }
+
+  /* Footer underline (light version) */
+  .footer-underline {
+    @apply relative;
+  }
+  .footer-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-px origin-left scale-x-0 transition-transform duration-300;
+    background: hsl(var(--background));
+  }
+  .footer-underline:hover::after {
+    @apply scale-x-100;
+  }
+
+  /* Contact icon hover */
+  .hover-bounce {
+    @apply transition-transform duration-300;
+  }
+  .hover-bounce:hover {
+    transform: translateY(-2px);
+  }
+
+  /* Subtle lift on property cards */
+  .tilt-card {
+    @apply transition-transform duration-300;
+  }
+  .tilt-card:hover {
+    transform: translateY(-4px);
+  }
+
+  /* Hand-drawn underline animation */
+  .highlight {
+    position: relative;
+    display: inline-block;
+    white-space: nowrap;
+  }
+
+  .highlight svg {
+    position: absolute;
+    bottom: -14px;
+    left: -6px;
+    width: calc(100% + 12px);
+    height: 22px;
+    overflow: visible;
+    pointer-events: none;
+  }
+
+  .underline-path {
+    fill: none;
+    stroke: hsl(var(--secondary));
+    stroke-width: 8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: draw 1.375s cubic-bezier(0.4, 0, 0.2, 1) 0.6s forwards;
+  }
+
+  @keyframes draw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Pravá kurzíva Playfair Display */
+  .display-italic {
+    font-style: italic;
+  }
+}
