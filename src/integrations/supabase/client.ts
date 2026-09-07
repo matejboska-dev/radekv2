@@ -8,10 +8,26 @@ const SUPABASE_PUBLISHABLE_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 // Import the supabase client like this:
 // import { supabase } from "@/integrations/supabase/client";
 
-export const supabase = createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
-  auth: {
-    storage: localStorage,
-    persistSession: true,
-    autoRefreshToken: true,
-  }
-});
+export const isSupabaseConfigured = Boolean(SUPABASE_URL && SUPABASE_PUBLISHABLE_KEY);
+
+if (!isSupabaseConfigured && import.meta.env.DEV) {
+  // eslint-disable-next-line no-console
+  console.warn(
+    '[supabase] VITE_SUPABASE_URL / VITE_SUPABASE_PUBLISHABLE_KEY nejsou nastavené – ' +
+      'formuláře nebudou fungovat, ale web se načte.',
+  );
+}
+
+// Placeholder hodnoty, aby createClient nespadl při chybějící konfiguraci
+// (např. na Netlify bez env proměnných). Volání se pak jen bezpečně nezdaří.
+export const supabase = createClient<Database>(
+  SUPABASE_URL ?? 'https://placeholder.supabase.co',
+  SUPABASE_PUBLISHABLE_KEY ?? 'placeholder-anon-key',
+  {
+    auth: {
+      storage: localStorage,
+      persistSession: true,
+      autoRefreshToken: true,
+    },
+  },
+);
