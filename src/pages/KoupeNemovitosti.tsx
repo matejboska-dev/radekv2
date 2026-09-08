@@ -14,7 +14,7 @@ import { setPageMeta, injectJsonLd } from '@/lib/seo';
 
 // Assets - Real photos & awards from the repository
 import radekPhoto from '@/assets/radek-vetrovsky.png';
-import remaxLogoAsset from '@/assets/remax-logo.png.asset.json';
+import remaxLogo from '@/assets/remax-logo.png';
 import award25 from '@/assets/award-25.svg';
 import award8 from '@/assets/award-8.svg';
 import propDumPribram from '@/assets/property-dum-pribram.webp';
@@ -22,7 +22,7 @@ import propBytMarianska from '@/assets/property-byt-marianska.webp';
 import propDumJelence from '@/assets/property-dum-jelence.webp';
 import propDumBohutin from '@/assets/property-dum-bohutin.webp';
 
-const REMAX_LOGO = remaxLogoAsset.url;
+const REMAX_LOGO = remaxLogo;
 
 const KoupeNemovitosti = () => {
   const CANONICAL_PATH = '/sluzby/koupe-nemovitosti-pribram';

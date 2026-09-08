@@ -14,14 +14,6 @@ export default defineConfig(({ mode }) => ({
     hmr: {
       overlay: false,
     },
-    proxy: {
-      // Obrázky hostované u Lovable (soubory *.asset.json) se v lokálním
-      // náhledu načtou z produkčního webu, aby náhled odpovídal realitě.
-      "/__l5e": {
-        target: "https://radek-vetrovsky.cz",
-        changeOrigin: true,
-      },
-    },
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {

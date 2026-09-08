@@ -1,9 +1,9 @@
 import { ArrowUpRight } from 'lucide-react';
 import { Reveal, RevealItem } from '@/components/anim/Reveal';
 import { useNavigate } from 'react-router-dom';
-import serviceProdej from '@/assets/service-prodej.webp.asset.json';
-import servicePronajem from '@/assets/service-pronajem.webp.asset.json';
-import serviceKoupe from '@/assets/service-koupe.webp.asset.json';
+import serviceProdej from '@/assets/service-prodej.webp';
+import servicePronajem from '@/assets/service-pronajem.webp';
+import serviceKoupe from '@/assets/service-koupe.webp';
 
 const Services = () => {
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ const Services = () => {
       description:
         'Kompletní servis při prodeji vaší nemovitosti včetně profesionálního marketingu, videoprohlídek a home stagingu.',
       features: ['Profesionální fotografie', 'Virtuální prohlídky', 'Inzerce na top portálech'],
-      image: serviceProdej.url,
+      image: serviceProdej,
       path: '/sluzby/prodej-nemovitosti-pribram',
     },
     {
@@ -26,7 +26,7 @@ const Services = () => {
       description:
         'Najdeme vám prověřené a spolehlivé nájemníky a postaráme se o kompletní smluvní dokumentaci i předání.',
       features: ['Prověření nájemníků', 'Právní zajištění', 'Správa nemovitosti'],
-      image: servicePronajem.url,
+      image: servicePronajem,
       path: '/sluzby/pronajem-nemovitosti-pribram',
     },
     {
@@ -36,7 +36,7 @@ const Services = () => {
       description:
         'Pomůžeme vám najít vysněný domov nebo bezpečnou investici s důkladnou prověrkou technického i právního stavu.',
       features: ['Analýza trhu', 'Vyjednávání ceny', 'Due diligence a prověrka'],
-      image: serviceKoupe.url,
+      image: serviceKoupe,
       path: '/sluzby/koupe-nemovitosti-pribram',
     },
   ];

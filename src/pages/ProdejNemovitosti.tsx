@@ -14,7 +14,7 @@ import { useAnimatedCounter } from '@/hooks/useAnimatedCounter';
 
 // Assets - all real photos already used elsewhere on the site
 import radekPhoto from '@/assets/radek-vetrovsky.webp';
-import remaxLogoAsset from '@/assets/remax-logo.png.asset.json';
+import remaxLogo from '@/assets/remax-logo.png';
 import award25 from '@/assets/award-25.svg';
 import award8 from '@/assets/award-8.svg';
 import masonry1 from '@/assets/property-dum-pribram.webp';
@@ -27,7 +27,7 @@ import saleZdabor from '@/assets/property-byt-zdabor-slunna-pribram.webp';
 import saleCertak from '@/assets/property-byt-certak-pribram.jpg';
 import saleCechovska from '@/assets/property-byt-cechovska.webp';
 
-const REMAX_LOGO = remaxLogoAsset.url;
+const REMAX_LOGO = remaxLogo;
 
 const faqItems = [
   {
