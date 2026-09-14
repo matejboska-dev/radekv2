@@ -45,7 +45,7 @@ const About = () => {
         {/* Top Section Header: 02 tag + Editorial headline */}
         <Reveal className="mb-10 sm:mb-14 lg:mb-16">
           <span className="inline-block text-xs sm:text-sm font-bold uppercase tracking-[0.25em] text-secondary mb-3 sm:mb-4">
-            02 — O MNĚ & FILOZOFIE
+            03 — O MNĚ
           </span>
           <h2 className="font-syne text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold uppercase tracking-tight text-black leading-[1.05]">
             VÁŠ PARTNER<br />

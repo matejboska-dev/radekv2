@@ -39,22 +39,15 @@ const HeroDesktop = () => {
           ease: 'none',
           scrollTrigger: { trigger: el, start: 'top top', end: 'bottom top', scrub: true },
         });
-        gsap.to(q('[data-hero="portrait"]'), {
-          yPercent: -8,
-          ease: 'none',
-          scrollTrigger: { trigger: el, start: 'top top', end: 'bottom top', scrub: true },
-        });
-        gsap.to(q('[data-hero="name"]'), {
-          yPercent: 18,
-          ease: 'none',
-          scrollTrigger: { trigger: el, start: 'top top', end: 'bottom top', scrub: true },
-        });
-        gsap.to(q('[data-hero="copy"]'), {
-          yPercent: -14,
-          opacity: 0.3,
-          ease: 'none',
-          scrollTrigger: { trigger: el, start: 'top top', end: 'bottom top', scrub: true },
-        });
+        // Všechny texty, CTA i fotka Radka se při scrollu hýbou jednotně spolu bez mizení
+        gsap.to(
+          q('[data-hero="portrait"], [data-hero="name"], [data-hero="copy"], [data-hero="cta"]'),
+          {
+            yPercent: -8,
+            ease: 'none',
+            scrollTrigger: { trigger: el, start: 'top top', end: 'bottom top', scrub: true },
+          },
+        );
       }
     }, el);
 
@@ -77,67 +70,65 @@ const HeroDesktop = () => {
         <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-primary via-primary/80 to-transparent" />
       </div>
 
-      {/* ═══════ LAYER 2: Giant name text — BEHIND Radek for depth ═══════ */}
+      {/* ═══════ LAYER 2: Name text in column — left-aligned ═══════ */}
       <div
         data-hero="name"
-        className="pointer-events-none absolute inset-0 z-10 select-none"
+        className="pointer-events-none absolute inset-0 z-10 select-none overflow-hidden flex flex-col justify-center items-start text-left px-6 md:px-10 lg:px-12 xl:px-14 2xl:px-16"
         aria-hidden="true"
       >
-        <div className="absolute top-[32%] left-[10%] sm:left-[13%] xl:left-[16%] 2xl:left-[19%]">
-          <span className="font-syne text-[3rem] font-extrabold leading-none tracking-[-0.03em] text-white/85 xl:text-[3.8rem] 2xl:text-[4.6rem]">
+        <div className="flex flex-col items-start justify-center leading-[0.88] tracking-[-0.03em] select-none -translate-y-8 lg:-translate-y-12 xl:-translate-y-14">
+          <span className="font-syne text-[3.2rem] lg:text-[4.2rem] xl:text-[5.4rem] 2xl:text-[6.4rem] font-extrabold uppercase text-white/90 drop-shadow-[0_4px_16px_rgba(0,0,0,0.5)]">
             RADEK
           </span>
-        </div>
-        <div className="absolute top-[46%] right-4 sm:right-8 xl:right-14 2xl:right-24 text-right">
-          <span className="font-syne text-[2.5rem] font-extrabold leading-none tracking-[-0.02em] text-white/95 xl:text-[3.2rem] 2xl:text-[3.9rem] drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)]">
+          <span className="font-syne text-[2.8rem] lg:text-[3.6rem] xl:text-[4.6rem] 2xl:text-[5.4rem] font-extrabold uppercase text-white/95 drop-shadow-[0_4px_20px_rgba(0,0,0,0.6)]">
             VĚTROVSKÝ
           </span>
         </div>
       </div>
 
-      {/* ═══════ LAYER 3: Radek portrait — centered, IN FRONT of name text ═══════ */}
+      {/* ═══════ LAYER 3: Radek portrait — on the right, IN FRONT of name text ═══════ */}
       <div
         data-hero="portrait"
-        className="pointer-events-none absolute inset-x-0 bottom-0 top-24 lg:top-28 z-20 flex justify-center items-end overflow-hidden"
+        className="pointer-events-none absolute inset-y-0 right-0 top-16 lg:top-20 z-20 flex justify-end items-end overflow-hidden pr-6 lg:pr-12 xl:pr-20 2xl:pr-28"
       >
         <div
           aria-hidden="true"
-          className="absolute bottom-0 h-[85%] w-[65%] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(20,42,59,0.7)_0%,transparent_70%)] blur-3xl"
+          className="absolute right-0 bottom-0 h-[85%] w-[45%] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(20,42,59,0.7)_0%,transparent_70%)] blur-3xl"
         />
         <div
           aria-hidden="true"
-          className="absolute right-[22%] top-[12%] h-[26rem] w-[26rem] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.22)_0%,transparent_65%)] blur-2xl"
+          className="absolute right-[8%] xl:right-[14%] top-[12%] h-[26rem] w-[26rem] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.2)_0%,transparent_65%)] blur-2xl"
         />
         <img
           src={radekPhoto}
           alt="Radek Větrovský, certifikovaný realitní makléř RE/MAX Příbram"
-          className="relative max-h-full h-[88vh] w-auto object-contain object-bottom drop-shadow-[0_16px_36px_rgba(0,0,0,0.45)] drop-shadow-[0_45px_85px_rgba(0,0,0,0.3)] [mask-image:linear-gradient(to_bottom,black_82%,transparent_100%)]"
+          className="relative max-h-full h-[88vh] 2xl:h-[92vh] w-auto object-contain object-bottom drop-shadow-[0_16px_36px_rgba(0,0,0,0.45)] drop-shadow-[0_45px_85px_rgba(0,0,0,0.3)] [mask-image:linear-gradient(to_bottom,black_84%,transparent_100%)]"
         />
       </div>
 
-      {/* ═══════ LAYER 4: Content overlay — bottom left + bottom right CTA ═══════ */}
+      {/* ═══════ LAYER 4: Content overlay — bottom left copy + CTA beside it ═══════ */}
       <div className="relative z-30 flex h-screen flex-col justify-end">
         <div className="w-full px-6 pb-10 md:px-10 lg:px-12 xl:px-14 2xl:px-16 xl:pb-14">
-          <div className="flex items-end justify-between gap-8">
-            <div data-hero="copy" className="max-w-lg xl:max-w-xl">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-start gap-6 xl:gap-8 2xl:gap-10">
+            <div data-hero="copy" className="max-w-md xl:max-w-lg 2xl:max-w-xl">
               <h1 className="font-display text-white tracking-[-0.03em] leading-[0.98]">
-                <span className="block text-[2.6rem] xl:text-[3.8rem] 2xl:text-[4.4rem]">
+                <span className="block text-[2.4rem] xl:text-[3.2rem] 2xl:text-[3.8rem]">
                   <span className="font-normal">Realitní makléř</span>{' '}
                   <span className="font-bold">Příbram</span>
                 </span>
-                <span className="block font-normal text-white text-[1.4rem] xl:text-[2rem] 2xl:text-[2.3rem] mt-1.5 leading-snug">
+                <span className="block font-normal text-white text-[1.25rem] xl:text-[1.7rem] 2xl:text-[2rem] mt-1.5 leading-snug">
                   prodej a koupě nemovitostí bez starostí
                 </span>
               </h1>
-              <p className="mt-4 max-w-lg text-xs leading-relaxed text-white/85 xl:text-sm">
+              <p className="mt-4 text-xs leading-relaxed text-white/85 xl:text-sm">
                 <strong className="font-bold text-white">
-                  Pomohu Vám prodat nebo koupit nemovitost v Příbrami a okolí.
+                  Pomohu Vám prodat nebo koupit nemovitost v Příbrami, Dobříši, Sedlčanech, Rožmitále pod Třemšínem, Březnici, Sedlci-Prčici a okolí.
                 </strong>{' '}
                 Od prvního odhadu až po podpis smlouvy se postarám o celý proces.
               </p>
             </div>
 
-            <div data-hero="cta" className="flex shrink-0 flex-col items-stretch gap-3">
+            <div data-hero="cta" className="flex shrink-0 flex-col items-stretch gap-3 pb-1">
               <button
                 type="button"
                 onClick={() => navigate('/odhad-nemovitosti#odhad-form')}

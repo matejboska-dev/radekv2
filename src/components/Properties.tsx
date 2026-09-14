@@ -1,4 +1,4 @@
-import { ArrowRight, Clock, CheckCircle2, ShieldCheck, TrendingUp, Building2 } from 'lucide-react';
+import { ArrowRight, Clock, ShieldCheck, TrendingUp, Building2 } from 'lucide-react';
 import { Button } from './ui/button';
 import { Reveal, RevealItem } from '@/components/anim/Reveal';
 import { useNavigate } from 'react-router-dom';
@@ -14,10 +14,8 @@ const featuredProperty = {
   location: 'Příbram VII',
   size: '61 m²',
   resultBadge: 'PRODÁNO ZA 18 DNÍ',
-  resultHighlight: '100 % nabídkové ceny · 14 prohlídek',
   description:
     'Kompletní příprava, profesionální homestaging a videoprohlídka zajistily rychlý prodej za plnou inzerovanou cenu bez jediné slevy.',
-  stats: ['100 % z inzerované ceny', '14 osobních prohlídek', '3 vážní zájemci'],
   image: bytImage,
 };
 
@@ -27,10 +25,8 @@ const secondaryProperty = {
   location: 'okres Příbram',
   size: '94 m² · Pozemek 820 m²',
   resultBadge: 'PRODÁNO ZA 34 DNÍ',
-  resultHighlight: 'Cílená online kampaň · Bezpečné předání',
   description:
     'Efektivní prezentace na sociálních sítích přilákala rodinu hledající klidné bydlení u Brd. Zajištěn kompletní právní servis a úschova.',
-  stats: ['Dosažena tržní cena', 'Právní garance RE/MAX', 'Předání na klíč'],
   image: dumBohutinImage,
 };
 
@@ -42,7 +38,6 @@ const portfolioProperties = [
     location: 'Příbram',
     size: '54 m²',
     resultBadge: 'PRODÁNO ZA 12 DNÍ',
-    resultHighlight: 'Privátní databáze kupujících',
     description:
       'Kupující byl nalezen z interní databáze čekajících klientů ještě před spuštěním masivní veřejné inzerce.',
     image: bytBrodskaImage,
@@ -53,7 +48,6 @@ const portfolioProperties = [
     location: 'Středočeský kraj',
     size: '234 m² · Pozemek 1 150 m²',
     resultBadge: 'PRODÁNO ZA 42 DNÍ',
-    resultHighlight: 'Dronové záběry & 3D virtuální scan',
     description:
       'Letecké video a virtuální prohlídka oslovily kupce z Prahy, kteří ocenili detailní přehled o stavu nemovitosti ještě před prohlídkou.',
     image: dumTynecImage,
@@ -64,7 +58,6 @@ const portfolioProperties = [
     location: 'Příbram',
     size: '58 m²',
     resultBadge: 'PRODÁNO ZA 21 DNÍ',
-    resultHighlight: '100 % servis od A do Z',
     description:
       'Díky správně nastavené cenové strategii a kvalitním fotografiím proběhl celý obchod hladce a bez zbytečných prodlev.',
     image: bytCertakImage,
@@ -72,7 +65,7 @@ const portfolioProperties = [
 ];
 
 const metrics = [
-  { icon: Building2, label: '100+ prodaných nemovitostí' },
+  { icon: Building2, label: '20+ prodaných nemovitostí za rok 2026' },
   { icon: Clock, label: 'Průměrně 21 dní do podpisu' },
   { icon: TrendingUp, label: '99,4 % z nabídkové ceny' },
   { icon: ShieldCheck, label: '100% právní garance RE/MAX' },
@@ -95,7 +88,7 @@ const Properties = () => {
           <div className="lg:col-span-7">
             <div className="flex items-center gap-2 mb-3">
               <span className="text-xs font-bold uppercase tracking-[0.2em] text-secondary">
-                03 — PRODANÉ NEMOVITOSTI
+                04 — PRODANÉ NEMOVITOSTI
               </span>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-syne font-extrabold uppercase tracking-tight text-foreground leading-[1.05]">
@@ -168,19 +161,9 @@ const Properties = () => {
                 {featuredProperty.title}
               </h3>
 
-              <p className="text-sm text-muted-foreground leading-relaxed mb-5">
+              <p className="text-sm text-muted-foreground leading-relaxed">
                 {featuredProperty.description}
               </p>
-
-              {/* Proof points */}
-              <div className="mt-auto pt-4 border-t border-border/60 flex flex-wrap items-center gap-y-2 gap-x-4 text-xs sm:text-[13px] text-foreground/85 font-medium">
-                {featuredProperty.stats.map((stat, i) => (
-                  <div key={i} className="inline-flex items-center gap-1.5">
-                    <CheckCircle2 className="w-4 h-4 text-secondary shrink-0" />
-                    <span>{stat}</span>
-                  </div>
-                ))}
-              </div>
             </div>
           </RevealItem>
 
@@ -218,19 +201,9 @@ const Properties = () => {
                 {secondaryProperty.title}
               </h3>
 
-              <p className="text-sm text-muted-foreground leading-relaxed mb-5">
+              <p className="text-sm text-muted-foreground leading-relaxed">
                 {secondaryProperty.description}
               </p>
-
-              {/* Proof points */}
-              <div className="mt-auto pt-4 border-t border-border/60 flex flex-wrap items-center gap-y-2 gap-x-4 text-xs sm:text-[13px] text-foreground/85 font-medium">
-                {secondaryProperty.stats.map((stat, i) => (
-                  <div key={i} className="inline-flex items-center gap-1.5">
-                    <CheckCircle2 className="w-4 h-4 text-secondary shrink-0" />
-                    <span>{stat}</span>
-                  </div>
-                ))}
-              </div>
             </div>
           </RevealItem>
         </Reveal>

@@ -40,17 +40,17 @@ const HeroMobile = () => {
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-primary via-primary/85 to-transparent" />
       </div>
 
-      {/* ═══════ LAYER 2: Giant name text — BEHIND Radek ═══════ */}
+      {/* ═══════ LAYER 2: Outlined Watermark — BEHIND Radek ═══════ */}
       <div
         data-hero="name"
-        className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center select-none"
+        className="pointer-events-none absolute inset-0 z-10 flex items-center justify-start px-5 sm:px-8 select-none"
         aria-hidden="true"
       >
-        <div className="flex flex-col items-center">
-          <span className="font-display text-[4.5rem] font-bold leading-[0.85] tracking-[-0.04em] text-white/[0.07] sm:text-[6rem]">
+        <div className="flex flex-col items-start leading-[0.88] tracking-[-0.03em] -translate-y-12">
+          <span className="font-syne text-[2.4rem] sm:text-[3.2rem] font-extrabold uppercase text-white/90 drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">
             RADEK
           </span>
-          <span className="font-display text-[4.5rem] font-bold leading-[0.85] tracking-[-0.04em] text-white/[0.07] sm:text-[6rem]">
+          <span className="font-syne text-[2rem] sm:text-[2.6rem] font-extrabold uppercase text-white/95 drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">
             VĚTROVSKÝ
           </span>
         </div>
@@ -91,7 +91,7 @@ const HeroMobile = () => {
 
           <p className="mt-3 max-w-sm text-xs leading-relaxed text-white/85 sm:text-sm">
             <strong className="font-bold text-white">
-              Pomohu Vám prodat nebo koupit nemovitost v Příbrami a okolí.
+              Pomohu Vám prodat nebo koupit nemovitost v Příbrami, Dobříši, Sedlčanech, Rožmitále pod Třemšínem, Březnici, Sedlci-Prčici a okolí.
             </strong>{' '}
             Od prvního odhadu až po podpis smlouvy se postarám o celý proces.
           </p>

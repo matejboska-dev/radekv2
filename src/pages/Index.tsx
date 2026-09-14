@@ -13,6 +13,7 @@ import Testimonials from '@/components/Testimonials';
 import CTASection from '@/components/CTASection';
 import InstagramCarousel from '@/components/InstagramCarousel';
 import Blog from '@/components/Blog';
+import ServiceAreas from '@/components/ServiceAreas';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import FloatingCTA from '@/components/FloatingCTA';
@@ -43,13 +44,14 @@ const Index = () => {
         </div>
         <StatsBar />
         <Services />
-        <About />
         <EstimateComparison />
-        <Properties />
         <Testimonials />
+        <About />
+        <Properties />
         <InstagramCarousel />
         <CTASection />
         <Blog />
+        <ServiceAreas />
         <Contact />
       </main>
       <Footer />

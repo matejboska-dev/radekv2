@@ -1,4 +1,4 @@
-import { Building2, Clock, TrendingUp, ShieldCheck, Star } from 'lucide-react';
+import { Building2, Clock, TrendingUp, ShieldCheck } from 'lucide-react';
 import { Reveal, RevealItem } from '@/components/anim/Reveal';
 
 /**
@@ -8,14 +8,8 @@ import { Reveal, RevealItem } from '@/components/anim/Reveal';
  * všude to samé.
  */
 
-// TODO(klient): doplnit reálné hodnocení a počet recenzí z Google profilu.
-// Prázdný počet => badge ukáže jen hvězdičky + odkaz, nic se nevymýšlí.
-const GOOGLE_RATING = '5,0';
-const GOOGLE_REVIEW_COUNT = '';
-const GOOGLE_REVIEWS_URL = 'https://maps.app.goo.gl/vNQZSSixjfp8rZCu9';
-
 const stats = [
-  { icon: Building2, value: '100+', label: 'prodaných nemovitostí' },
+  { icon: Building2, value: '20+', label: 'prodaných nemovitostí za rok 2026' },
   { icon: Clock, value: '21 dní', label: 'průměrně do podpisu' },
   { icon: TrendingUp, value: '99,4 %', label: 'z nabídkové ceny' },
   { icon: ShieldCheck, value: '100%', label: 'právní garance RE/MAX' },
@@ -28,7 +22,7 @@ const StatsBar = () => {
         <Reveal
           group
           staggerChildren={0.07}
-          className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-5"
+          className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4"
         >
           {stats.map(({ icon: Icon, value, label }) => (
             <RevealItem
@@ -47,33 +41,6 @@ const StatsBar = () => {
               </div>
             </RevealItem>
           ))}
-
-          {/* Google rating badge */}
-          <RevealItem
-            as="a"
-            variant="fadeUp"
-            href={GOOGLE_REVIEWS_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="col-span-2 flex items-center gap-3 rounded-xl border border-border/70 bg-card p-3 transition-colors hover:border-secondary/40 sm:p-4 md:col-span-4 lg:col-span-1"
-          >
-            <div className="leading-tight">
-              <div className="flex items-center gap-1.5">
-                <span className="font-syne text-lg font-extrabold text-foreground sm:text-xl">
-                  {GOOGLE_RATING}
-                </span>
-                <span className="flex" aria-hidden="true">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} className="h-3.5 w-3.5 fill-secondary text-secondary" />
-                  ))}
-                </span>
-              </div>
-              <div className="text-[11px] text-muted-foreground sm:text-xs">
-                Hodnocení na Google
-                {GOOGLE_REVIEW_COUNT ? ` · ${GOOGLE_REVIEW_COUNT} recenzí` : ''}
-              </div>
-            </div>
-          </RevealItem>
         </Reveal>
       </div>
     </section>

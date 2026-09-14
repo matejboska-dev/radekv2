@@ -52,7 +52,7 @@ const Testimonials = () => {
         <Reveal className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 sm:mb-12">
           <div>
             <span className="inline-block text-xs sm:text-sm font-bold uppercase tracking-[0.25em] text-[#212c42] mb-3 sm:mb-4">
-              04 — RECENZE KLIENTŮ
+              02 — RECENZE KLIENTŮ
             </span>
             <h2 className="font-syne font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl uppercase tracking-tight text-black leading-[0.95]">
               <span className="block">CO O MNĚ</span>
