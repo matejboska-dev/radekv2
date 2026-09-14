@@ -16,7 +16,7 @@ const Services = () => {
       description:
         'Kompletní servis při prodeji vaší nemovitosti včetně profesionálního marketingu, videoprohlídek a home stagingu.',
       features: ['Profesionální fotografie', 'Virtuální prohlídky', 'Inzerce na top portálech'],
-      image: serviceProdej,
+      image: serviceKoupe,
       path: '/sluzby/prodej-nemovitosti-pribram',
     },
     {
@@ -36,7 +36,7 @@ const Services = () => {
       description:
         'Pomůžeme vám najít vysněný domov nebo bezpečnou investici s důkladnou prověrkou technického i právního stavu.',
       features: ['Analýza trhu', 'Vyjednávání ceny', 'Due diligence a prověrka'],
-      image: serviceKoupe,
+      image: serviceProdej,
       path: '/sluzby/koupe-nemovitosti-pribram',
     },
   ];
