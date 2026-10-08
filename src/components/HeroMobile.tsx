@@ -46,7 +46,7 @@ const HeroMobile = () => {
         className="pointer-events-none absolute inset-0 z-10 flex items-center justify-start px-5 sm:px-8 select-none"
         aria-hidden="true"
       >
-        <div className="flex flex-col items-start leading-[0.88] tracking-[-0.03em] -translate-y-12">
+        <div className="flex flex-col items-start leading-[0.88] tracking-[-0.03em] -translate-y-36">
           <span className="font-syne text-[2.4rem] sm:text-[3.2rem] font-extrabold uppercase text-white/90 drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">
             RADEK
           </span>

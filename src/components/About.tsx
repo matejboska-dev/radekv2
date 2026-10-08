@@ -3,7 +3,7 @@ import { useAnimatedCounter } from '@/hooks/useAnimatedCounter';
 import { Reveal, RevealItem } from '@/components/anim/Reveal';
 import award25 from '@/assets/award-25.svg';
 import award8 from '@/assets/award-8.svg';
-import radekAboutImage from '@/assets/radek-about.jpg';
+import radekAboutImage from '@/assets/radek-about.webp';
 
 const About = () => {
   const { count, ref: counterRef } = useAnimatedCounter(100);

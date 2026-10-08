@@ -19,7 +19,7 @@ import {
   Scatter,
 } from 'recharts';
 import { setPageMeta, injectJsonLd } from '@/lib/seo';
-import radekPhoto from '@/assets/radek-vetrovsky.png';
+import radekPhoto from '@/assets/radek-avatar.webp';
 
 const PUBLISHED = '2026-06-01';
 const PUBLISHED_DISPLAY = 'Červen 2026';

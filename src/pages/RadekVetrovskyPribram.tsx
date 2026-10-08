@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FloatingCTA from '@/components/FloatingCTA';
-import radekPhoto from '@/assets/radek-vetrovsky.png';
+import radekPhoto from '@/assets/radek-profil.webp';
 import { setPageMeta } from '@/lib/seo';
 
 const RadekVetrovskyPribram = () => {
@@ -81,7 +81,7 @@ const RadekVetrovskyPribram = () => {
                                     <img
                                         src={radekPhoto}
                                         alt="Radek Větrovský - realitní makléř v Příbrami"
-                                        className="w-full h-full object-cover object-bottom"
+                                        className="w-full h-full object-cover object-center"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                                     <div className="absolute bottom-0 left-0 right-0 p-6 text-white">

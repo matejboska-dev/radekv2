@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, Calendar, Clock, Phone, Mail, Globe, ChevronDown, ArrowRight, KeyRound, ShieldAlert } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { setPageMeta, injectJsonLd } from '@/lib/seo';
-import radekPhoto from '@/assets/radek-vetrovsky.png';
+import radekPhoto from '@/assets/radek-avatar.webp';
 
 const heroImage = 'https://images.unsplash.com/photo-1643804926339-e94f0a655185?w=1200&h=800&fit=crop&q=80';
 const signingImage = 'https://images.unsplash.com/photo-1764231467852-b609a742e082?w=1200&h=800&fit=crop&q=80';

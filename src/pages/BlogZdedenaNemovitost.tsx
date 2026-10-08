@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, Calendar, Clock, Phone, Mail, Globe, ChevronDown, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { setPageMeta, injectJsonLd } from '@/lib/seo';
-import radekPhoto from '@/assets/radek-vetrovsky.png';
+import radekPhoto from '@/assets/radek-avatar.webp';
 
 const PUBLISHED = '2026-05-22';
 const PUBLISHED_DISPLAY = '22. května 2026';

@@ -8,7 +8,7 @@ import { services, SITE_URL, type ServiceContent } from '@/data/services';
 import { setPageMeta } from '@/lib/seo';
 import { getServiceSchema, serializeJsonLd } from '@/lib/service-seo';
 import { trackServiceEvent } from '@/lib/service-tracking';
-import aboutImage from '@/assets/radek-about.jpg';
+import aboutImage from '@/assets/radek-service.webp';
 import saleTynec from '@/assets/services/property-dum-tynec-nad-sazavou.jpg';
 import saleBrodska from '@/assets/services/property-byt-brodska-pribram.jpg';
 import saleZdabor from '@/assets/services/property-byt-zdabor-slunna-pribram.jpg';
@@ -150,7 +150,7 @@ export default function ServicePage({ service }: { service: ServiceContent }) {
 
         <section className="service-section border-y border-border" aria-labelledby="local-heading">
           <div className="service-container grid items-center gap-9 lg:grid-cols-12 lg:gap-14">
-            <div className="lg:col-span-5"><img src={aboutImage} alt="Radek Větrovský, realitní makléř RE/MAX Power 2" width={800} height={900} loading="lazy" className="aspect-[4/3] w-full rounded-2xl object-cover sm:rounded-3xl lg:aspect-[4/5]" /></div>
+            <div className="lg:col-span-5"><img src={aboutImage} alt="Radek Větrovský, realitní makléř RE/MAX Power 2" width={800} height={900} loading="lazy" className="aspect-[4/3] w-full rounded-2xl object-cover object-[center_20%] sm:rounded-3xl lg:aspect-[4/5]" /></div>
             <div className="lg:col-span-7"><h2 id="local-heading" className="service-heading">Místní znalost. Osobní spolupráce.</h2><p className="mt-6 text-lg font-bold">Radek Větrovský · RE/MAX Power 2</p><p className="mt-4 leading-relaxed text-muted-foreground">{service.localText}</p><p className="mt-4 leading-relaxed text-muted-foreground">Od první konzultace máte přímý kontakt na člověka, který Vaši situaci zná. Rozsah spolupráce, odměnu i další postup si ujasníme předem.</p><Link to="/radek-vetrovsky-realitni-makler-pribram" className="mt-5 inline-flex min-h-11 items-center gap-2 font-bold text-primary hover:underline">Více o mně <ArrowUpRight className="h-4 w-4" aria-hidden="true" /></Link></div>
           </div>
         </section>

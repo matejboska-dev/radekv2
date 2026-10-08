@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, Calendar, Clock, Phone, Mail, Globe, ChevronDown, ArrowRight, KeyRound, UserCheck, UserX } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { setPageMeta, injectJsonLd } from '@/lib/seo';
-import radekPhoto from '@/assets/radek-vetrovsky.png';
+import radekPhoto from '@/assets/radek-avatar.webp';
 
 const heroImage = 'https://images.unsplash.com/photo-1722487631997-cf1e0f92c2c4?w=1200&h=800&fit=crop&q=80';
 
