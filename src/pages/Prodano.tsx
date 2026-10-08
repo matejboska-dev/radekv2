@@ -157,7 +157,11 @@ const Prodano = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    if (window.location.hash.startsWith('#nemovitost-')) {
+      document.getElementById(window.location.hash.slice(1))?.scrollIntoView({ block: 'start', behavior: 'instant' });
+    } else {
+      window.scrollTo(0, 0);
+    }
   }, []);
 
   return (
@@ -200,10 +204,11 @@ const Prodano = () => {
             {properties.map((property, index) => (
               <motion.div
                 key={property.id}
+                id={`nemovitost-${property.id}`}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="property-card group"
+                className="property-card group scroll-mt-28 target:ring-2 target:ring-secondary"
               >
                 <div className="relative aspect-[16/11] w-full overflow-hidden rounded-t-xl bg-muted">
                   <img

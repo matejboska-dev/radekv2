@@ -3,7 +3,7 @@ import { Phone, Mail, MapPin, ArrowUp } from 'lucide-react';
 
 const REMAX_LOGO = 'https://www.remax-czech.cz/bundles/daltenweb/img/logo/remax-cze_balon_logo_2.svg?20250618';
 
-const Footer = () => {
+const Footer = ({ staticContent = false }: { staticContent?: boolean }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -16,7 +16,7 @@ const Footer = () => {
         <div className="grid md:grid-cols-3 gap-8 md:gap-12 mb-12">
           {/* Branding */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={staticContent ? false : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
@@ -40,7 +40,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={staticContent ? false : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
@@ -58,7 +58,7 @@ const Footer = () => {
               ].map((link) => (
                 <li key={link.label}>
                   <a
-                    href={link.href}
+                    href={link.href.startsWith('#') ? '/' + link.href : link.href}
                     className="footer-underline text-background/70 hover:text-background transition-colors pb-0.5"
                   >
                     {link.label}
@@ -70,7 +70,7 @@ const Footer = () => {
 
           {/* Contact */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={staticContent ? false : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}

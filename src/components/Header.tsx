@@ -9,7 +9,12 @@ const REMAX_LOGO = 'https://www.remax-czech.cz/bundles/daltenweb/img/logo/remax-
 const PHONE_DISPLAY = '+420 721 855 854';
 const PHONE_HREF = 'tel:+420721855854';
 
-const Header = () => {
+type HeaderProps = {
+  staticContent?: boolean;
+  serviceCta?: { href: string; label: string; onClick: () => void };
+};
+
+const Header = ({ staticContent = false, serviceCta }: HeaderProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
@@ -49,10 +54,21 @@ const Header = () => {
     setIsMobileMenuOpen(false);
   };
 
+  const handlePrimaryCta = () => {
+    if (serviceCta) {
+      serviceCta.onClick();
+      navigate(serviceCta.href);
+    } else if (window.location.pathname === '/odhad-nemovitosti') {
+      document.getElementById('odhad-form')?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      navigate('/odhad-nemovitosti#odhad-form');
+    }
+  };
+
   return (
     <>
       <motion.header
-        initial={{ y: -100 }}
+        initial={staticContent ? false : { y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6 }}
         className="fixed left-0 right-0 top-0 z-50 px-3 pt-3 transition-all duration-300 md:px-5 md:pt-5"
@@ -81,13 +97,14 @@ const Header = () => {
             {/* Desktop Navigation */}
             <nav className="hidden items-center gap-6 xl:gap-8 lg:flex">
               {navLinks.map((link) => (
-                <button
+                <a
                   key={link.href}
-                  onClick={() => scrollToSection(link.href)}
+                  href={link.href.startsWith('#') ? '/' + link.href : link.href}
+                  onClick={(event) => { event.preventDefault(); scrollToSection(link.href); }}
                   className="font-sans text-sm xl:text-base font-bold text-foreground hover:text-primary transition-colors cursor-pointer"
                 >
                   {link.label}
-                </button>
+                </a>
               ))}
               <a
                 href={AKTUALNI_NABIDKA_URL}
@@ -106,16 +123,10 @@ const Header = () => {
               </a>
               <button
                 type="button"
-                onClick={() => {
-                  if (window.location.pathname === '/odhad-nemovitosti') {
-                    document.getElementById('odhad-form')?.scrollIntoView({ behavior: 'smooth' });
-                  } else {
-                    navigate('/odhad-nemovitosti#odhad-form');
-                  }
-                }}
+                onClick={handlePrimaryCta}
                 className="inline-flex items-center justify-center rounded-full bg-secondary px-6 py-2.5 font-sans text-sm xl:text-base font-bold text-secondary-foreground shadow-lg shadow-secondary/25 transition-all duration-300 hover:bg-secondary/90 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
               >
-                Odhad zdarma
+                {serviceCta?.label ?? 'Odhad zdarma'}
               </button>
             </nav>
 
@@ -131,6 +142,8 @@ const Header = () => {
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className="p-2 text-foreground transition-colors"
+                aria-expanded={isMobileMenuOpen}
+                aria-controls="site-mobile-menu"
                 aria-label="Menu">
 
                 {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -147,13 +160,14 @@ const Header = () => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
-          className="fixed inset-0 z-50 bg-background md:hidden">
+          id="site-mobile-menu"
+          className="service-header-menu fixed inset-0 z-50 overflow-y-auto bg-background lg:hidden">
           
             {/* Close Button */}
             <button
             onClick={() => setIsMobileMenuOpen(false)}
             className="absolute top-6 right-6 p-2 text-foreground hover:text-primary transition-colors z-10"
-            aria-label="Close menu">
+            aria-label="Zavřít menu">
             
               <X className="h-8 w-8" />
             </button>
@@ -164,15 +178,16 @@ const Header = () => {
             </div>
 
             {/* Menu Content */}
-            <nav className="container mx-auto px-4 py-6 flex flex-col gap-4 h-full justify-center">
+            <nav className="container mx-auto flex min-h-full flex-col justify-center gap-2 px-5 pb-8 pt-24">
                 {navLinks.map((link) =>
-            <button
+            <a
               key={link.href}
-              onClick={() => scrollToSection(link.href)}
-              className="text-left text-2xl font-medium text-foreground hover:text-primary transition-colors py-4">
+              href={link.href.startsWith('#') ? '/' + link.href : link.href}
+              onClick={(event) => { event.preventDefault(); scrollToSection(link.href); }}
+              className="py-3 text-left text-xl font-medium text-foreground transition-colors hover:text-primary">
               
                   {link.label}
-                </button>
+            </a>
             )}
               <a
               href={AKTUALNI_NABIDKA_URL}
@@ -187,15 +202,11 @@ const Header = () => {
               size="lg"
               onClick={() => {
                 setIsMobileMenuOpen(false);
-                if (window.location.pathname === '/odhad-nemovitosti') {
-                  document.getElementById('odhad-form')?.scrollIntoView({ behavior: 'smooth' });
-                } else {
-                  navigate('/odhad-nemovitosti#odhad-form');
-                }
+                handlePrimaryCta();
               }}
               className="mt-8">
               
-                Odhad zdarma
+                {serviceCta?.label ?? 'Odhad zdarma'}
               </Button>
               <a
               href={PHONE_HREF}

@@ -421,12 +421,11 @@ const InstagramCarousel = () => {
               >
                 {/* HTML5 Video Element */}
                 <video
-                  ref={(el) => (videoRefs.current[index] = el)}
+                  ref={(el) => { videoRefs.current[index] = el; if (el) el.defaultMuted = true; }}
                   src={video.src}
                   poster={video.poster}
                   playsInline
                   loop
-                  defaultMuted
                   muted={isMuted}
                   preload="auto"
                   aria-label={video.title}

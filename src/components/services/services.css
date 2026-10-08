@@ -1,0 +1,29 @@
+  .service-container { @apply mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8; }
+  .service-section { @apply py-16 sm:py-20 lg:py-24; }
+  .service-heading { @apply font-syne font-extrabold uppercase leading-[1.08] tracking-tight; font-size: clamp(1.5rem, 6.2vw, 3rem); }
+  .service-section-intro { @apply mb-10 grid items-end gap-6 lg:mb-14 lg:grid-cols-2 lg:gap-12; }
+  .service-lead { @apply max-w-prose text-base leading-relaxed text-muted-foreground sm:text-lg; }
+  .service-hero-title { font-size: clamp(1.75rem, 3.15vw, 3rem); line-height: 1.08; letter-spacing: -0.025em; }
+  .service-button { @apply inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-secondary px-6 py-3 text-sm font-bold leading-snug text-white transition-colors hover:bg-secondary/90 disabled:cursor-wait disabled:opacity-70; }
+  .service-tab { @apply flex min-h-16 items-center justify-center gap-2 border-b-2 px-2 py-4 font-syne text-sm font-bold sm:gap-4 sm:text-base; }
+  .service-label { @apply mb-2 block text-sm font-bold; }
+  .service-input { @apply w-full rounded-xl border border-white/30 bg-white px-4 py-3 text-base text-foreground placeholder:text-muted-foreground; caret-color: hsl(var(--secondary)); }
+  .service-mobile-contact { padding-bottom: max(12px, env(safe-area-inset-bottom)); }
+.service-faq summary::-webkit-details-marker { display: none; }
+.service-page a, .service-page button { text-underline-offset: 4px; }
+.service-page :is(section, main)[id] { scroll-margin-top: 112px; }
+.service-page :focus-visible { outline: 3px solid hsl(var(--secondary)); outline-offset: 4px; }
+.service-page .bg-primary :focus-visible { outline-color: white; }
+.service-page header nav > :is(a, button) { font-size: 0.8125rem; }
+.service-page header nav { gap: 1rem; }
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .service-page header nav { display: none; }
+  .service-page header .lg\:hidden { display: flex; }
+  .service-page .service-header-menu { display: block; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .service-hero figure { animation: service-photo-reveal 700ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+  @keyframes service-photo-reveal { from { clip-path: inset(0 0 7% 0 round 24px); } to { clip-path: inset(0 round 24px); } }
+}

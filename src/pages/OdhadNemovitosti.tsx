@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { setPageMeta, injectJsonLd } from '@/lib/seo';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
+import { trackServiceEvent } from '@/lib/service-tracking';
 
 const REMAX_LOGO = 'https://www.remax-czech.cz/bundles/daltenweb/img/logo/remax-cze_balon_logo_2.svg?20250618';
 
@@ -66,7 +67,7 @@ const OdhadNemovitosti = () => {
     const formData = new FormData(form);
 
     try {
-      const { error } = await supabase.functions.invoke('send-email', {
+      const { data, error } = await supabase.functions.invoke('send-email', {
         body: {
           name: formData.get('name') as string,
           email: formData.get('email') as string,
@@ -80,7 +81,11 @@ const OdhadNemovitosti = () => {
         },
       });
 
-      if (error) throw error;
+      if (error || data?.error || data?.success !== true) throw error || new Error('Contact request failed');
+
+      if (new URLSearchParams(window.location.search).get('zdroj') === 'sluzba-prodej') {
+        trackServiceEvent('service_lead_submitted', 'prodej', 'estimate_form');
+      }
 
       setIsSubmitted(true);
       toast({

@@ -19,7 +19,7 @@ function setMetaByAttr(attr: 'name' | 'property', key: string, content: string) 
   };
 }
 
-export function setPageMeta(title: string, description: string, canonicalPath: string, ogImage?: string) {
+export function setPageMeta(title: string, description: string, canonicalPath: string, ogImage?: string, ogType: 'article' | 'website' = 'article') {
   const prevTitle = document.title;
   document.title = title;
 
@@ -43,7 +43,7 @@ export function setPageMeta(title: string, description: string, canonicalPath: s
     setMetaByAttr('property', 'og:title', title),
     setMetaByAttr('property', 'og:description', description),
     setMetaByAttr('property', 'og:url', fullUrl),
-    setMetaByAttr('property', 'og:type', 'article'),
+    setMetaByAttr('property', 'og:type', ogType),
     setMetaByAttr('name', 'twitter:title', title),
     setMetaByAttr('name', 'twitter:description', description),
   ];
