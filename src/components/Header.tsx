@@ -76,10 +76,10 @@ const Header = ({ staticContent = false, serviceCta }: HeaderProps) => {
         <div className={`mx-auto flex h-16 max-w-[1380px] items-center justify-between rounded-full border px-4 transition-all duration-300 md:h-[4.6rem] md:px-6 ${
           isScrolled ? 'border-border bg-background/95 shadow-[0_16px_38px_-28px_rgba(24,43,58,0.5)] backdrop-blur-md' : 'border-transparent bg-background/70 backdrop-blur-sm'
         }`}>
-            <div className="flex items-center gap-2 md:gap-3">
+            <div className="flex shrink-0 items-center gap-2 md:gap-3">
               <a href="/" className="flex items-center gap-2.5 md:gap-3.5" aria-label="Radek Větrovský, úvodní stránka">
                 <img src={REMAX_LOGO} alt="RE/MAX" className="h-8 w-auto md:h-11" />
-                <span className="whitespace-nowrap font-display text-base font-bold tracking-[-0.03em] text-foreground sm:text-xl md:text-2xl">
+                <span className="whitespace-nowrap font-display text-base font-bold tracking-[-0.03em] text-foreground sm:text-xl lg:text-xl xl:text-2xl">
                   Radek Větrovský
                 </span>
               </a>
@@ -88,20 +88,20 @@ const Header = ({ staticContent = false, serviceCta }: HeaderProps) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram Radek Větrovský"
-                className="hidden text-foreground/80 transition-colors hover:text-secondary sm:inline-flex"
+                className="hidden text-foreground/80 transition-colors hover:text-secondary sm:inline-flex lg:hidden xl:inline-flex"
               >
                 <Instagram className="h-5 w-5" />
               </a>
             </div>
 
             {/* Desktop Navigation */}
-            <nav className="hidden items-center gap-6 xl:gap-8 lg:flex">
+            <nav className="hidden items-center gap-4 pl-4 xl:gap-8 xl:pl-6 lg:flex">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href.startsWith('#') ? '/' + link.href : link.href}
                   onClick={(event) => { event.preventDefault(); scrollToSection(link.href); }}
-                  className="font-sans text-sm xl:text-base font-bold text-foreground hover:text-primary transition-colors cursor-pointer"
+                  className="whitespace-nowrap font-sans text-sm xl:text-base font-bold text-foreground hover:text-primary transition-colors cursor-pointer"
                 >
                   {link.label}
                 </a>
@@ -110,21 +110,22 @@ const Header = ({ staticContent = false, serviceCta }: HeaderProps) => {
                 href={AKTUALNI_NABIDKA_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-sans text-sm xl:text-base font-bold text-secondary transition-colors hover:text-secondary/80"
+                className="whitespace-nowrap font-sans text-sm xl:text-base font-bold text-secondary transition-colors hover:text-secondary/80"
               >
                 Aktuální nabídka
               </a>
               <a
                 href={PHONE_HREF}
-                className="inline-flex items-center gap-2 font-sans text-sm xl:text-base font-bold text-foreground transition-colors hover:text-primary"
+                aria-label={`Zavolat ${PHONE_DISPLAY}`}
+                className="inline-flex shrink-0 items-center gap-2 whitespace-nowrap font-sans text-sm xl:text-base font-bold text-foreground transition-colors hover:text-primary"
               >
                 <Phone className="h-4 w-4" />
-                {PHONE_DISPLAY}
+                <span className="hidden 2xl:inline">{PHONE_DISPLAY}</span>
               </a>
               <button
                 type="button"
                 onClick={handlePrimaryCta}
-                className="inline-flex items-center justify-center rounded-full bg-secondary px-6 py-2.5 font-sans text-sm xl:text-base font-bold text-secondary-foreground shadow-lg shadow-secondary/25 transition-all duration-300 hover:bg-secondary/90 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+                className="inline-flex shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-secondary px-5 xl:px-6 py-2.5 font-sans text-sm xl:text-base font-bold text-secondary-foreground shadow-lg shadow-secondary/25 transition-all duration-300 hover:bg-secondary/90 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
               >
                 {serviceCta?.label ?? 'Odhad zdarma'}
               </button>

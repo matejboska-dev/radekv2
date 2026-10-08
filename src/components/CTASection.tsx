@@ -1,6 +1,7 @@
 import { ArrowRight, Phone } from 'lucide-react';
 import { Reveal } from '@/components/anim/Reveal';
 import { useNavigate } from 'react-router-dom';
+import radekCta from '@/assets/radek-cta.webp';
 
 const CTASection = () => {
   const navigate = useNavigate();
@@ -10,7 +11,7 @@ const CTASection = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
         <Reveal
           variant="scaleIn"
-          className="relative w-full overflow-hidden rounded-2xl md:rounded-3xl bg-gradient-to-br from-secondary via-secondary to-secondary/85 text-white px-6 py-12 sm:px-12 sm:py-16 md:py-20 text-center shadow-2xl shadow-secondary/25 border border-white/20"
+          className="relative w-full overflow-hidden rounded-2xl md:rounded-3xl bg-gradient-to-br from-secondary via-secondary to-secondary/85 text-white px-6 py-12 sm:px-12 sm:py-16 md:py-20 lg:px-10 xl:px-16 text-center lg:text-left shadow-2xl shadow-secondary/25 border border-white/20"
         >
           {/* Abstract curved decorative waves & ambient lights */}
           <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
@@ -59,18 +60,35 @@ const CTASection = () => {
             </svg>
           </div>
 
+          {/* Radek volá po telefonu a kouká směrem k textu. Jen na desktopu, kde je vedle obsahu místo. */}
+          <div
+            className="pointer-events-none absolute bottom-0 left-4 xl:left-20 z-[5] hidden lg:block h-[100%] xl:h-[112%] xl:-mb-[7%]"
+            aria-hidden="true"
+          >
+            <div className="absolute inset-x-[-15%] bottom-[10%] h-[65%] rounded-full bg-white/20 blur-3xl" />
+            <img
+              src={radekCta}
+              alt=""
+              width={720}
+              height={1080}
+              loading="lazy"
+              decoding="async"
+              className="relative h-full w-auto drop-shadow-[0_20px_30px_rgba(0,0,0,0.3)]"
+            />
+          </div>
+
           {/* Content */}
-          <div className="relative z-10 max-w-2xl mx-auto">
+          <div className="relative z-10 max-w-2xl mx-auto lg:mx-0 lg:ml-auto lg:max-w-[34rem] xl:max-w-[40rem]">
             <h2 className="font-syne text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-extrabold uppercase tracking-tight text-white leading-[1.15] mb-4 sm:mb-6">
               Chcete prodat<br className="hidden sm:inline" /> bez zbytečných starostí?
             </h2>
 
-            <p className="text-xs sm:text-sm md:text-base text-red-50/90 font-normal leading-relaxed max-w-xl mx-auto mb-8 sm:mb-10">
+            <p className="text-xs sm:text-sm md:text-base text-red-50/90 font-normal leading-relaxed max-w-xl mx-auto lg:mx-0 mb-8 sm:mb-10">
               Svěřte prodej do rukou zkušeného makléře. Postarám se o vše od odhadu ceny 
               přes marketing až po předání klíčů novým majitelům. Vy jen řeknete ano.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-3.5 sm:gap-4 justify-center items-center">
+            <div className="flex flex-col sm:flex-row gap-3.5 sm:gap-4 justify-center lg:justify-start items-center">
               <button
                 type="button"
                 onClick={() => navigate('/odhad-nemovitosti#odhad-form')}

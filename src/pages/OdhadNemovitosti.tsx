@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { setPageMeta, injectJsonLd } from '@/lib/seo';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
+import radekOdhad from '@/assets/radek-odhad.webp';
 import { trackServiceEvent } from '@/lib/service-tracking';
 
 const REMAX_LOGO = 'https://www.remax-czech.cz/bundles/daltenweb/img/logo/remax-cze_balon_logo_2.svg?20250618';
@@ -228,15 +229,16 @@ const OdhadNemovitosti = () => {
         </section>
 
         {/* Contact Form */}
-        <section id="odhad-form" className="section-padding bg-muted scroll-mt-24">
+        <section id="odhad-form" className="section-padding bg-muted scroll-mt-24 overflow-hidden">
           <div className="container mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12 items-start">
+            <div className="grid lg:grid-cols-2 gap-12 lg:items-stretch">
               {/* Left info */}
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
+                className="flex flex-col"
               >
                 <span className="inline-block text-sm font-semibold text-secondary uppercase tracking-wider mb-4">
                   Kontakt
@@ -286,6 +288,23 @@ const OdhadNemovitosti = () => {
                     </div>
                   </div>
                 </div>
+
+                {/* Radek se dívá směrem k formuláři. Spodek postavy zajíždí do paddingu sekce a je ořezaný jejím okrajem. */}
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none relative mt-auto hidden lg:flex justify-center -mb-28 pt-6"
+                >
+                  <div className="absolute inset-x-[10%] bottom-0 h-[75%] rounded-full bg-[radial-gradient(circle,rgba(20,42,59,0.12)_0%,transparent_70%)] blur-2xl" />
+                  <img
+                    src={radekOdhad}
+                    alt=""
+                    width={720}
+                    height={1080}
+                    loading="lazy"
+                    decoding="async"
+                    className="relative w-64 xl:w-72 h-auto drop-shadow-[0_18px_30px_rgba(20,42,59,0.18)]"
+                  />
+                </div>
               </motion.div>
 
               {/* Form */}
@@ -295,7 +314,7 @@ const OdhadNemovitosti = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="bg-card rounded-2xl p-6 md:p-8 shadow-md border border-border scroll-mt-24"
+                className="bg-card rounded-2xl p-6 md:p-8 shadow-md border border-border scroll-mt-24 lg:self-start"
               >
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div className="grid sm:grid-cols-2 gap-4">
