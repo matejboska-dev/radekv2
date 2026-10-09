@@ -2,21 +2,34 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
 import {
+  Banknote,
+  Building2,
   CheckCircle,
+  Clock,
+  Calculator,
+  Ellipsis,
+  Gauge,
+  Hammer,
   Home,
+  KeyRound,
   Mail,
   MapPin,
   MessageSquare,
   Phone,
   Ruler,
   Send,
+  ShieldCheck,
+  Sparkles,
+  Store,
+  ThumbsUp,
+  Trees,
   User,
-  Wrench,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Reveal } from '@/components/anim/Reveal';
+import OptionTiles, { type OptionTile } from '@/components/OptionTiles';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import MobileCTABar from '@/components/MobileCTABar';
@@ -37,11 +50,40 @@ const contactInfo = [
   { icon: MapPin, label: 'Adresa', value: 'Zahradnická 550, 261 01 Příbram III', href: 'https://maps.google.com/?q=Zahradnická+550+Příbram' },
 ];
 
-// Nativní <select> kvůli FormData, vzhledově shodný s <Input> z homepage formuláře.
-const selectClass =
-  'flex h-12 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 md:text-sm';
+const propertyTypes: OptionTile[] = [
+  { value: 'byt', label: 'Byt', icon: Building2 },
+  { value: 'dum', label: 'Rodinný dům', icon: Home },
+  { value: 'pozemek', label: 'Pozemek', icon: Trees },
+  { value: 'komercni', label: 'Komerční', icon: Store },
+  { value: 'jine', label: 'Jiné', icon: Ellipsis },
+];
+
+const goals: OptionTile[] = [
+  { value: 'Prodat', label: 'Prodat', icon: Banknote },
+  { value: 'Pronajmout', label: 'Pronajmout', icon: KeyRound },
+  { value: 'Jen zjistit cenu', label: 'Jen zjistit cenu', icon: Calculator },
+];
+
+const conditions: OptionTile[] = [
+  { value: 'novostavba', label: 'Novostavba', icon: Sparkles },
+  { value: 'velmi-dobry', label: 'Velmi dobrý', icon: ThumbsUp },
+  { value: 'prumerny', label: 'Průměrný', icon: Gauge },
+  { value: 'pred-rekonstrukci', label: 'Před rekonstrukcí', icon: Hammer },
+];
+
+// Lidsky čitelné popisky pro e-mail (do formuláře se posílá `value`).
+const optionLabel = (options: OptionTile[], value: FormDataEntryValue | null) =>
+  options.find((o) => o.value === value)?.label ?? '';
+
+const trustPoints = [
+  { icon: ShieldCheck, label: 'Zdarma a nezávazně' },
+  { icon: Clock, label: 'Odpověď do 24 hodin' },
+];
 
 const labelClass = 'text-sm font-medium text-foreground flex items-center gap-2';
+const stepLabelClass = 'mb-3 flex items-center gap-2.5 text-sm font-semibold text-foreground';
+const stepBadge =
+  'flex h-6 w-6 items-center justify-center rounded-full bg-secondary text-xs font-bold text-secondary-foreground';
 const optional = <span className="text-muted-foreground font-normal">(nepovinné)</span>;
 
 const OdhadNemovitosti = () => {
@@ -89,6 +131,7 @@ const OdhadNemovitosti = () => {
 
     const form = e.currentTarget;
     const formData = new FormData(form);
+    const goal = formData.get('goal') as string | null;
 
     try {
       const { data, error } = await supabase.functions.invoke('send-email', {
@@ -96,11 +139,11 @@ const OdhadNemovitosti = () => {
           name: formData.get('name') as string,
           email: formData.get('email') as string,
           phone: formData.get('phone') as string,
-          message: formData.get('note') as string,
-          propertyType: formData.get('property-type') as string,
+          message: [goal && `Záměr: ${goal}`, formData.get('note') as string].filter(Boolean).join('\n'),
+          propertyType: optionLabel(propertyTypes, formData.get('property-type')),
           address: formData.get('address') as string,
           area: formData.get('area') as string,
-          condition: formData.get('condition') as string,
+          condition: optionLabel(conditions, formData.get('condition')),
           formType: 'odhad',
         },
       });
@@ -218,7 +261,13 @@ const OdhadNemovitosti = () => {
                   id="odhad-form-card"
                   className="glass-card rounded-2xl p-6 md:p-8 shadow-lg scroll-mt-24"
                 >
-                  <h3 className="text-xl font-bold text-foreground mb-6">Napište mi o nemovitosti</h3>
+                  <div className="mb-6 flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
+                    <h3 className="text-xl font-bold text-foreground">Napište mi o nemovitosti</h3>
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-secondary/10 px-3 py-1 text-xs font-semibold text-secondary">
+                      <Clock className="h-3.5 w-3.5" aria-hidden="true" />
+                      Zabere 60 sekund
+                    </span>
+                  </div>
 
                   {isSubmitted ? (
                     <motion.div
@@ -234,90 +283,99 @@ const OdhadNemovitosti = () => {
                       <p className="text-muted-foreground">Ozvu se Vám do 24 hodin.</p>
                     </motion.div>
                   ) : (
-                    <form onSubmit={handleSubmit} className="space-y-5">
-                      <div className="grid sm:grid-cols-2 gap-5">
-                        <div className="space-y-2">
-                          <label htmlFor="name" className={labelClass}>
-                            <User className="h-4 w-4 text-muted-foreground" />
-                            Jméno a příjmení
-                          </label>
-                          <Input id="name" name="name" type="text" required placeholder="Jan Novák" className="h-12" />
-                        </div>
-                        <div className="space-y-2">
-                          <label htmlFor="phone" className={labelClass}>
-                            <Phone className="h-4 w-4 text-muted-foreground" />
-                            Telefon
-                          </label>
-                          <Input id="phone" name="phone" type="tel" required placeholder="+420 123 456 789" className="h-12" />
-                        </div>
-                      </div>
+                    <form onSubmit={handleSubmit} className="space-y-7">
+                      <fieldset>
+                        <legend className={stepLabelClass}>
+                          <span className={stepBadge}>1</span>
+                          Jaký typ nemovitosti to je?
+                        </legend>
+                        <OptionTiles name="property-type" options={propertyTypes} required columns="five" />
+                      </fieldset>
 
-                      <div className="space-y-2">
-                        <label htmlFor="email" className={labelClass}>
-                          <Mail className="h-4 w-4 text-muted-foreground" />
-                          E-mail {optional}
-                        </label>
-                        <Input id="email" name="email" type="email" placeholder="jan@email.cz" className="h-12" />
-                      </div>
+                      <fieldset>
+                        <legend className={stepLabelClass}>
+                          <span className={stepBadge}>2</span>
+                          Co s ní plánujete? {optional}
+                        </legend>
+                        <OptionTiles name="goal" options={goals} columns="three" size="sm" />
+                      </fieldset>
 
-                      <div className="space-y-2">
-                        <label htmlFor="property-type" className={labelClass}>
-                          <Home className="h-4 w-4 text-muted-foreground" />
-                          Typ nemovitosti
-                        </label>
-                        <select id="property-type" name="property-type" required className={selectClass} defaultValue="">
-                          <option value="">Vyberte typ</option>
-                          <option value="byt">Byt</option>
-                          <option value="dum">Rodinný dům</option>
-                          <option value="pozemek">Pozemek</option>
-                          <option value="komercni">Komerční nemovitost</option>
-                          <option value="jine">Jiné</option>
-                        </select>
-                      </div>
+                      <fieldset>
+                        <legend className={stepLabelClass}>
+                          <span className={stepBadge}>3</span>
+                          V jakém je stavu? {optional}
+                        </legend>
+                        <OptionTiles name="condition" options={conditions} columns="four" size="sm" />
+                      </fieldset>
 
-                      <div className="grid sm:grid-cols-2 gap-5">
-                        <div className="space-y-2">
-                          <label htmlFor="address" className={labelClass}>
-                            <MapPin className="h-4 w-4 text-muted-foreground" />
-                            Adresa nemovitosti {optional}
-                          </label>
-                          <Input id="address" name="address" type="text" placeholder="Ulice nebo čtvrť, město" className="h-12" />
-                        </div>
-                        <div className="space-y-2">
-                          <label htmlFor="area" className={labelClass}>
-                            <Ruler className="h-4 w-4 text-muted-foreground" />
-                            Plocha (m²) {optional}
-                          </label>
-                          <Input id="area" name="area" type="number" placeholder="např. 75" className="h-12" />
+                      <div>
+                        <p className={stepLabelClass}>
+                          <span className={stepBadge}>4</span>
+                          Kde se nachází? {optional}
+                        </p>
+                        <div className="grid sm:grid-cols-3 gap-4">
+                          <div className="space-y-2 sm:col-span-2">
+                            <label htmlFor="address" className={labelClass}>
+                              <MapPin className="h-4 w-4 text-muted-foreground" />
+                              Adresa nemovitosti
+                            </label>
+                            <Input id="address" name="address" type="text" placeholder="Ulice nebo čtvrť, město" className="h-12" />
+                          </div>
+                          <div className="space-y-2">
+                            <label htmlFor="area" className={labelClass}>
+                              <Ruler className="h-4 w-4 text-muted-foreground" />
+                              Plocha (m²)
+                            </label>
+                            <Input id="area" name="area" type="number" min="0" inputMode="numeric" placeholder="např. 75" className="h-12" />
+                          </div>
                         </div>
                       </div>
 
-                      <div className="space-y-2">
-                        <label htmlFor="condition" className={labelClass}>
-                          <Wrench className="h-4 w-4 text-muted-foreground" />
-                          Stav nemovitosti {optional}
-                        </label>
-                        <select id="condition" name="condition" className={selectClass} defaultValue="">
-                          <option value="">Vyberte stav</option>
-                          <option value="novostavba">Novostavba</option>
-                          <option value="velmi-dobry">Velmi dobrý</option>
-                          <option value="prumerny">Průměrný</option>
-                          <option value="pred-rekonstrukci">Před rekonstrukcí</option>
-                        </select>
-                      </div>
+                      <div>
+                        <p className={stepLabelClass}>
+                          <span className={stepBadge}>5</span>
+                          Kam Vám mám odpovědět?
+                        </p>
+                        <div className="space-y-5">
+                          <div className="grid sm:grid-cols-2 gap-5">
+                            <div className="space-y-2">
+                              <label htmlFor="name" className={labelClass}>
+                                <User className="h-4 w-4 text-muted-foreground" />
+                                Jméno a příjmení
+                              </label>
+                              <Input id="name" name="name" type="text" required placeholder="Jan Novák" className="h-12" />
+                            </div>
+                            <div className="space-y-2">
+                              <label htmlFor="phone" className={labelClass}>
+                                <Phone className="h-4 w-4 text-muted-foreground" />
+                                Telefon
+                              </label>
+                              <Input id="phone" name="phone" type="tel" required placeholder="+420 123 456 789" className="h-12" />
+                            </div>
+                          </div>
 
-                      <div className="space-y-2">
-                        <label htmlFor="note" className={labelClass}>
-                          <MessageSquare className="h-4 w-4 text-muted-foreground" />
-                          Poznámka {optional}
-                        </label>
-                        <Textarea
-                          id="note"
-                          name="note"
-                          rows={4}
-                          placeholder="Doplňující informace o nemovitosti..."
-                          className="resize-none"
-                        />
+                          <div className="space-y-2">
+                            <label htmlFor="email" className={labelClass}>
+                              <Mail className="h-4 w-4 text-muted-foreground" />
+                              E-mail {optional}
+                            </label>
+                            <Input id="email" name="email" type="email" placeholder="jan@email.cz" className="h-12" />
+                          </div>
+
+                          <div className="space-y-2">
+                            <label htmlFor="note" className={labelClass}>
+                              <MessageSquare className="h-4 w-4 text-muted-foreground" />
+                              Poznámka {optional}
+                            </label>
+                            <Textarea
+                              id="note"
+                              name="note"
+                              rows={3}
+                              placeholder="Doplňující informace o nemovitosti..."
+                              className="resize-none"
+                            />
+                          </div>
+                        </div>
                       </div>
 
                       <Button type="submit" variant="cta" size="xl" className="w-full" disabled={isSubmitting}>
@@ -329,10 +387,19 @@ const OdhadNemovitosti = () => {
                         ) : (
                           <>
                             <Send className="h-5 w-5" />
-                            Odeslat žádost o odhad
+                            Získat odhad zdarma
                           </>
                         )}
                       </Button>
+
+                      <ul className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-medium text-foreground">
+                        {trustPoints.map((point) => (
+                          <li key={point.label} className="flex items-center gap-2">
+                            <point.icon className="h-4 w-4 text-secondary" aria-hidden="true" />
+                            {point.label}
+                          </li>
+                        ))}
+                      </ul>
 
                       <p className="text-xs text-muted-foreground text-center">
                         Odesláním souhlasíte se{' '}

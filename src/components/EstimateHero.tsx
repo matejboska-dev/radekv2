@@ -1,6 +1,6 @@
 import { ArrowRight, Phone } from 'lucide-react';
 import { Reveal } from '@/components/anim/Reveal';
-import radekPhoto from '@/assets/radek-hero.webp';
+import radekPhoto from '@/assets/radek-vetrovsky.webp';
 import bgPhoto from '@/assets/pribram-city.jpg';
 
 type EstimateHeroProps = {
@@ -75,10 +75,10 @@ const EstimateHero = ({ onCta }: EstimateHeroProps) => {
           <img
             src={radekPhoto}
             alt="Radek Větrovský, certifikovaný realitní makléř RE/MAX Příbram"
-            width={577}
-            height={1300}
+            width={959}
+            height={1438}
             loading="eager"
-            className="relative h-[22rem] w-auto object-contain object-bottom drop-shadow-[0_0_18px_rgba(255,255,255,0.2)] [mask-image:linear-gradient(to_bottom,black_86%,transparent_100%)] sm:h-[28rem] lg:h-[31rem] xl:h-[36rem]"
+            className="relative h-[20rem] w-auto object-contain object-bottom drop-shadow-[0_0_22px_rgba(255,255,255,0.35)] [mask-image:linear-gradient(to_bottom,black_86%,transparent_100%)] sm:h-[25rem] lg:h-[28rem] xl:h-[32rem]"
           />
         </Reveal>
       </div>
