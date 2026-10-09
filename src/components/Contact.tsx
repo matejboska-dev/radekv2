@@ -71,15 +71,15 @@ const Contact = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
         {/* Editorial Asymmetric Header */}
         <Reveal className="mb-12 md:mb-16 pb-6 border-b border-border/50">
-          <div className="max-w-xl">
+          <div className="max-w-3xl">
             <div className="flex items-center gap-2 mb-3">
               <span className="text-xs font-bold uppercase tracking-[0.2em] text-secondary">
                 07 — KONTAKT
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-syne font-extrabold uppercase tracking-tight text-foreground leading-[1.05]">
-              Pojďme si <br className="hidden sm:block" />
-              promluvit
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[2.75rem] xl:text-[3.15rem] font-syne font-extrabold uppercase tracking-tight text-foreground leading-[1.08]">
+              Ozvěte se mi, <br className="hidden sm:block" />
+              jak Vám mohu pomoci
             </h2>
             <p className="mt-4 text-base sm:text-lg text-muted-foreground leading-relaxed">
               Neváhejte mě kontaktovat. Rád vám pomohu najít to pravé řešení

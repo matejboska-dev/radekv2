@@ -91,19 +91,21 @@ const HeroDesktop = () => {
         data-hero="portrait"
         className="pointer-events-none absolute inset-y-0 right-0 top-16 lg:top-20 z-20 flex justify-end items-end pr-6 lg:pr-12 xl:pr-20 2xl:pr-28"
       >
-        <div
-          aria-hidden="true"
-          className="absolute -right-[30%] bottom-0 h-[85%] w-[170%] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(20,42,59,0.7)_0%,transparent_70%)] blur-3xl"
-        />
-        <div
-          aria-hidden="true"
-          className="absolute right-[8%] xl:right-[14%] top-[12%] h-[26rem] w-[26rem] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.2)_0%,transparent_65%)] blur-2xl"
-        />
-        <img
-          src={radekPhoto}
-          alt="Radek Větrovský, certifikovaný realitní makléř RE/MAX Příbram"
-          className="relative max-h-full h-[88vh] 2xl:h-[92vh] w-auto object-contain object-bottom drop-shadow-[0_0_18px_rgba(255,255,255,0.2)] [mask-image:linear-gradient(to_bottom,black_84%,transparent_100%)]"
-        />
+        <div className="relative flex items-end justify-center">
+          <div
+            aria-hidden="true"
+            className="absolute -right-[20%] bottom-0 h-[85%] w-[140%] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(20,42,59,0.7)_0%,transparent_70%)] blur-3xl"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute left-1/2 -translate-x-1/2 top-[8%] h-[20rem] w-[20rem] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.22)_0%,transparent_65%)] blur-2xl"
+          />
+          <img
+            src={radekPhoto}
+            alt="Radek Větrovský, certifikovaný realitní makléř RE/MAX Příbram"
+            className="relative h-[64vh] xl:h-[68vh] 2xl:h-[72vh] max-h-[680px] w-auto object-contain object-bottom drop-shadow-[0_0_18px_rgba(255,255,255,0.2)] [mask-image:linear-gradient(to_bottom,black_84%,transparent_100%)]"
+          />
+        </div>
       </div>
 
       {/* ═══════ LAYER 4: Content overlay — bottom left copy + CTA beside it ═══════ */}

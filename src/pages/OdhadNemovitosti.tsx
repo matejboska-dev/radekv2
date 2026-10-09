@@ -2,14 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
 import {
+  Building2,
   CheckCircle,
+  CheckCircle2,
+  Hammer,
   Home,
+  Layers,
   Mail,
   MapPin,
   MessageSquare,
   Phone,
   Ruler,
   Send,
+  Sparkles,
+  Store,
+  Trees,
   User,
   Wrench,
 } from 'lucide-react';
@@ -37,9 +44,20 @@ const contactInfo = [
   { icon: MapPin, label: 'Adresa', value: 'Zahradnická 550, 261 01 Příbram III', href: 'https://maps.google.com/?q=Zahradnická+550+Příbram' },
 ];
 
-// Nativní <select> kvůli FormData, vzhledově shodný s <Input> z homepage formuláře.
-const selectClass =
-  'flex h-12 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 md:text-sm';
+const PROPERTY_TYPES = [
+  { value: 'byt', label: 'Byt', icon: Building2 },
+  { value: 'dum', label: 'Rodinný dům', icon: Home },
+  { value: 'pozemek', label: 'Pozemek', icon: Trees },
+  { value: 'komercni', label: 'Komerční', icon: Store },
+  { value: 'jine', label: 'Jiné', icon: Layers },
+];
+
+const PROPERTY_CONDITIONS = [
+  { value: 'novostavba', label: 'Novostavba', icon: Sparkles },
+  { value: 'velmi-dobry', label: 'Velmi dobrý', icon: CheckCircle2 },
+  { value: 'prumerny', label: 'Průměrný', icon: Wrench },
+  { value: 'pred-rekonstrukci', label: 'Před rekonstrukcí', icon: Hammer },
+];
 
 const labelClass = 'text-sm font-medium text-foreground flex items-center gap-2';
 const optional = <span className="text-muted-foreground font-normal">(nepovinné)</span>;
@@ -49,6 +67,8 @@ const OdhadNemovitosti = () => {
   const { hash } = useLocation();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [propertyType, setPropertyType] = useState<string>('');
+  const [condition, setCondition] = useState<string>('');
 
   const scrollToForm = () => {
     const isMobile = window.innerWidth < 1024;
@@ -85,6 +105,16 @@ const OdhadNemovitosti = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!propertyType) {
+      toast({
+        title: "Vyberte typ nemovitosti",
+        description: "Zvolte prosím, o jaký typ nemovitosti se jedná.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
 
     const form = e.currentTarget;
@@ -97,10 +127,10 @@ const OdhadNemovitosti = () => {
           email: formData.get('email') as string,
           phone: formData.get('phone') as string,
           message: formData.get('note') as string,
-          propertyType: formData.get('property-type') as string,
+          propertyType: propertyType,
           address: formData.get('address') as string,
           area: formData.get('area') as string,
-          condition: formData.get('condition') as string,
+          condition: condition,
           formType: 'odhad',
         },
       });
@@ -117,6 +147,8 @@ const OdhadNemovitosti = () => {
         description: "Ozvu se vám do 24 hodin.",
       });
       form.reset();
+      setPropertyType('');
+      setCondition('');
       setTimeout(() => setIsSubmitted(false), 5000);
     } catch (err) {
       console.error('Send email error:', err);
@@ -261,18 +293,38 @@ const OdhadNemovitosti = () => {
                       </div>
 
                       <div className="space-y-2">
-                        <label htmlFor="property-type" className={labelClass}>
+                        <label className={labelClass}>
                           <Home className="h-4 w-4 text-muted-foreground" />
                           Typ nemovitosti
                         </label>
-                        <select id="property-type" name="property-type" required className={selectClass} defaultValue="">
-                          <option value="">Vyberte typ</option>
-                          <option value="byt">Byt</option>
-                          <option value="dum">Rodinný dům</option>
-                          <option value="pozemek">Pozemek</option>
-                          <option value="komercni">Komerční nemovitost</option>
-                          <option value="jine">Jiné</option>
-                        </select>
+                        <input type="hidden" name="property-type" value={propertyType} />
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2.5">
+                          {PROPERTY_TYPES.map((type) => {
+                            const Icon = type.icon;
+                            const isSelected = propertyType === type.value;
+                            return (
+                              <button
+                                key={type.value}
+                                type="button"
+                                onClick={() => setPropertyType(type.value)}
+                                className={`group flex ${
+                                  type.value === 'jine' ? 'col-span-2 sm:col-span-1 flex-row sm:flex-col gap-2' : 'flex-col gap-1.5'
+                                } items-center justify-center rounded-xl border p-3 text-center transition-all duration-200 cursor-pointer ${
+                                  isSelected
+                                    ? 'border-primary bg-primary text-white shadow-md ring-2 ring-primary/20 scale-[1.02]'
+                                    : 'border-input bg-background/80 hover:bg-muted/70 hover:border-foreground/30 text-foreground'
+                                }`}
+                              >
+                                <Icon
+                                  className={`h-5 w-5 transition-transform duration-200 group-hover:scale-110 ${
+                                    isSelected ? 'text-white' : 'text-muted-foreground group-hover:text-foreground'
+                                  }`}
+                                />
+                                <span className="text-xs sm:text-sm font-semibold leading-tight">{type.label}</span>
+                              </button>
+                            );
+                          })}
+                        </div>
                       </div>
 
                       <div className="grid sm:grid-cols-2 gap-5">
@@ -293,17 +345,38 @@ const OdhadNemovitosti = () => {
                       </div>
 
                       <div className="space-y-2">
-                        <label htmlFor="condition" className={labelClass}>
+                        <label className={labelClass}>
                           <Wrench className="h-4 w-4 text-muted-foreground" />
                           Stav nemovitosti {optional}
                         </label>
-                        <select id="condition" name="condition" className={selectClass} defaultValue="">
-                          <option value="">Vyberte stav</option>
-                          <option value="novostavba">Novostavba</option>
-                          <option value="velmi-dobry">Velmi dobrý</option>
-                          <option value="prumerny">Průměrný</option>
-                          <option value="pred-rekonstrukci">Před rekonstrukcí</option>
-                        </select>
+                        <input type="hidden" name="condition" value={condition} />
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                          {PROPERTY_CONDITIONS.map((cond) => {
+                            const Icon = cond.icon;
+                            const isSelected = condition === cond.value;
+                            return (
+                              <button
+                                key={cond.value}
+                                type="button"
+                                onClick={() => setCondition(isSelected ? '' : cond.value)}
+                                className={`group flex items-center justify-center gap-2 rounded-xl border py-2.5 px-3 text-center transition-all duration-200 cursor-pointer ${
+                                  isSelected
+                                    ? 'border-primary bg-primary text-white shadow-md ring-2 ring-primary/20 scale-[1.02]'
+                                    : 'border-input bg-background/80 hover:bg-muted/70 hover:border-foreground/30 text-foreground'
+                                }`}
+                              >
+                                <Icon
+                                  className={`h-4 w-4 shrink-0 transition-transform duration-200 group-hover:scale-110 ${
+                                    isSelected ? 'text-white' : 'text-muted-foreground group-hover:text-foreground'
+                                  }`}
+                                />
+                                <span className="text-xs sm:text-sm font-semibold leading-tight whitespace-nowrap">
+                                  {cond.label}
+                                </span>
+                              </button>
+                            );
+                          })}
+                        </div>
                       </div>
 
                       <div className="space-y-2">
