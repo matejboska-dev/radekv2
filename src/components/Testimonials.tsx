@@ -1,6 +1,6 @@
 import { Star, ArrowUpRight } from 'lucide-react';
 import { Reveal, RevealItem } from '@/components/anim/Reveal';
-import testimonialsBanner from '@/assets/radek-nemovitost-zahrada.jpg';
+import testimonialsBanner from '@/assets/radek-testimonials.webp';
 
 const GOOGLE_REVIEWS_URL = 'https://maps.app.goo.gl/vNQZSSixjfp8rZCu9';
 
@@ -79,11 +79,10 @@ const Testimonials = () => {
         <Reveal variant="scaleIn" className="relative w-full rounded-2xl md:rounded-3xl overflow-hidden border border-[#212c42]/10 shadow-2xl mb-12 sm:mb-16 md:mb-20">
           <img
             src={testimonialsBanner}
-            alt="Příbram a okolí – kde pomáhám klientům prodávat nemovitosti"
+            alt="Radek Větrovský – certifikovaný realitní makléř RE/MAX Příbram"
             className="w-full h-56 sm:h-72 md:h-96 lg:h-[440px] xl:h-[480px] object-cover object-center"
-            loading="lazy"
+            loading="eager"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#212c42]/60 via-transparent to-transparent pointer-events-none" />
         </Reveal>
 
         {/* 3-Column Testimonials Layout with subtle vertical dividers */}
