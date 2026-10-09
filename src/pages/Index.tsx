@@ -19,17 +19,32 @@ import Footer from '@/components/Footer';
 import FloatingCTA from '@/components/FloatingCTA';
 import MobileCTABar from '@/components/MobileCTABar';
 
+import { setPageMeta } from '@/lib/seo';
+
 const Index = () => {
   const location = useLocation();
 
   useEffect(() => {
+    const cleanupMeta = setPageMeta(
+      'Radek Větrovský | Realitní makléř Příbram – Prodej nemovitostí',
+      'Radek Větrovský – certifikovaný realitní makléř RE/MAX Příbram. Profesionální prodej nemovitostí, byty, domy a pozemky. Bezplatný odhad tržní ceny → zavolejte ještě dnes!',
+      '/',
+      undefined,
+      'website'
+    );
+
     if (location.hash) {
       const t = setTimeout(() => {
         const element = document.querySelector<HTMLElement>(location.hash);
         if (element) smoothScrollTo(element);
       }, 200);
-      return () => clearTimeout(t);
+      return () => {
+        clearTimeout(t);
+        cleanupMeta();
+      };
     }
+
+    return cleanupMeta;
   }, [location.hash]);
 
   return (

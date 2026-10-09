@@ -1,4 +1,5 @@
-const BASE_URL = 'https://radek-vetrovsky.cz';
+export const BASE_URL = 'https://radek-vetrovsky.cz';
+export const DEFAULT_OG_IMAGE = `${BASE_URL}/og-image.jpg`;
 
 function setMetaByAttr(attr: 'name' | 'property', key: string, content: string) {
   let el = document.querySelector(`meta[${attr}="${key}"]`) as HTMLMetaElement | null;
@@ -19,7 +20,14 @@ function setMetaByAttr(attr: 'name' | 'property', key: string, content: string) 
   };
 }
 
-export function setPageMeta(title: string, description: string, canonicalPath: string, ogImage?: string, ogType: 'article' | 'website' = 'article') {
+export function setPageMeta(
+  title: string,
+  description: string,
+  canonicalPath: string,
+  ogImage?: string,
+  ogType: 'article' | 'website' = 'article',
+  ogImageAlt: string = 'Radek Větrovský – Realitní makléř Příbram RE/MAX'
+) {
   const prevTitle = document.title;
   document.title = title;
 
@@ -38,19 +46,27 @@ export function setPageMeta(title: string, description: string, canonicalPath: s
   const fullUrl = `${BASE_URL}${canonicalPath}`;
   canonical.setAttribute('href', fullUrl);
 
+  const finalImage = ogImage || DEFAULT_OG_IMAGE;
+
   // Open Graph + Twitter Card, scoped to this page
   const cleanups = [
     setMetaByAttr('property', 'og:title', title),
     setMetaByAttr('property', 'og:description', description),
     setMetaByAttr('property', 'og:url', fullUrl),
     setMetaByAttr('property', 'og:type', ogType),
+    setMetaByAttr('property', 'og:site_name', 'Radek Větrovský – Realitní makléř Příbram'),
+    setMetaByAttr('property', 'og:locale', 'cs_CZ'),
+    setMetaByAttr('property', 'og:image', finalImage),
+    setMetaByAttr('property', 'og:image:secure_url', finalImage),
+    setMetaByAttr('property', 'og:image:alt', ogImageAlt),
+    setMetaByAttr('property', 'og:image:width', '1200'),
+    setMetaByAttr('property', 'og:image:height', '630'),
+    setMetaByAttr('name', 'twitter:card', 'summary_large_image'),
     setMetaByAttr('name', 'twitter:title', title),
     setMetaByAttr('name', 'twitter:description', description),
+    setMetaByAttr('name', 'twitter:image', finalImage),
+    setMetaByAttr('name', 'twitter:image:alt', ogImageAlt),
   ];
-  if (ogImage) {
-    cleanups.push(setMetaByAttr('property', 'og:image', ogImage));
-    cleanups.push(setMetaByAttr('name', 'twitter:image', ogImage));
-  }
 
   return () => {
     document.title = prevTitle;

@@ -1,34 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Hlavní stránky -->
   <url>
     <loc>https://radek-vetrovsky.cz/</loc>
-    <lastmod>2026-07-28</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://radek-vetrovsky.cz/odhad-nemovitosti</loc>
-    <lastmod>2026-02-25</lastmod>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://radek-vetrovsky.cz/clanky</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://radek-vetrovsky.cz/prodano</loc>
+    <lastmod>2026-10-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- Služby -->
   <url>
     <loc>https://radek-vetrovsky.cz/sluzby/prodej-nemovitosti-pribram</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-10-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://radek-vetrovsky.cz/sluzby/pronajem-nemovitosti-pribram</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-10-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://radek-vetrovsky.cz/sluzby/koupe-nemovitosti-pribram</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-10-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://radek-vetrovsky.cz/radek-vetrovsky-realitni-makler-pribram</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Blog & Odborné články -->
+  <url>
+    <loc>https://radek-vetrovsky.cz/blog/hypotecni-sazby-pribram-mesicni-prehled</loc>
+    <lastmod>2026-09-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://radek-vetrovsky.cz/blog/jak-prodat-rodinny-dum-pribram</loc>
+    <lastmod>2026-09-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://radek-vetrovsky.cz/blog/na-co-si-dat-pozor-koupe-nemovitosti-pribram</loc>
+    <lastmod>2026-09-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://radek-vetrovsky.cz/blog/kolik-si-muzu-dovolit-hypoteka-pribram</loc>
+    <lastmod>2026-09-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://radek-vetrovsky.cz/blog/novostavby-pribram-2026-kde-se-stavi</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://radek-vetrovsky.cz/blog/prodej-garsonky-maleho-bytu-pribram-2026</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://radek-vetrovsky.cz/blog/dan-z-nemovitosti-pribram-2026</loc>
@@ -76,29 +135,49 @@
     <loc>https://radek-vetrovsky.cz/blog/jak-prodat-zdedenu-nemovitost-pribram</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://radek-vetrovsky.cz/blog/dan-z-prodeje-bytu-pribram-2026</loc>
     <lastmod>2026-05-15</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://radek-vetrovsky.cz/blog/exkluzivni-smlouva-s-maklerem</loc>
+    <lastmod>2026-04-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://radek-vetrovsky.cz/blog/prodat-nemovitost-pribram-bez-realitky-nebo-s-maklerem</loc>
+    <lastmod>2026-04-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://radek-vetrovsky.cz/blog/investicni-nemovitosti-pribram</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://radek-vetrovsky.cz/blog/jak-spravne-ocenit-nemovitost</loc>
-    <lastmod>2026-02-25</lastmod>
+    <lastmod>2026-01-15</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
   </url>
+
+  <!-- Právní náležitosti -->
   <url>
     <loc>https://radek-vetrovsky.cz/gdpr</loc>
-    <lastmod>2026-02-25</lastmod>
+    <lastmod>2026-10-09</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://radek-vetrovsky.cz/zpracovani-osobnich-udaju</loc>
-    <lastmod>2026-02-25</lastmod>
+    <lastmod>2026-10-09</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

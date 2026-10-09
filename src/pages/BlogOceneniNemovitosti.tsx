@@ -296,7 +296,7 @@ const BlogOceneniNemovitosti = () => {
                 
                 <p className="text-muted-foreground mb-6">
                   Hledáte zkušeného <Link to="/" className="text-secondary hover:underline font-medium">realitního makléře v Příbrami</Link>? 
-                  Podívejte se na moje <Link to="/#sluzby" className="text-secondary hover:underline font-medium">služby v oblasti prodeje a pronájmu nemovitostí</Link>. Pokud zvažujete prodej, podívejte se také na článek o tom, <Link to="/blog/dan-z-prodeje-bytu-pribram-2026" className="text-secondary hover:underline font-medium">kolik zaplatíte na daních při prodeji bytu v Příbrami</Link>. U zděděných nemovitostí má ocenění svá specifika, podrobně to rozebírám v průvodci <Link to="/blog/jak-prodat-zdedenu-nemovitost-pribram" className="text-secondary hover:underline font-medium">jak prodat zděděnou nemovitost</Link>.
+                  Podívejte se na moje <Link to="/sluzby/prodej-nemovitosti-pribram" className="text-secondary hover:underline font-medium">služby v oblasti prodeje nemovitostí v Příbrami</Link>. Pokud zvažujete prodej, podívejte se také na článek o tom, <Link to="/blog/dan-z-prodeje-bytu-pribram-2026" className="text-secondary hover:underline font-medium">kolik zaplatíte na daních při prodeji bytu v Příbrami</Link>. U zděděných nemovitostí má ocenění svá specifika, podrobně to rozebírám v průvodci <Link to="/blog/jak-prodat-zdedenu-nemovitost-pribram" className="text-secondary hover:underline font-medium">jak prodat zděděnou nemovitost</Link>.
                 </p>
 
                 <div className="bg-secondary/10 border border-secondary/20 p-6 rounded-xl">

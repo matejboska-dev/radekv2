@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { setPageMeta, injectJsonLd } from '@/lib/seo';
 import bytImage from '@/assets/property-byt-pribram.webp';
 import dumImage from '@/assets/property-dum-pribram.webp';
 import byt31Image from '@/assets/property-byt31-pribram.webp';
@@ -157,11 +158,30 @@ const Prodano = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const cleanupMeta = setPageMeta(
+      'Prodané nemovitosti v Příbrami a okolí | Radek Větrovský RE/MAX',
+      'Přehled úspěšně realizovaných prodejů bytů, domů a pozemků v Příbrami a okolí. Reference mluví za vše – prohlédněte si úspěšně dokončené případy.',
+      '/prodano'
+    );
+    const cleanupBreadcrumb = injectJsonLd({
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Domů', item: 'https://radek-vetrovsky.cz/' },
+        { '@type': 'ListItem', position: 2, name: 'Prodané nemovitosti' },
+      ],
+    });
+
     if (window.location.hash.startsWith('#nemovitost-')) {
       document.getElementById(window.location.hash.slice(1))?.scrollIntoView({ block: 'start', behavior: 'instant' });
     } else {
       window.scrollTo(0, 0);
     }
+
+    return () => {
+      cleanupMeta();
+      cleanupBreadcrumb();
+    };
   }, []);
 
   return (

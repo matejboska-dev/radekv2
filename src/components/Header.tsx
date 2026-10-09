@@ -65,16 +65,13 @@ const Header = ({ staticContent = false, serviceCta }: HeaderProps) => {
     }
   };
 
+  const isSubpage = typeof window !== 'undefined' && window.location.pathname !== '/';
+
   return (
     <>
-      <motion.header
-        initial={staticContent ? false : { y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="fixed left-0 right-0 top-0 z-50 px-3 pt-3 transition-all duration-300 md:px-5 md:pt-5"
-      >
+      <header className="fixed left-0 right-0 top-0 z-50 px-3 pt-3 transition-all duration-300 md:px-5 md:pt-5">
         <div className={`mx-auto flex h-16 max-w-[1380px] items-center justify-between rounded-full border px-4 transition-all duration-300 md:h-[4.6rem] md:px-6 ${
-          isScrolled ? 'border-border bg-background/95 shadow-[0_16px_38px_-28px_rgba(24,43,58,0.5)] backdrop-blur-md' : 'border-transparent bg-background/70 backdrop-blur-sm'
+          isScrolled || isSubpage ? 'border-border bg-background/95 shadow-[0_16px_38px_-28px_rgba(24,43,58,0.5)] backdrop-blur-md' : 'border-transparent bg-background/70 backdrop-blur-sm'
         }`}>
             <div className="flex shrink-0 items-center gap-2 md:gap-3">
               <a href="/" className="flex items-center gap-2.5 md:gap-3.5" aria-label="Radek Větrovský, úvodní stránka">
@@ -151,7 +148,7 @@ const Header = ({ staticContent = false, serviceCta }: HeaderProps) => {
               </button>
             </div>
         </div>
-      </motion.header>
+      </header>
 
       {/* Mobile Menu */}
       <AnimatePresence>

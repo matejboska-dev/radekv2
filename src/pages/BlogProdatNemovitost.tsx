@@ -257,8 +257,8 @@ const BlogProdatNemovitost = () => {
                 </ul>
                 <p className="text-muted-foreground">
                   Ve všech ostatních případech — a to je drtivá většina — profesionální zastoupení přinese vyšší čistou částku po odečtení provize. Chcete vědět, kolik skutečně získáte? Podívejte se na{' '}
-                  <Link to="/#sluzby" className="text-secondary hover:underline font-medium">
-                    služby Radka Větrovského
+                  <Link to="/sluzby/prodej-nemovitosti-pribram" className="text-secondary hover:underline font-medium">
+                    služby prodeje nemovitosti v Příbrami
                   </Link>.
                 </p>
               </div>
@@ -358,6 +358,12 @@ const BlogProdatNemovitost = () => {
                     <span className="text-secondary mt-1">→</span>
                     <Link to="/blog/jak-prodat-zdedenu-nemovitost-pribram" className="text-secondary hover:underline font-medium">
                       U zděděných nemovitostí je situace specifická, viz samostatný průvodce
+                    </Link>
+                  </li>
+                  <li className="flex items-start gap-3 text-muted-foreground">
+                    <span className="text-secondary mt-1">→</span>
+                    <Link to="/sluzby/prodej-nemovitosti-pribram" className="text-secondary hover:underline font-medium">
+                      Kompletní servis prodeje nemovitosti v Příbrami a okolí
                     </Link>
                   </li>
                   <li className="flex items-start gap-3 text-muted-foreground">

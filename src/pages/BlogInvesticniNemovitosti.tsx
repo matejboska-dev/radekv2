@@ -251,13 +251,20 @@ const BlogInvesticniNemovitosti = () => {
                   Uvažujete o koupi investiční nemovitosti v Příbrami nebo okolí?
                 </h2>
                 <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                  Jako místní realitní makléř s aktivní nabídkou v celém okrese vám rád pomůžu najít nemovitost, která dává finanční smysl — nejen na papíře.{' '}
+                  Jako místní realitní makléř s aktivní nabídkou v celém okrese vám rád pomůžu najít nemovitost, která dává finanční smysl — nejen na papíře. Využijte mou{' '}
+                  <Link to="/sluzby/koupe-nemovitosti-pribram" className="text-primary hover:underline font-semibold">
+                    službu bezpečné koupě nemovitosti v Příbrami
+                  </Link>
+                  ,{' '}
                   <Link to="/#contact" className="text-primary hover:underline font-semibold">
-                    Kontaktujte mě
+                    kontaktujte mě přímo
                   </Link>{' '}
                   nebo se podívejte na{' '}
                   <Link to="/prodano" className="text-primary hover:underline font-semibold">
-                    aktuální nabídku nemovitostí
+                    prodané nemovitosti a reference
+                  </Link>. Pro orientaci v cenách vyzkoušejte{' '}
+                  <Link to="/odhad-nemovitosti" className="text-primary hover:underline font-semibold">
+                    bezplatný odhad ceny nemovitosti
                   </Link>. Při prodeji investiční nemovitosti počítejte také s daňovými dopady — viz článek{' '}
                   <Link to="/blog/dan-z-prodeje-bytu-pribram-2026" className="text-primary hover:underline font-semibold">o daních z prodeje bytu v Příbrami</Link>. Pokud řešíte konkrétně výnos z pronájmu, podrobný přehled aktuálních cen nájmu, kauce a daně z pronájmu najdete v článku{' '}
                   <Link to="/blog/pronajem-bytu-pribram-2026" className="text-primary hover:underline font-semibold">Pronájem bytu v Příbrami 2026</Link>.

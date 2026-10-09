@@ -231,6 +231,18 @@ const BlogExkluzivniSmlouva = () => {
                   </li>
                   <li className="flex items-start gap-3 text-muted-foreground">
                     <span className="text-secondary mt-1">→</span>
+                    <Link to="/sluzby/prodej-nemovitosti-pribram" className="text-secondary hover:underline font-medium">
+                      Kompletní servis prodeje nemovitosti v Příbrami a okolí
+                    </Link>
+                  </li>
+                  <li className="flex items-start gap-3 text-muted-foreground">
+                    <span className="text-secondary mt-1">→</span>
+                    <Link to="/odhad-nemovitosti" className="text-secondary hover:underline font-medium">
+                      Bezplatný odhad tržní ceny nemovitosti v Příbrami do 24 hodin
+                    </Link>
+                  </li>
+                  <li className="flex items-start gap-3 text-muted-foreground">
+                    <span className="text-secondary mt-1">→</span>
                     <Link to="/blog/rezervacni-smlouva-uschova-kupni-ceny-pribram-2026" className="text-secondary hover:underline font-medium">
                       Rezervační smlouva a úschova kupní ceny: jak nepřijít o peníze ani o kupce
                     </Link>
