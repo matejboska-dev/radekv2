@@ -1,49 +1,72 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { CheckCircle, XCircle, ArrowRight, Phone, Mail, MapPin } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
+import {
+  CheckCircle,
+  Home,
+  Mail,
+  MapPin,
+  MessageSquare,
+  Phone,
+  Ruler,
+  Send,
+  User,
+  Wrench,
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Reveal } from '@/components/anim/Reveal';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import MobileCTABar from '@/components/MobileCTABar';
-import { useNavigate } from 'react-router-dom';
+import EstimateHero from '@/components/EstimateHero';
+import StatsBar from '@/components/StatsBar';
+import EstimateProcess from '@/components/EstimateProcess';
+import EstimateComparison from '@/components/EstimateComparison';
+import Testimonials from '@/components/Testimonials';
 import { setPageMeta, injectJsonLd } from '@/lib/seo';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import radekOdhad from '@/assets/radek-odhad.webp';
 import { trackServiceEvent } from '@/lib/service-tracking';
 
-const REMAX_LOGO = 'https://www.remax-czech.cz/bundles/daltenweb/img/logo/remax-cze_balon_logo_2.svg?20250618';
-
-const agentFeatures = [
-  'Přesné vyhodnocení trhu a lokalit',
-  'Zohlednění technického stavu a dispozic',
-  'Reálná cena, která obstojí při jednání',
-  'Podklady vhodné pro prodej, dědictví i banku',
+const contactInfo = [
+  { icon: Phone, label: 'Telefon', value: '+420 721 855 854', href: 'tel:+420721855854' },
+  { icon: Mail, label: 'E-mail', value: 'radek.vetrovsky@re-max.cz', href: 'mailto:radek.vetrovsky@re-max.cz' },
+  { icon: MapPin, label: 'Adresa', value: 'Zahradnická 550, 261 01 Příbram III', href: 'https://maps.google.com/?q=Zahradnická+550+Příbram' },
 ];
 
-const onlineFeatures = [
-  'Průměrné ceny bez individuálního posouzení',
-  'Nezohledňuje technický stav nemovitosti',
-  'Velké odchylky od skutečné hodnoty',
-  'Slabá vyjednávací pozice při prodeji',
-];
+// Nativní <select> kvůli FormData, vzhledově shodný s <Input> z homepage formuláře.
+const selectClass =
+  'flex h-12 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 md:text-sm';
+
+const labelClass = 'text-sm font-medium text-foreground flex items-center gap-2';
+const optional = <span className="text-muted-foreground font-normal">(nepovinné)</span>;
 
 const OdhadNemovitosti = () => {
-  const navigate = useNavigate();
   const { toast } = useToast();
+  const { hash } = useLocation();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+  const scrollToForm = () => {
+    const isMobile = window.innerWidth < 1024;
+    const targetId = isMobile ? 'odhad-form-card' : 'odhad-form';
+    document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  // Kotva #odhad-form funguje při načtení i při proklikání z komponent na stránce
+  // (např. tlačítko v porovnání makléř vs. kalkulačka) a z hlavičky.
   useEffect(() => {
-    if (window.location.hash === '#odhad-form') {
-      setTimeout(() => {
-        const isMobile = window.innerWidth < 1024;
-        const targetId = isMobile ? 'odhad-form-card' : 'odhad-form';
-        document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' });
-      }, 300);
-    } else {
-      window.scrollTo(0, 0);
+    if (hash === '#odhad-form') {
+      const t = setTimeout(scrollToForm, 300);
+      return () => clearTimeout(t);
     }
+    window.scrollTo(0, 0);
+  }, [hash]);
+
+  useEffect(() => {
     const cleanupMeta = setPageMeta(
       'Odhad nemovitosti zdarma – Příbram | Radek Větrovský RE/MAX',
       'Získejte bezplatný a nezávazný odhad hodnoty vaší nemovitosti od certifikovaného makléře RE/MAX v Příbrami. Reálná cena, rychlá odpověď do 24 hodin.',
@@ -63,7 +86,7 @@ const OdhadNemovitosti = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     const form = e.currentTarget;
     const formData = new FormData(form);
 
@@ -111,185 +134,67 @@ const OdhadNemovitosti = () => {
     <div className="min-h-screen bg-background flex flex-col">
       <Header />
 
-      <main className="flex-1 pt-20">
-        {/* Hero – light */}
-        <section className="relative py-20 md:py-28 overflow-hidden bg-muted">
-          <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <div className="absolute -top-1/2 -right-1/4 w-[600px] h-[600px] rounded-full bg-primary/5 blur-3xl" />
-          </div>
-          <div className="container mx-auto px-4 relative z-10 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <img
-                src={REMAX_LOGO}
-                alt="RE/MAX"
-                className="h-12 w-auto mx-auto mb-6"
-              />
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mb-6">
-                Zjistěte skutečnou hodnotu
-                <span className="block mt-2 text-secondary">vaší nemovitosti</span>
-              </h1>
-              <p className="text-xl text-foreground/60 max-w-2xl mx-auto mb-8">
-                Odhad připravený na základě reálných dat, aktuální situace na trhu, 
-                stavu nemovitosti a osobní znalosti lokality. Zdarma a nezávazně.
-              </p>
-              <Button
-                variant="cta"
-                size="xl"
-                onClick={() => document.getElementById('odhad-form')?.scrollIntoView({ behavior: 'smooth' })}
-                className="group"
-              >
-                Chci odhad zdarma
-                <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </motion.div>
-          </div>
-        </section>
+      <main className="flex-1">
+        <EstimateHero onCta={scrollToForm} />
+        <StatsBar />
+        <EstimateProcess />
+        <EstimateComparison />
+        <Testimonials />
 
-        {/* Comparison Section */}
-        <section className="section-padding bg-background">
-          <div className="container mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="text-center mb-12"
-            >
-              <span className="inline-block text-sm font-semibold text-secondary uppercase tracking-wider mb-4">
-                Proč makléř?
-              </span>
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-4">
-                Odhad od makléře vs. online kalkulačky
-              </h2>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-              className="rounded-2xl overflow-hidden shadow-md border border-border"
-            >
-              <div className="grid md:grid-cols-2">
-                 {/* Agent side */}
-                <div className="bg-card p-6 md:p-10 border-b md:border-b-0 md:border-r border-border">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-10 h-10 rounded-full bg-green-500/10 flex items-center justify-center">
-                      <CheckCircle className="h-6 w-6 text-green-600" />
-                    </div>
-                    <h3 className="font-bold text-foreground text-xl">Odhad od makléře</h3>
-                  </div>
-                  <ul className="space-y-4 mb-8">
-                    {agentFeatures.map((f) => (
-                      <li key={f} className="flex items-start gap-3 text-foreground">
-                        <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-                        <span>{f}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Button
-                    variant="cta"
-                    size="lg"
-                    onClick={() => document.getElementById('odhad-form')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="w-full group"
-                  >
-                    Chci odhad zdarma
-                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                  </Button>
+        {/* Formulář: stejná kostra jako sekce Kontakt na homepage */}
+        <section
+          id="odhad-form"
+          className="relative overflow-hidden border-t border-border/50 bg-muted/30 py-16 sm:py-20 md:py-24 lg:py-28 scroll-mt-24"
+        >
+          <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+            <Reveal className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-12 md:mb-16 pb-6 border-b border-border/50">
+              <div className="lg:col-span-7">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="text-xs font-bold uppercase tracking-[0.2em] text-secondary">
+                    Žádost o odhad
+                  </span>
                 </div>
-
-                {/* Online side */}
-                <div className="bg-muted p-6 md:p-10">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-10 h-10 rounded-full bg-red-500/10 flex items-center justify-center">
-                      <XCircle className="h-6 w-6 text-red-500" />
-                    </div>
-                    <h3 className="font-bold text-red-500 text-xl">Online kalkulačka</h3>
-                  </div>
-                  <ul className="space-y-4 mb-6">
-                    {onlineFeatures.map((f) => (
-                      <li key={f} className="flex items-start gap-3 text-red-500">
-                        <XCircle className="h-5 w-5 text-red-500/60 flex-shrink-0 mt-0.5" />
-                        <span>{f}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <p className="text-sm text-red-500/60 italic">
-                    Výpočet na základě obecných cenových map, bez ohledu na stav nemovitosti 
-                    a konkrétní poptávku v lokalitě.
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Contact Form */}
-        <section id="odhad-form" className="section-padding bg-muted scroll-mt-24 overflow-hidden">
-          <div className="container mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12 lg:items-stretch">
-              {/* Left info */}
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="flex flex-col"
-              >
-                <span className="inline-block text-sm font-semibold text-secondary uppercase tracking-wider mb-4">
-                  Kontakt
-                </span>
-                <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-6">
-                  Zažádejte o odhad zdarma
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-syne font-extrabold uppercase tracking-tight text-foreground leading-[1.05]">
+                  Zažádejte <br className="hidden sm:block" />
+                  o odhad zdarma
                 </h2>
-                <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                  Vyplňte formulář a ozvu se vám do 24 hodin. Odhad je zcela zdarma 
-                  a nezávazný.
+              </div>
+              <div className="lg:col-span-5">
+                <p className="text-base sm:text-lg text-muted-foreground leading-relaxed lg:pb-1">
+                  Vyplňte formulář a ozvu se Vám do 24 hodin. Odhad je zcela zdarma a nezávazný.
                 </p>
+              </div>
+            </Reveal>
 
-                <div className="space-y-4">
-                  <a
-                    href="tel:+420721855854"
-                    className="flex items-center gap-4 p-4 rounded-xl bg-card border border-border hover:border-primary transition-colors group"
-                  >
-                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary transition-colors">
-                      <Phone className="h-5 w-5 text-primary group-hover:text-primary-foreground transition-colors" />
-                    </div>
-                    <div>
-                      <p className="text-xs text-muted-foreground">Telefon</p>
-                      <p className="font-semibold text-foreground">+420 721 855 854</p>
-                    </div>
-                  </a>
-
-                  <a
-                    href="mailto:radek.vetrovsky@re-max.cz"
-                    className="flex items-center gap-4 p-4 rounded-xl bg-card border border-border hover:border-primary transition-colors group"
-                  >
-                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary transition-colors">
-                      <Mail className="h-5 w-5 text-primary group-hover:text-primary-foreground transition-colors" />
-                    </div>
-                    <div>
-                      <p className="text-xs text-muted-foreground">E-mail</p>
-                      <p className="font-semibold text-foreground">radek.vetrovsky@re-max.cz</p>
-                    </div>
-                  </a>
-
-                  <div className="flex items-center gap-4 p-4 rounded-xl bg-card border border-border">
-                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                      <MapPin className="h-5 w-5 text-primary" />
-                    </div>
-                    <div>
-                      <p className="text-xs text-muted-foreground">Adresa</p>
-                      <p className="font-semibold text-foreground">Zahradnická 550, 261 01 Příbram III</p>
-                    </div>
-                  </div>
+            <div className="grid lg:grid-cols-5 gap-8 lg:gap-12">
+              {/* Kontaktní údaje + Radek */}
+              <Reveal variant="fromLeft" className="lg:col-span-2 flex flex-col gap-6">
+                <div className="glass-card rounded-2xl p-6 md:p-8 shadow-lg">
+                  <h3 className="text-xl font-bold text-foreground mb-6">Kontaktní údaje</h3>
+                  <address className="space-y-5 not-italic">
+                    {contactInfo.map((item) => (
+                      <a
+                        key={item.label}
+                        href={item.href}
+                        target={item.label === 'Adresa' ? '_blank' : undefined}
+                        rel={item.label === 'Adresa' ? 'noopener noreferrer' : undefined}
+                        className="flex items-start gap-4 group"
+                      >
+                        <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-secondary group-hover:scale-110 transition-all duration-300">
+                          <item.icon className="h-5 w-5 text-foreground group-hover:text-secondary-foreground transition-colors duration-300" />
+                        </div>
+                        <div>
+                          <p className="text-sm text-muted-foreground">{item.label}</p>
+                          <p className="font-medium text-foreground group-hover:text-secondary transition-colors">
+                            {item.value}
+                          </p>
+                        </div>
+                      </a>
+                    ))}
+                  </address>
                 </div>
 
-                {/* Radek se dívá směrem k formuláři. Spodek postavy zajíždí do paddingu sekce a je ořezaný jejím okrajem. */}
+                {/* Radek se dívá směrem k formuláři. Spodek postavy zajíždí do paddingu sekce a ořezává ho její okraj. */}
                 <div
                   aria-hidden="true"
                   className="pointer-events-none relative mt-auto hidden lg:flex justify-center -mb-28 pt-6"
@@ -305,160 +210,145 @@ const OdhadNemovitosti = () => {
                     className="relative w-64 xl:w-72 h-auto drop-shadow-[0_18px_30px_rgba(20,42,59,0.18)]"
                   />
                 </div>
-              </motion.div>
+              </Reveal>
 
-              {/* Form */}
-              <motion.div
-                id="odhad-form-card"
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="bg-card rounded-2xl p-6 md:p-8 shadow-md border border-border scroll-mt-24 lg:self-start"
-              >
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-foreground mb-1.5">
-                        Jméno a příjmení *
-                      </label>
-                      <input
-                        id="name"
-                        name="name"
-                        type="text"
-                        required
-                        placeholder="Jan Novák"
-                        className="w-full h-11 rounded-lg border border-border bg-background px-4 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-1.5">
-                        Telefon *
-                      </label>
-                      <input
-                        id="phone"
-                        name="phone"
-                        type="tel"
-                        required
-                        placeholder="+420 xxx xxx xxx"
-                        className="w-full h-11 rounded-lg border border-border bg-background px-4 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-                      />
-                    </div>
-                  </div>
+              {/* Formulář */}
+              <Reveal variant="fromRight" delay={0.12} className="lg:col-span-3 lg:self-start">
+                <div
+                  id="odhad-form-card"
+                  className="glass-card rounded-2xl p-6 md:p-8 shadow-lg scroll-mt-24"
+                >
+                  <h3 className="text-xl font-bold text-foreground mb-6">Napište mi o nemovitosti</h3>
 
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-foreground mb-1.5">
-                      E-mail
-                    </label>
-                    <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      placeholder="jan.novak@email.cz"
-                      className="w-full h-11 rounded-lg border border-border bg-background px-4 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="property-type" className="block text-sm font-medium text-foreground mb-1.5">
-                      Typ nemovitosti *
-                    </label>
-                    <select
-                      id="property-type"
-                      name="property-type"
-                      required
-                      className="w-full h-11 rounded-lg border border-border bg-background px-4 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                  {isSubmitted ? (
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                      className="flex flex-col items-center justify-center py-12 text-center"
                     >
-                      <option value="">Vyberte typ</option>
-                      <option value="byt">Byt</option>
-                      <option value="dum">Rodinný dům</option>
-                      <option value="pozemek">Pozemek</option>
-                      <option value="komercni">Komerční nemovitost</option>
-                      <option value="jine">Jiné</option>
-                    </select>
-                  </div>
+                      <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                        <CheckCircle className="h-8 w-8 text-primary" />
+                      </div>
+                      <h4 className="text-xl font-bold text-foreground mb-2">Děkuji za žádost!</h4>
+                      <p className="text-muted-foreground">Ozvu se Vám do 24 hodin.</p>
+                    </motion.div>
+                  ) : (
+                    <form onSubmit={handleSubmit} className="space-y-5">
+                      <div className="grid sm:grid-cols-2 gap-5">
+                        <div className="space-y-2">
+                          <label htmlFor="name" className={labelClass}>
+                            <User className="h-4 w-4 text-muted-foreground" />
+                            Jméno a příjmení
+                          </label>
+                          <Input id="name" name="name" type="text" required placeholder="Jan Novák" className="h-12" />
+                        </div>
+                        <div className="space-y-2">
+                          <label htmlFor="phone" className={labelClass}>
+                            <Phone className="h-4 w-4 text-muted-foreground" />
+                            Telefon
+                          </label>
+                          <Input id="phone" name="phone" type="tel" required placeholder="+420 123 456 789" className="h-12" />
+                        </div>
+                      </div>
 
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <div>
-                      <label htmlFor="address" className="block text-sm font-medium text-foreground mb-1.5">
-                        Adresa nemovitosti
-                      </label>
-                      <input
-                        id="address"
-                        name="address"
-                        type="text"
-                        placeholder="Ulice nebo čtvrť, město"
-                        className="w-full h-11 rounded-lg border border-border bg-background px-4 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="area" className="block text-sm font-medium text-foreground mb-1.5">
-                        Plocha (m²)
-                      </label>
-                      <input
-                        id="area"
-                        name="area"
-                        type="number"
-                        placeholder="např. 75"
-                        className="w-full h-11 rounded-lg border border-border bg-background px-4 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-                      />
-                    </div>
-                  </div>
+                      <div className="space-y-2">
+                        <label htmlFor="email" className={labelClass}>
+                          <Mail className="h-4 w-4 text-muted-foreground" />
+                          E-mail {optional}
+                        </label>
+                        <Input id="email" name="email" type="email" placeholder="jan@email.cz" className="h-12" />
+                      </div>
 
-                  <div>
-                    <label htmlFor="condition" className="block text-sm font-medium text-foreground mb-1.5">
-                      Stav nemovitosti
-                    </label>
-                    <select
-                      id="condition"
-                      name="condition"
-                      className="w-full h-11 rounded-lg border border-border bg-background px-4 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-                    >
-                      <option value="">Vyberte stav</option>
-                      <option value="novostavba">Novostavba</option>
-                      <option value="velmi-dobry">Velmi dobrý</option>
-                      <option value="prumerny">Průměrný</option>
-                      <option value="pred-rekonstrukci">Před rekonstrukcí</option>
-                    </select>
-                  </div>
+                      <div className="space-y-2">
+                        <label htmlFor="property-type" className={labelClass}>
+                          <Home className="h-4 w-4 text-muted-foreground" />
+                          Typ nemovitosti
+                        </label>
+                        <select id="property-type" name="property-type" required className={selectClass} defaultValue="">
+                          <option value="">Vyberte typ</option>
+                          <option value="byt">Byt</option>
+                          <option value="dum">Rodinný dům</option>
+                          <option value="pozemek">Pozemek</option>
+                          <option value="komercni">Komerční nemovitost</option>
+                          <option value="jine">Jiné</option>
+                        </select>
+                      </div>
 
-                  <div>
-                    <label htmlFor="note" className="block text-sm font-medium text-foreground mb-1.5">
-                      Poznámka
-                    </label>
-                    <textarea
-                      id="note"
-                      name="note"
-                      rows={3}
-                      placeholder="Doplňující informace o nemovitosti..."
-                      className="w-full rounded-lg border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary resize-none"
-                    />
-                  </div>
+                      <div className="grid sm:grid-cols-2 gap-5">
+                        <div className="space-y-2">
+                          <label htmlFor="address" className={labelClass}>
+                            <MapPin className="h-4 w-4 text-muted-foreground" />
+                            Adresa nemovitosti {optional}
+                          </label>
+                          <Input id="address" name="address" type="text" placeholder="Ulice nebo čtvrť, město" className="h-12" />
+                        </div>
+                        <div className="space-y-2">
+                          <label htmlFor="area" className={labelClass}>
+                            <Ruler className="h-4 w-4 text-muted-foreground" />
+                            Plocha (m²) {optional}
+                          </label>
+                          <Input id="area" name="area" type="number" placeholder="např. 75" className="h-12" />
+                        </div>
+                      </div>
 
-                  <Button type="submit" variant="cta" size="lg" className="w-full group" disabled={isSubmitting}>
-                    {isSubmitting ? (
-                      <>
-                        <div className="w-5 h-5 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
-                        Odesílám...
-                      </>
-                    ) : isSubmitted ? (
-                      <>
-                        <CheckCircle className="h-5 w-5" />
-                        Odesláno!
-                      </>
-                    ) : (
-                      <>
-                        Odeslat žádost o odhad
-                        <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                      </>
-                    )}
-                  </Button>
+                      <div className="space-y-2">
+                        <label htmlFor="condition" className={labelClass}>
+                          <Wrench className="h-4 w-4 text-muted-foreground" />
+                          Stav nemovitosti {optional}
+                        </label>
+                        <select id="condition" name="condition" className={selectClass} defaultValue="">
+                          <option value="">Vyberte stav</option>
+                          <option value="novostavba">Novostavba</option>
+                          <option value="velmi-dobry">Velmi dobrý</option>
+                          <option value="prumerny">Průměrný</option>
+                          <option value="pred-rekonstrukci">Před rekonstrukcí</option>
+                        </select>
+                      </div>
 
-                  <p className="text-xs text-center text-muted-foreground">
-                    Odesláním souhlasíte se zpracováním osobních údajů. Ozvu se do 24 hodin.
-                  </p>
-                </form>
-              </motion.div>
+                      <div className="space-y-2">
+                        <label htmlFor="note" className={labelClass}>
+                          <MessageSquare className="h-4 w-4 text-muted-foreground" />
+                          Poznámka {optional}
+                        </label>
+                        <Textarea
+                          id="note"
+                          name="note"
+                          rows={4}
+                          placeholder="Doplňující informace o nemovitosti..."
+                          className="resize-none"
+                        />
+                      </div>
+
+                      <Button type="submit" variant="cta" size="xl" className="w-full" disabled={isSubmitting}>
+                        {isSubmitting ? (
+                          <>
+                            <div className="w-5 h-5 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
+                            Odesílám...
+                          </>
+                        ) : (
+                          <>
+                            <Send className="h-5 w-5" />
+                            Odeslat žádost o odhad
+                          </>
+                        )}
+                      </Button>
+
+                      <p className="text-xs text-muted-foreground text-center">
+                        Odesláním souhlasíte se{' '}
+                        <a href="/zpracovani-osobnich-udaju" className="underline hover:text-foreground transition-colors">
+                          zpracováním osobních údajů
+                        </a>{' '}
+                        v souladu s{' '}
+                        <a href="/gdpr" className="underline hover:text-foreground transition-colors">
+                          zásadami GDPR
+                        </a>
+                        . Ozvu se Vám do 24 hodin.
+                      </p>
+                    </form>
+                  )}
+                </div>
+              </Reveal>
             </div>
           </div>
         </section>

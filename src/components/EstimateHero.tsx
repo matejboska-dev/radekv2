@@ -1,0 +1,89 @@
+import { ArrowRight, Phone } from 'lucide-react';
+import { Reveal } from '@/components/anim/Reveal';
+import radekPhoto from '@/assets/radek-vetrovsky.webp';
+import bgPhoto from '@/assets/pribram-city.jpg';
+
+type EstimateHeroProps = {
+  onCta: () => void;
+};
+
+/**
+ * Hero podstránky /odhad-nemovitosti. Stejný vizuální jazyk jako hero na homepage
+ * (fotka Příbrami pod modrošedým překryvem, Syne nadpis, Radek vpravo, pill CTA),
+ * jen nižší, aby formulář nebyl daleko.
+ */
+const EstimateHero = ({ onCta }: EstimateHeroProps) => {
+  return (
+    <section className="relative isolate overflow-hidden bg-primary text-white">
+      {/* Pozadí: město s překryvem, stejné vrstvy jako na homepage */}
+      <div className="pointer-events-none absolute inset-0 -z-30" aria-hidden="true">
+        <img src={bgPhoto} alt="" className="h-full w-full object-cover object-[center_40%]" loading="eager" />
+        <div className="absolute inset-0 bg-primary/60" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(20,42,59,0.65)_100%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-primary via-primary/80 to-transparent" />
+      </div>
+
+      <div className="container mx-auto grid max-w-7xl grid-cols-1 items-end gap-4 px-4 pt-28 sm:px-6 sm:pt-32 lg:grid-cols-12 lg:gap-8 lg:px-8 lg:pt-36">
+        <Reveal variant="fadeUp" className="min-w-0 pb-6 lg:col-span-7 lg:pb-16">
+          <span className="mb-4 block text-xs font-bold uppercase tracking-[0.2em] text-white/80">
+            Odhad zdarma a nezávazně
+          </span>
+          <h1 className="font-syne text-[1.85rem] font-extrabold uppercase leading-[1.02] tracking-tight drop-shadow-[0_4px_16px_rgba(0,0,0,0.45)] sm:text-5xl lg:text-[2.9rem] xl:text-6xl 2xl:text-7xl">
+            <span className="block">Odhad</span>
+            <span className="block">nemovitosti</span>
+            <span className="block">zdarma</span>
+          </h1>
+          <p className="mt-5 font-display text-xl leading-snug tracking-[-0.02em] text-white sm:text-2xl">
+            v Příbrami a okolí
+          </p>
+          <p className="mt-4 max-w-xl text-sm leading-relaxed text-white/85 sm:text-base">
+            <strong className="font-bold text-white">Zjistěte skutečnou hodnotu Vaší nemovitosti.</strong>{' '}
+            Odhad připravuji na základě reálných dat, aktuální situace na trhu, stavu nemovitosti
+            a osobní znalosti lokality. Ozvu se Vám do 24 hodin.
+          </p>
+
+          <div className="mt-7 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
+            <button
+              type="button"
+              onClick={onCta}
+              className="group inline-flex items-center justify-between gap-3 rounded-full bg-secondary py-3.5 pl-6 pr-4 text-sm font-bold text-secondary-foreground shadow-xl shadow-secondary/30 transition-all duration-300 hover:-translate-y-0.5 hover:bg-secondary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
+            >
+              Chci odhad zdarma
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/20 transition-transform duration-300 group-hover:translate-x-0.5">
+                <ArrowRight className="h-4 w-4 text-white" />
+              </span>
+            </button>
+            <a
+              href="tel:+420721855854"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 bg-white/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur-md transition-all duration-300 hover:border-white/40 hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
+            >
+              <Phone className="h-4 w-4" />
+              +420 721 855 854
+            </a>
+          </div>
+        </Reveal>
+
+        <Reveal variant="fade" delay={0.15} className="relative flex min-w-0 justify-center self-end lg:col-span-5 lg:justify-end">
+          <div
+            aria-hidden="true"
+            className="absolute bottom-0 h-[85%] w-[80%] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(20,42,59,0.7)_0%,transparent_70%)] blur-3xl"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute right-[12%] top-[8%] h-64 w-64 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.18)_0%,transparent_65%)] blur-2xl"
+          />
+          <img
+            src={radekPhoto}
+            alt="Radek Větrovský, certifikovaný realitní makléř RE/MAX Příbram"
+            width={959}
+            height={1438}
+            loading="eager"
+            className="relative h-[22rem] w-auto object-contain object-bottom drop-shadow-[0_16px_36px_rgba(0,0,0,0.45)] [mask-image:linear-gradient(to_bottom,black_86%,transparent_100%)] sm:h-[28rem] lg:h-[31rem] xl:h-[36rem]"
+          />
+        </Reveal>
+      </div>
+    </section>
+  );
+};
+
+export default EstimateHero;
