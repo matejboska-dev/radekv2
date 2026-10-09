@@ -102,7 +102,7 @@ const HeroDesktop = () => {
         <img
           src={radekPhoto}
           alt="Radek Větrovský, certifikovaný realitní makléř RE/MAX Příbram"
-          className="relative max-h-full h-[74vh] 2xl:h-[78vh] w-auto object-contain object-bottom drop-shadow-[0_0_18px_rgba(255,255,255,0.2)] [mask-image:linear-gradient(to_bottom,black_84%,transparent_100%)]"
+          className="relative max-h-full h-[88vh] 2xl:h-[92vh] w-auto object-contain object-bottom drop-shadow-[0_0_18px_rgba(255,255,255,0.2)] [mask-image:linear-gradient(to_bottom,black_84%,transparent_100%)]"
         />
       </div>
 
