@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Phone, Instagram } from 'lucide-react';
 import { Button } from './ui/button';
 import { useNavigate } from 'react-router-dom';
-import remaxLogo from '@/assets/remax-logo.png';
+import { REMAX_LOGO } from '@/lib/brand';
 
 const PHONE_DISPLAY = '+420 721 855 854';
 const PHONE_HREF = 'tel:+420721855854';
@@ -74,7 +74,7 @@ const Header = ({ staticContent = false, serviceCta }: HeaderProps) => {
         }`}>
             <div className="flex min-w-0 items-center gap-2 md:gap-3">
               <a href="/" className="flex min-w-0 items-center gap-2 md:gap-3.5" aria-label="Radek Větrovský, úvodní stránka">
-                <img src={remaxLogo} alt="RE/MAX" className="h-6 w-auto shrink-0 max-[359px]:hidden sm:h-8 md:h-11" />
+                <img src={REMAX_LOGO} alt="RE/MAX" className="h-6 w-auto shrink-0 max-[359px]:hidden sm:h-8 md:h-11" />
                 <span className="whitespace-nowrap font-display text-[15px] font-bold tracking-[-0.03em] text-foreground sm:text-xl lg:text-xl xl:text-2xl">
                   Radek Větrovský
                 </span>
@@ -171,7 +171,7 @@ const Header = ({ staticContent = false, serviceCta }: HeaderProps) => {
 
             {/* RE/MAX Logo in mobile menu */}
             <div className="absolute top-6 left-6">
-              <img src={remaxLogo} alt="RE/MAX" className="h-8 w-auto" width="32" height="32" />
+              <img src={REMAX_LOGO} alt="RE/MAX" className="h-8 w-auto" width="32" height="32" />
             </div>
 
             {/* Menu Content */}

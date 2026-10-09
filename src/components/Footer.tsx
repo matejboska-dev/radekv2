@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Phone, Mail, MapPin, ArrowUp } from 'lucide-react';
 
-const REMAX_LOGO = 'https://www.remax-czech.cz/bundles/daltenweb/img/logo/remax-cze_balon_logo_2.svg?20250618';
+import { REMAX_LOGO } from '@/lib/brand';
 
 const Footer = ({ staticContent = false }: { staticContent?: boolean }) => {
   const scrollToTop = () => {
