@@ -72,7 +72,7 @@ const HeroMobile = () => {
         <img
           src={radekPhoto}
           alt="Radek Větrovský, certifikovaný realitní makléř RE/MAX Příbram"
-          className="relative h-[52svh] max-h-[440px] w-auto object-contain object-bottom drop-shadow-[0_0_18px_rgba(255,255,255,0.2)] [mask-image:linear-gradient(to_bottom,black_70%,transparent_100%)]"
+          className="relative h-[44svh] max-h-[370px] w-auto object-contain object-bottom drop-shadow-[0_0_18px_rgba(255,255,255,0.2)] [mask-image:linear-gradient(to_bottom,black_70%,transparent_100%)]"
         />
       </div>
 
