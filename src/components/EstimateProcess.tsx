@@ -29,7 +29,7 @@ const EstimateProcess = () => {
         <Reveal className="mb-12 grid items-end gap-6 border-b border-border/50 pb-6 md:mb-16 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-7">
             <div className="mb-3 flex items-center gap-2">
-              <span className="text-xs font-bold uppercase tracking-[0.2em] text-secondary">Jak to probíhá</span>
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-secondary">01 — Jak to probíhá</span>
             </div>
             <h2 className="font-syne text-3xl font-extrabold uppercase leading-[1.05] tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl">
               Tři kroky <br className="hidden sm:block" />
