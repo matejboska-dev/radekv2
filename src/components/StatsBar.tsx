@@ -37,7 +37,7 @@ const StatsBar = () => {
                 <div className="font-syne text-lg font-extrabold text-foreground sm:text-xl">
                   {value}
                 </div>
-                <div className="text-[11px] text-muted-foreground sm:text-xs">{label}</div>
+                <div className="text-xs text-muted-foreground sm:text-xs">{label}</div>
               </div>
             </RevealItem>
           ))}

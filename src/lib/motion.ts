@@ -11,10 +11,10 @@ export const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 export const EASE_OUT = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
 // Jednotné nastavení viewportu pro whileInView – spustí se jednou,
-// kousek předtím, než prvek úplně vjede do obrazu.
-export const viewport = { once: true, margin: '-80px' } as const;
+// kousek předtím, než prvek vjede do obrazu (bez horizontálního ořezu na mobilu).
+export const viewport = { once: true, margin: '0px 0px -40px 0px' } as const;
 
-const DIST = 28;
+const DIST = 18;
 
 export const fadeUp: Variants = {
   hidden: { opacity: 0, y: DIST },

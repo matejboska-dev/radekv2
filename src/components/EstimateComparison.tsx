@@ -20,16 +20,16 @@ const EstimateComparison = () => {
   const navigate = useNavigate();
 
   return (
-    <section id="odhad-srovnani" className="py-16 sm:py-20 md:py-24 lg:py-28 bg-background border-t border-border/50">
+    <section id="odhad-srovnani" className="scroll-mt-24 py-12 sm:py-16 md:py-20 lg:py-28 bg-background border-t border-border/50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <Reveal className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-12 md:mb-16 pb-6 border-b border-border/50">
+        <Reveal className="grid lg:grid-cols-12 gap-5 lg:gap-12 items-end mb-8 sm:mb-12 md:mb-16 pb-6 border-b border-border/50">
           <div className="lg:col-span-7">
-            <div className="flex items-center gap-2 mb-3">
+            <div className="flex items-center gap-2 mb-2 sm:mb-3">
               <span className="text-xs font-bold uppercase tracking-[0.2em] text-secondary">
                 Srovnání přesnosti — Bezplatná služba
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-syne font-extrabold uppercase tracking-tight text-foreground leading-[1.05]">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-syne font-extrabold uppercase tracking-tight text-foreground leading-[1.1] sm:leading-[1.05]">
               Makléř <br className="hidden sm:block" />
               vs. online kalkulačka
             </h2>
@@ -45,7 +45,7 @@ const EstimateComparison = () => {
         <Reveal group staggerChildren={0.15} className="grid md:grid-cols-2 gap-6 lg:gap-8 items-stretch">
           {/* Makléř Side (Hero / Recommended) */}
           <RevealItem variant="fadeUp" className="rounded-2xl md:rounded-3xl border-2 border-secondary/30 bg-card p-6 sm:p-8 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col justify-between relative overflow-hidden">
-            <div className="absolute top-0 right-0 bg-secondary text-secondary-foreground text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-bl-xl">
+            <div className="absolute top-0 right-0 bg-secondary text-secondary-foreground text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-bl-xl">
               Doporučený postup
             </div>
             <div>

@@ -36,7 +36,7 @@ const testimonials = [
 
 const Testimonials = () => {
   return (
-    <section id="testimonials" className="relative py-16 sm:py-20 md:py-24 lg:py-28 bg-white text-[#212c42] overflow-hidden isolate">
+    <section id="testimonials" className="scroll-mt-24 relative py-12 sm:py-16 md:py-20 lg:py-28 bg-white text-[#212c42] overflow-hidden isolate">
       {/* Background ambient lighting */}
       <div
         className="absolute top-0 left-1/4 w-96 h-96 bg-[#212c42]/[0.04] rounded-full blur-3xl pointer-events-none -z-10"
@@ -49,12 +49,12 @@ const Testimonials = () => {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* Top Header Row */}
-        <Reveal className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 sm:mb-12">
+        <Reveal className="flex flex-col md:flex-row md:items-end justify-between gap-5 sm:gap-6 mb-6 sm:mb-10 md:mb-12">
           <div>
-            <span className="inline-block text-xs sm:text-sm font-bold uppercase tracking-[0.25em] text-[#212c42] mb-3 sm:mb-4">
+            <span className="inline-block text-xs sm:text-sm font-bold uppercase tracking-[0.25em] text-[#212c42] mb-2 sm:mb-4">
               02 — RECENZE KLIENTŮ
             </span>
-            <h2 className="font-syne font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl uppercase tracking-tight text-black leading-[0.95]">
+            <h2 className="font-syne font-extrabold text-2xl sm:text-3xl md:text-5xl lg:text-7xl uppercase tracking-tight text-black leading-[1.1] sm:leading-[0.95]">
               <span className="block">CO O MNĚ</span>
               <span className="block">ŘÍKAJÍ KLIENTI</span>
             </h2>
@@ -65,7 +65,7 @@ const Testimonials = () => {
               href={GOOGLE_REVIEWS_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-6 py-3 sm:px-7 sm:py-3.5 rounded-full bg-[#212c42] hover:bg-[#212c42]/90 text-white text-xs sm:text-sm font-bold uppercase tracking-wider transition-all duration-300 shadow-lg hover:shadow-[#212c42]/30 hover:scale-[1.02] group"
+              className="inline-flex items-center gap-3 px-5 py-2.5 sm:px-7 sm:py-3.5 rounded-full bg-[#212c42] hover:bg-[#212c42]/90 text-white text-xs sm:text-sm font-bold uppercase tracking-wider transition-all duration-300 shadow-lg hover:shadow-[#212c42]/30 hover:scale-[1.02] group"
             >
               <span>Všechny recenze na Google</span>
               <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-white flex items-center justify-center text-[#212c42] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
@@ -76,11 +76,11 @@ const Testimonials = () => {
         </Reveal>
 
         {/* Central Panorama Banner Image */}
-        <Reveal variant="scaleIn" className="relative w-full rounded-2xl md:rounded-3xl overflow-hidden border border-[#212c42]/10 shadow-2xl mb-12 sm:mb-16 md:mb-20">
+        <Reveal variant="scaleIn" className="relative w-full rounded-2xl md:rounded-3xl overflow-hidden border border-[#212c42]/10 shadow-2xl mb-8 sm:mb-12 md:mb-16">
           <img
             src={testimonialsBanner}
             alt="Radek Větrovský – certifikovaný realitní makléř RE/MAX Příbram"
-            className="w-full h-56 sm:h-72 md:h-96 lg:h-[440px] xl:h-[480px] object-cover object-center"
+            className="w-full h-48 sm:h-64 md:h-80 lg:h-[440px] xl:h-[480px] object-cover object-center"
             loading="eager"
           />
         </Reveal>
@@ -143,7 +143,7 @@ const Testimonials = () => {
                     <p className="font-bold text-[#212c42] text-sm sm:text-base leading-tight" itemProp="name">
                       {t.name}
                     </p>
-                    <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-[#212c42]/50 mt-1">
+                    <p className="text-xs sm:text-xs font-semibold uppercase tracking-wider text-[#212c42]/50 mt-1">
                       {t.role}
                     </p>
                   </div>

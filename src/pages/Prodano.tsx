@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import MobileCTABar from '@/components/MobileCTABar';
 import { setPageMeta, injectJsonLd } from '@/lib/seo';
 import bytImage from '@/assets/property-byt-pribram.webp';
 import dumImage from '@/assets/property-dum-pribram.webp';
@@ -192,7 +193,7 @@ const Prodano = () => {
       className="min-h-screen bg-background"
     >
       <Header />
-      <main className="section-padding pt-32">
+      <main className="pt-24 pb-12 sm:pt-32 sm:pb-20 md:pt-40 md:pb-24 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto">
           <Button
             variant="ghost"
@@ -209,13 +210,13 @@ const Prodano = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-12 md:mb-16"
           >
-            <span className="inline-block text-sm font-semibold text-secondary uppercase tracking-wider mb-4">
+            <span className="inline-block text-xs sm:text-sm font-semibold text-secondary uppercase tracking-wider mb-3 sm:mb-4">
               Realizované zakázky
             </span>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-foreground mb-4">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-syne font-extrabold uppercase tracking-tight text-foreground mb-4">
               Prodané nemovitosti
             </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
               Reference mluví za vše – prohlédněte si úspěšně dokončené případy.
             </p>
           </motion.div>
@@ -227,14 +228,14 @@ const Prodano = () => {
                 id={`nemovitost-${property.id}`}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 0.6, delay: index * 0.08 }}
                 className="property-card group scroll-mt-28 target:ring-2 target:ring-secondary"
               >
                 <div className="relative aspect-[16/11] w-full overflow-hidden rounded-t-xl bg-muted">
                   <img
                     src={property.image}
                     alt={`${property.title} – ${property.location}`}
-                    loading="lazy"
+                    loading={index < 3 ? "eager" : "lazy"}
                     className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent pointer-events-none" />
@@ -261,17 +262,17 @@ const Prodano = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
-            className="text-center mt-16"
+            className="text-center mt-14 sm:mt-16"
           >
-            <p className="text-lg text-muted-foreground mb-6">
+            <p className="text-base sm:text-lg text-muted-foreground mb-6">
               Chcete prodat svou nemovitost stejně úspěšně?
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 max-w-md sm:max-w-none mx-auto">
               <Button
                 variant="hero"
                 size="xl"
                 onClick={() => navigate('/odhad-nemovitosti#odhad-form')}
-                className="uppercase tracking-wider text-sm font-bold px-10 h-14"
+                className="uppercase tracking-wider text-sm font-bold px-8 sm:px-10 h-12 sm:h-14 w-full sm:w-auto"
               >
                 Odhad ceny zdarma
               </Button>
@@ -279,7 +280,7 @@ const Prodano = () => {
                 variant="outline"
                 size="xl"
                 onClick={() => navigate('/#contact')}
-                className="uppercase tracking-wider text-sm font-medium px-10 h-14"
+                className="uppercase tracking-wider text-sm font-medium px-8 sm:px-10 h-12 sm:h-14 w-full sm:w-auto"
               >
                 Kontaktujte mě
               </Button>
@@ -287,7 +288,9 @@ const Prodano = () => {
           </motion.div>
         </div>
       </main>
+      <div className="h-16 lg:hidden" aria-hidden="true" />
       <Footer />
+      <MobileCTABar />
     </motion.div>
   );
 };

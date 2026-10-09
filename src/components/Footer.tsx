@@ -79,13 +79,13 @@ const Footer = ({ staticContent = false }: { staticContent?: boolean }) => {
             <address className="not-italic" itemScope itemType="https://schema.org/PostalAddress">
               <ul className="space-y-3 list-none p-0 m-0">
                 <li>
-                  <a href="tel:+420721855854" className="flex items-center gap-3 text-background/70 hover:text-background transition-colors" itemProp="telephone">
+                  <a href="tel:+420721855854" className="flex min-h-11 items-center gap-3 text-background/70 hover:text-background transition-colors" itemProp="telephone">
                     <Phone className="h-4 w-4" />
                     +420 721 855 854
                   </a>
                 </li>
                 <li>
-                  <a href="mailto:radek.vetrovsky@re-max.cz" className="flex items-center gap-3 text-background/70 hover:text-background transition-colors" itemProp="email">
+                  <a href="mailto:radek.vetrovsky@re-max.cz" className="flex min-h-11 items-center gap-3 text-background/70 hover:text-background transition-colors" itemProp="email">
                     <Mail className="h-4 w-4" />
                     radek.vetrovsky@re-max.cz
                   </a>

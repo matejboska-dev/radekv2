@@ -97,7 +97,7 @@ export const allArticles = [
   },
   {
     title: 'Rezervační smlouva a úschova kupní ceny: jak nepřijít o peníze ani o kupce',
-    excerpt: 'Rezervační poplatek 3–5 %, advokátní úschova od 3 000 Kč. Jak funguje rezervační smlouva a úschova kupní ceny při prodeji v Příbrami a kdo co platí.',
+    excerpt: 'Rezervační poplatek 3 až 5 %, advokátní úschova od 3 000 Kč. Jak funguje rezervační smlouva a úschova kupní ceny při prodeji v Příbrami a kdo co platí.',
     date: '13. července 2026',
     readTime: '10 min čtení',
     image: 'https://images.unsplash.com/photo-1643804926339-e94f0a655185?w=400&h=300&fit=crop',
@@ -113,7 +113,7 @@ export const allArticles = [
   },
   {
     title: 'Cenová mapa Příbram 2026: Kolik stojí nemovitosti v jednotlivých čtvrtích?',
-    excerpt: 'Přehled cen bytů a domů v Příbrami podle lokalit, podložený aktuálními daty z realitního trhu. Vývoj cen 2022–2026, ceny podle dispozice.',
+    excerpt: 'Přehled cen bytů a domů v Příbrami podle lokalit, podložený aktuálními daty z realitního trhu. Vývoj cen 2022 až 2026, ceny podle dispozice.',
     date: '1. června 2026',
     readTime: '7 min čtení',
     image: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=400&h=300&fit=crop',
@@ -173,7 +173,7 @@ const Blog = () => {
   const articles = allArticles.slice(0, 3);
 
   return (
-    <section id="blog" className="py-16 sm:py-20 md:py-24 lg:py-28 bg-muted">
+    <section id="blog" className="py-12 sm:py-16 md:py-24 lg:py-28 bg-muted scroll-mt-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* Editorial Asymmetric Header */}
         <Reveal className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-12 md:mb-16 pb-6 border-b border-border/50">
@@ -183,7 +183,7 @@ const Blog = () => {
                 06 — BLOG & TIPY
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-syne font-extrabold uppercase tracking-tight text-foreground leading-[1.05]">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-syne font-extrabold uppercase tracking-tight text-foreground leading-[1.1] sm:leading-[1.05]">
               Užitečné rady z realit
             </h2>
           </div>

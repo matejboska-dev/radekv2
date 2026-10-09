@@ -1,7 +1,7 @@
   .service-container { @apply mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8; }
-  .service-section { @apply py-16 sm:py-20 lg:py-24; }
+  .service-section { @apply py-12 sm:py-16 md:py-20 lg:py-24; }
   .service-heading { @apply font-syne font-extrabold uppercase leading-[1.08] tracking-tight; font-size: clamp(1.5rem, 6.2vw, 3rem); }
-  .service-section-intro { @apply mb-10 grid items-end gap-6 lg:mb-14 lg:grid-cols-2 lg:gap-12; }
+  .service-section-intro { grid-template-columns: minmax(0, 1fr); @apply mb-10 grid items-end gap-6 lg:mb-14 lg:grid-cols-2 lg:gap-12; }
   .service-lead { @apply max-w-prose text-base leading-relaxed text-muted-foreground sm:text-lg; }
   .service-hero-title { font-size: clamp(1.75rem, 3.15vw, 3rem); line-height: 1.08; letter-spacing: -0.025em; }
   .service-button { @apply inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-secondary px-6 py-3 text-sm font-bold leading-snug text-white transition-colors hover:bg-secondary/90 disabled:cursor-wait disabled:opacity-70; }
@@ -27,3 +27,8 @@
   .service-hero figure { animation: service-photo-reveal 700ms cubic-bezier(0.16, 1, 0.3, 1) both; }
   @keyframes service-photo-reveal { from { clip-path: inset(0 0 7% 0 round 24px); } to { clip-path: inset(0 round 24px); } }
 }
+
+/* Mobilní zalamování: grid položky se smí zúžit pod šířku nejdelšího slova, stránka se nikdy neposouvá do strany. */
+.service-page { overflow-x: clip; }
+.service-page .grid > * { min-width: 0; }
+.service-page h1, .service-page h2, .service-page h3 { overflow-wrap: anywhere; hyphens: auto; }

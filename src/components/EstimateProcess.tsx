@@ -24,14 +24,14 @@ const steps = [
 
 const EstimateProcess = () => {
   return (
-    <section id="postup" className="bg-background py-16 sm:py-20 md:py-24 lg:py-28">
+    <section id="postup" className="bg-background py-12 sm:py-16 md:py-24 lg:py-28 scroll-mt-24">
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal className="mb-12 grid items-end gap-6 border-b border-border/50 pb-6 md:mb-16 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-7">
             <div className="mb-3 flex items-center gap-2">
               <span className="text-xs font-bold uppercase tracking-[0.2em] text-secondary">Jak to probíhá</span>
             </div>
-            <h2 className="font-syne text-3xl font-extrabold uppercase leading-[1.05] tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl">
+            <h2 className="font-syne text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-extrabold uppercase leading-[1.1] sm:leading-[1.05] tracking-tight text-foreground">
               Tři kroky <br className="hidden sm:block" />
               k odhadu
             </h2>
@@ -48,7 +48,7 @@ const EstimateProcess = () => {
             <RevealItem
               variant="fadeUp"
               key={num}
-              className="flex flex-col rounded-2xl border border-border/80 bg-card p-6 transition-all duration-500 hover:border-secondary/30 hover:shadow-xl sm:p-8 md:rounded-3xl"
+              className="flex flex-col rounded-2xl border border-border/80 bg-card p-5 sm:p-8 transition-all duration-500 hover:border-secondary/30 hover:shadow-xl md:rounded-3xl"
             >
               <div className="mb-8 flex items-center justify-between">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">

@@ -7,11 +7,11 @@ const CTASection = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="relative py-16 sm:py-20 md:py-24 lg:py-28 overflow-hidden bg-background">
+    <section className="relative py-12 sm:py-16 md:py-20 lg:py-28 overflow-hidden bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
         <Reveal
           variant="scaleIn"
-          className="relative w-full overflow-hidden rounded-2xl md:rounded-3xl bg-gradient-to-br from-secondary via-secondary to-secondary/85 text-white px-6 py-12 sm:px-12 sm:py-16 md:py-20 lg:px-10 xl:px-16 text-center lg:text-left shadow-2xl shadow-secondary/25 border border-white/20"
+          className="relative w-full overflow-hidden rounded-2xl md:rounded-3xl bg-gradient-to-br from-secondary via-secondary to-secondary/85 text-white px-5 py-10 sm:px-12 sm:py-16 md:py-20 lg:px-10 xl:px-16 text-center lg:text-left shadow-2xl shadow-secondary/25 border border-white/20"
         >
           {/* Abstract curved decorative waves & ambient lights */}
           <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">

@@ -12,6 +12,8 @@ import { gsap, ScrollTrigger, prefersReducedMotion } from '@/lib/gsap';
 export const useSmoothScroll = () => {
   useEffect(() => {
     if (prefersReducedMotion()) return;
+    // Na mobilu a dotykových zařízeních ponechat nativní momentum scroll systému
+    if (typeof window !== 'undefined' && ('ontouchstart' in window || window.innerWidth < 1024)) return;
 
     const lenis = new Lenis({
       duration: 1.05,

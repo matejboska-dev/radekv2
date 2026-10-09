@@ -67,7 +67,7 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-16 sm:py-20 md:py-24 lg:py-28 bg-background relative overflow-hidden">
+    <section id="contact" className="py-12 sm:py-16 md:py-24 lg:py-28 bg-background relative overflow-hidden scroll-mt-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
         {/* Editorial Asymmetric Header */}
         <Reveal className="mb-12 md:mb-16 pb-6 border-b border-border/50">
@@ -77,7 +77,7 @@ const Contact = () => {
                 07 — KONTAKT
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[2.75rem] xl:text-[3.15rem] font-syne font-extrabold uppercase tracking-tight text-foreground leading-[1.08]">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-[2.75rem] xl:text-[3.15rem] font-syne font-extrabold uppercase tracking-tight text-foreground leading-[1.1] sm:leading-[1.08]">
               Ozvěte se mi, <br className="hidden sm:block" />
               jak Vám mohu pomoci
             </h2>
@@ -90,7 +90,7 @@ const Contact = () => {
 
         <div className="grid lg:grid-cols-5 gap-8 lg:gap-12">
           {/* Contact Info */}
-          <Reveal variant="fromLeft" className="lg:col-span-2 space-y-6">
+          <Reveal variant="fadeUp" className="lg:col-span-2 space-y-6">
             <div className="glass-card rounded-2xl p-6 md:p-8 shadow-lg">
               <h3 className="text-xl font-bold text-foreground mb-6">
                 Kontaktní údaje
@@ -145,11 +145,11 @@ const Contact = () => {
           </Reveal>
 
           {/* Contact Form */}
-          <Reveal variant="fromRight" delay={0.12} className="relative mt-64 lg:mt-0 lg:col-span-3">
+          <Reveal variant="fadeUp" delay={0.12} className="relative mt-52 sm:mt-60 lg:mt-0 lg:col-span-3">
             {/* Radek vykukuje zpoza formuláře a ukazuje na něj. Čistě dekorativní, bez vlivu na layout. */}
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute bottom-[calc(100%-2.5rem)] left-1/2 -translate-x-1/2 lg:left-auto lg:right-6 lg:translate-x-0 xl:right-10 w-52 lg:w-64 xl:w-72"
+              className="pointer-events-none absolute bottom-[calc(100%-2.5rem)] left-1/2 -translate-x-1/2 lg:left-auto lg:right-6 lg:translate-x-0 xl:right-10 w-48 sm:w-56 lg:w-64 xl:w-72"
             >
               <div className="absolute inset-x-[-12%] bottom-[8%] h-[70%] rounded-full bg-[radial-gradient(circle,rgba(20,42,59,0.12)_0%,transparent_70%)] blur-2xl" />
               <img

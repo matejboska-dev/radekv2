@@ -25,7 +25,7 @@ const About = () => {
   return (
     <section
       id="about"
-      className="relative py-16 sm:py-20 md:py-24 lg:py-28 bg-background text-foreground overflow-hidden isolate"
+      className="scroll-mt-24 relative py-12 sm:py-16 md:py-20 lg:py-28 bg-background text-foreground overflow-hidden isolate"
     >
       {/* ═══════ Ambient subtle dark navy lighting (like hero) ═══════ */}
       <div
@@ -43,11 +43,11 @@ const About = () => {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
         {/* Top Section Header: 02 tag + Editorial headline */}
-        <Reveal className="mb-10 sm:mb-14 lg:mb-16">
-          <span className="inline-block text-xs sm:text-sm font-bold uppercase tracking-[0.25em] text-secondary mb-3 sm:mb-4">
+        <Reveal className="mb-8 sm:mb-12 lg:mb-16">
+          <span className="inline-block text-xs sm:text-sm font-bold uppercase tracking-[0.25em] text-secondary mb-2 sm:mb-4">
             03 — O MNĚ
           </span>
-          <h2 className="font-syne text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold uppercase tracking-tight text-black leading-[1.05]">
+          <h2 className="font-syne text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-extrabold uppercase tracking-tight text-black leading-[1.1] sm:leading-[1.05]">
             VÁŠ PARTNER<br />
             V REALITÁCH
           </h2>
@@ -93,7 +93,7 @@ const About = () => {
               {benefits.map((benefit) => (
                 <div
                   key={benefit}
-                  className="inline-flex items-center gap-2 rounded-full border border-border/80 bg-card px-3 sm:px-4 py-1.5 sm:py-2 text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-foreground/85 shadow-xs transition-all duration-300 hover:border-primary/40 hover:text-primary hover:shadow-sm"
+                  className="inline-flex items-center gap-2 rounded-full border border-border/80 bg-card px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-xs font-semibold uppercase tracking-wider text-foreground/85 shadow-xs transition-all duration-300 hover:border-primary/40 hover:text-primary hover:shadow-sm"
                 >
                   <span className="h-1.5 w-1.5 rounded-full bg-secondary shrink-0" />
                   <span>{benefit}</span>
@@ -126,7 +126,7 @@ const About = () => {
                 <span className="font-syne text-3xl sm:text-4xl font-extrabold text-primary leading-none tracking-tight">
                   {count}+
                 </span>
-                <span className="text-[11px] sm:text-xs uppercase tracking-wider text-muted-foreground mt-1 font-medium">
+                <span className="text-xs sm:text-xs uppercase tracking-wider text-muted-foreground mt-1 font-medium">
                   Spokojených klientů
                 </span>
               </div>

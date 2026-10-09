@@ -43,14 +43,14 @@ const HeroMobile = () => {
       {/* ═══════ LAYER 2: Outlined Watermark — BEHIND Radek ═══════ */}
       <div
         data-hero="name"
-        className="pointer-events-none absolute inset-0 z-10 flex items-center justify-start px-5 sm:px-8 select-none"
+        className="pointer-events-none absolute inset-x-0 top-20 z-10 flex justify-center px-4 select-none opacity-25"
         aria-hidden="true"
       >
-        <div className="flex flex-col items-start leading-[0.88] tracking-[-0.03em] -translate-y-36">
-          <span className="font-syne text-[2.4rem] sm:text-[3.2rem] font-extrabold uppercase text-white/90 drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">
+        <div className="flex max-w-full flex-col items-center leading-[0.85] tracking-[-0.03em]">
+          <span className="font-syne text-[2.4rem] sm:text-[3.6rem] font-extrabold uppercase text-white/50">
             RADEK
           </span>
-          <span className="font-syne text-[2rem] sm:text-[2.6rem] font-extrabold uppercase text-white/95 drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">
+          <span className="font-syne text-[2rem] sm:text-[3.1rem] font-extrabold uppercase text-white/40">
             VĚTROVSKÝ
           </span>
         </div>
@@ -72,19 +72,19 @@ const HeroMobile = () => {
         <img
           src={radekPhoto}
           alt="Radek Větrovský, certifikovaný realitní makléř RE/MAX Příbram"
-          className="relative h-[45svh] max-h-[380px] w-auto object-contain object-bottom drop-shadow-[0_0_18px_rgba(255,255,255,0.2)] [mask-image:linear-gradient(to_bottom,black_70%,transparent_100%)]"
+          className="relative h-[45svh] max-h-[380px] w-auto object-contain object-bottom [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]"
         />
       </div>
 
       {/* Tmavý přechod pod textem: bílé tričko by jinak splývalo s bílým textem */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-[25] h-[52%] bg-gradient-to-t from-primary from-45% via-primary/85 via-70% to-transparent"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-[25] h-[55%] bg-gradient-to-t from-primary from-50% via-primary/85 via-75% to-transparent"
       />
 
       {/* ═══════ LAYER 4: Content overlay — bottom text + CTA ═══════ */}
       <div className="relative z-30 flex min-h-[100svh] flex-col justify-end">
-        <div data-hero="copy" className="px-5 pb-24">
+        <div data-hero="copy" className="px-5 pb-28 sm:pb-32">
           <h1 className="font-display text-white tracking-[-0.03em] leading-[1.02]">
             <span className="block text-[2rem] sm:text-4xl">
               <span className="font-normal">Realitní makléř</span>{' '}

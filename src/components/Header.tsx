@@ -3,8 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Phone, Instagram } from 'lucide-react';
 import { Button } from './ui/button';
 import { useNavigate } from 'react-router-dom';
-
-const REMAX_LOGO = 'https://www.remax-czech.cz/bundles/daltenweb/img/logo/remax-logo-black.svg?20260717';
+import remaxLogo from '@/assets/remax-logo.png';
 
 const PHONE_DISPLAY = '+420 721 855 854';
 const PHONE_HREF = 'tel:+420721855854';
@@ -70,13 +69,13 @@ const Header = ({ staticContent = false, serviceCta }: HeaderProps) => {
   return (
     <>
       <header className="fixed left-0 right-0 top-0 z-50 px-3 pt-3 transition-all duration-300 md:px-5 md:pt-5">
-        <div className={`mx-auto flex h-16 max-w-[1380px] items-center justify-between rounded-full border px-4 transition-all duration-300 md:h-[4.6rem] md:px-6 ${
+        <div className={`mx-auto flex h-16 max-w-[1380px] items-center justify-between rounded-full border pl-3.5 pr-2 transition-all duration-300 md:h-[4.6rem] md:px-6 ${
           isScrolled || isSubpage ? 'border-border bg-background/95 shadow-[0_16px_38px_-28px_rgba(24,43,58,0.5)] backdrop-blur-md' : 'border-transparent bg-background/70 backdrop-blur-sm'
         }`}>
-            <div className="flex shrink-0 items-center gap-2 md:gap-3">
-              <a href="/" className="flex items-center gap-2.5 md:gap-3.5" aria-label="Radek Větrovský, úvodní stránka">
-                <img src={REMAX_LOGO} alt="RE/MAX" className="h-8 w-auto md:h-11" />
-                <span className="whitespace-nowrap font-display text-base font-bold tracking-[-0.03em] text-foreground sm:text-xl lg:text-xl xl:text-2xl">
+            <div className="flex min-w-0 items-center gap-2 md:gap-3">
+              <a href="/" className="flex min-w-0 items-center gap-2 md:gap-3.5" aria-label="Radek Větrovský, úvodní stránka">
+                <img src={remaxLogo} alt="RE/MAX" className="h-6 w-auto shrink-0 max-[359px]:hidden sm:h-8 md:h-11" />
+                <span className="whitespace-nowrap font-display text-[15px] font-bold tracking-[-0.03em] text-foreground sm:text-xl lg:text-xl xl:text-2xl">
                   Radek Větrovský
                 </span>
               </a>
@@ -133,13 +132,13 @@ const Header = ({ staticContent = false, serviceCta }: HeaderProps) => {
               <a
                 href={PHONE_HREF}
                 aria-label={`Zavolat ${PHONE_DISPLAY}`}
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary text-secondary-foreground shadow-md shadow-secondary/25"
+                className="flex h-11 w-11 items-center justify-center rounded-full bg-secondary text-secondary-foreground shadow-md shadow-secondary/25"
               >
                 <Phone className="h-5 w-5" />
               </a>
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-2 text-foreground transition-colors"
+                className="flex h-11 w-11 items-center justify-center text-foreground transition-colors"
                 aria-expanded={isMobileMenuOpen}
                 aria-controls="site-mobile-menu"
                 aria-label="Menu">
@@ -164,7 +163,7 @@ const Header = ({ staticContent = false, serviceCta }: HeaderProps) => {
             {/* Close Button */}
             <button
             onClick={() => setIsMobileMenuOpen(false)}
-            className="absolute top-6 right-6 p-2 text-foreground hover:text-primary transition-colors z-10"
+            className="absolute top-4 right-4 flex h-12 w-12 items-center justify-center text-foreground hover:text-primary transition-colors z-10"
             aria-label="Zavřít menu">
             
               <X className="h-8 w-8" />
@@ -172,7 +171,7 @@ const Header = ({ staticContent = false, serviceCta }: HeaderProps) => {
 
             {/* RE/MAX Logo in mobile menu */}
             <div className="absolute top-6 left-6">
-              <img src={REMAX_LOGO} alt="RE/MAX" className="h-8 w-auto" width="32" height="32" />
+              <img src={remaxLogo} alt="RE/MAX" className="h-8 w-auto" width="32" height="32" />
             </div>
 
             {/* Menu Content */}

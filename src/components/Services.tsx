@@ -43,17 +43,17 @@ const Services = () => {
 
 
   return (
-    <section id="services" className="py-16 sm:py-20 md:py-24 lg:py-28 bg-background">
+    <section id="services" className="scroll-mt-24 py-12 sm:py-16 md:py-20 lg:py-28 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* Editorial Asymmetric Header */}
-        <Reveal className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-12 md:mb-16 pb-6 border-b border-border/50">
+        <Reveal className="grid lg:grid-cols-12 gap-5 lg:gap-12 items-end mb-8 sm:mb-12 md:mb-16 pb-6 border-b border-border/50">
           <div className="lg:col-span-7">
-            <div className="flex items-center gap-2 mb-3">
+            <div className="flex items-center gap-2 mb-2 sm:mb-3">
               <span className="text-xs font-bold uppercase tracking-[0.2em] text-secondary">
                 01 — MOJE SLUŽBY
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-syne font-extrabold uppercase tracking-tight text-foreground leading-[1.05]">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-syne font-extrabold uppercase tracking-tight text-foreground leading-[1.1] sm:leading-[1.05]">
               Kompletní <br className="hidden sm:block" />
               realitní servis
             </h2>
@@ -86,7 +86,7 @@ const Services = () => {
                   className="w-full h-full object-cover object-[75%_center] transition-transform duration-700 ease-out group-hover:scale-105"
                 />
                 {/* Clean glass pill badge */}
-                <div className="absolute top-3 left-3 bg-background/90 backdrop-blur-md px-3 py-1 rounded-full text-[11px] font-bold tracking-wider uppercase text-foreground border border-border/40 shadow-sm">
+                <div className="absolute top-3 left-3 bg-background/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase text-foreground border border-border/40 shadow-sm">
                   {service.num} — {service.tag}
                 </div>
               </div>

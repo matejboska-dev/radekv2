@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { motion, useReducedMotion, type HTMLMotionProps } from 'framer-motion';
-import { variantMap, stagger, viewport, type VariantName } from '@/lib/motion';
+import { variantMap, stagger, type VariantName } from '@/lib/motion';
 
 type RevealProps = HTMLMotionProps<'div'> & {
   /** Který pohyb použít. Výchozí: fadeUp. */
@@ -15,17 +15,13 @@ type RevealProps = HTMLMotionProps<'div'> & {
   staggerChildren?: number;
 };
 
-/**
- * Univerzální „odkrývací" wrapper postavený na Framer Motion whileInView.
- * Respektuje `prefers-reduced-motion` – pak jen prostě zobrazí obsah.
- *
- * Použití:
- *   <Reveal>...</Reveal>
- *   <Reveal variant="fromLeft" delay={0.1}>...</Reveal>
- *   <Reveal group staggerChildren={0.1}>
- *     <Reveal>a</Reveal><Reveal>b</Reveal>
- *   </Reveal>
- */
+// Čistý viewport bez horizontálního ořezu (-80px zleva i zprava na 360px mobilu zabíjelo detekci).
+const motionViewport = {
+  once: true,
+  margin: '0px 0px -20px 0px',
+  amount: 0.05,
+} as const;
+
 export const Reveal = forwardRef<HTMLDivElement, RevealProps>(
   (
     {
@@ -36,6 +32,8 @@ export const Reveal = forwardRef<HTMLDivElement, RevealProps>(
       staggerChildren = 0.09,
       transition,
       children,
+      className,
+      style,
       ...rest
     },
     ref,
@@ -43,24 +41,18 @@ export const Reveal = forwardRef<HTMLDivElement, RevealProps>(
     const reduce = useReducedMotion();
     const MotionTag = motion[as] as typeof motion.div;
 
-    if (reduce) {
-      return (
-        <MotionTag ref={ref} {...rest}>
-          {children}
-        </MotionTag>
-      );
-    }
-
     const variants = group ? stagger(staggerChildren, delay) : variantMap[variant];
 
     return (
       <MotionTag
         ref={ref}
         variants={variants}
-        initial="hidden"
+        initial={reduce ? 'show' : 'hidden'}
         whileInView="show"
-        viewport={viewport}
+        viewport={motionViewport}
         transition={delay && !group ? { delay } : transition}
+        className={className}
+        style={style}
         {...rest}
       >
         {children}
@@ -73,20 +65,17 @@ Reveal.displayName = 'Reveal';
 
 /** Dítě uvnitř <Reveal group>. Dědí stagger časování od rodiče. */
 export const RevealItem = forwardRef<HTMLDivElement, RevealProps>(
-  ({ variant = 'fadeUp', as = 'div', children, ...rest }, ref) => {
-    const reduce = useReducedMotion();
+  ({ variant = 'fadeUp', as = 'div', children, className, style, ...rest }, ref) => {
     const MotionTag = motion[as] as typeof motion.div;
 
-    if (reduce) {
-      return (
-        <MotionTag ref={ref} {...rest}>
-          {children}
-        </MotionTag>
-      );
-    }
-
     return (
-      <MotionTag ref={ref} variants={variantMap[variant]} {...rest}>
+      <MotionTag
+        ref={ref}
+        variants={variantMap[variant]}
+        className={className}
+        style={style}
+        {...rest}
+      >
         {children}
       </MotionTag>
     );

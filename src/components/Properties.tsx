@@ -81,17 +81,17 @@ const Properties = () => {
   };
 
   return (
-    <section id="properties" className="py-16 sm:py-20 md:py-24 lg:py-28 bg-background">
+    <section id="properties" className="scroll-mt-24 py-12 sm:py-16 md:py-20 lg:py-28 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* Editorial Asymmetric Header */}
-        <Reveal className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-10 md:mb-14 pb-6 border-b border-border/50">
+        <Reveal className="grid lg:grid-cols-12 gap-5 lg:gap-12 items-end mb-8 sm:mb-12 md:mb-14 pb-6 border-b border-border/50">
           <div className="lg:col-span-7">
-            <div className="flex items-center gap-2 mb-3">
+            <div className="flex items-center gap-2 mb-2 sm:mb-3">
               <span className="text-xs font-bold uppercase tracking-[0.2em] text-secondary">
                 04 — PRODANÉ NEMOVITOSTI
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-syne font-extrabold uppercase tracking-tight text-foreground leading-[1.05]">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-syne font-extrabold uppercase tracking-tight text-foreground leading-[1.1] sm:leading-[1.05]">
               Nemovitosti, které jsem <br className="hidden sm:block" />
               <span className="text-foreground">úspěšně prodal</span>
             </h2>
@@ -232,7 +232,7 @@ const Properties = () => {
               {/* Details & Results */}
               <div className="flex flex-col flex-1 pt-4">
                 <div className="flex items-center justify-between gap-2 mb-2">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-secondary bg-secondary/10 px-2.5 py-0.5 rounded-full border border-secondary/20">
+                  <span className="text-xs font-bold uppercase tracking-wider text-secondary bg-secondary/10 px-2.5 py-0.5 rounded-full border border-secondary/20">
                     {prop.resultBadge}
                   </span>
                   <span className="text-xs text-muted-foreground">{prop.size}</span>
@@ -256,7 +256,7 @@ const Properties = () => {
             variant="outline"
             size="lg"
             onClick={goToProdano}
-            className="group text-base border-2 hover:border-secondary hover:text-secondary px-8 h-12 rounded-xl transition-all"
+            className="group text-base border-2 hover:border-secondary hover:text-secondary h-auto min-h-12 w-full max-w-sm whitespace-normal px-6 py-3 text-center sm:w-auto sm:max-w-none rounded-xl transition-all"
           >
             Zobrazit všechny prodané nemovitosti
             <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1.5 transition-transform" />

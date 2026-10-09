@@ -176,7 +176,7 @@ const OdhadNemovitosti = () => {
         {/* Formulář: stejná kostra jako sekce Kontakt na homepage */}
         <section
           id="odhad-form"
-          className="relative overflow-hidden border-t border-border/50 bg-muted/30 py-16 sm:py-20 md:py-24 lg:py-28 scroll-mt-24"
+          className="relative overflow-hidden border-t border-border/50 bg-muted/30 py-12 sm:py-16 md:py-24 lg:py-28 scroll-mt-24"
         >
           <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
             <Reveal className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-12 md:mb-16 pb-6 border-b border-border/50">
@@ -186,7 +186,7 @@ const OdhadNemovitosti = () => {
                     Žádost o odhad
                   </span>
                 </div>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-syne font-extrabold uppercase tracking-tight text-foreground leading-[1.05]">
+                <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-syne font-extrabold uppercase tracking-tight text-foreground leading-[1.1] sm:leading-[1.05]">
                   Zažádejte <br className="hidden sm:block" />
                   o odhad zdarma
                 </h2>
@@ -200,7 +200,7 @@ const OdhadNemovitosti = () => {
 
             <div className="grid lg:grid-cols-5 gap-8 lg:gap-12">
               {/* Kontaktní údaje + Radek */}
-              <Reveal variant="fromLeft" className="lg:col-span-2 flex flex-col gap-6">
+              <Reveal variant="fadeUp" className="lg:col-span-2 flex flex-col gap-6">
                 <div className="glass-card rounded-2xl p-6 md:p-8 shadow-lg">
                   <h3 className="text-xl font-bold text-foreground mb-6">Kontaktní údaje</h3>
                   <address className="space-y-5 not-italic">
@@ -245,7 +245,7 @@ const OdhadNemovitosti = () => {
               </Reveal>
 
               {/* Formulář */}
-              <Reveal variant="fromRight" delay={0.12} className="lg:col-span-3 lg:self-start">
+              <Reveal variant="fadeUp" delay={0.12} className="lg:col-span-3 lg:self-start">
                 <div
                   id="odhad-form-card"
                   className="glass-card rounded-2xl p-6 md:p-8 shadow-lg scroll-mt-24"

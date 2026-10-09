@@ -3,6 +3,7 @@ import { Calendar, ArrowRight, Clock, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import MobileCTABar from '@/components/MobileCTABar';
 import CTASection from '@/components/CTASection';
 import { allArticles } from '@/components/Blog';
 import { Reveal, RevealItem } from '@/components/anim/Reveal';
@@ -57,7 +58,7 @@ const Clanky = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <main className="pt-28 pb-16 sm:pt-36 sm:pb-20 md:pt-40 md:pb-24">
+      <main className="pt-24 pb-12 sm:pt-36 sm:pb-20 md:pt-40 md:pb-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           {/* Back link */}
           <Reveal variant="fade" className="mb-6 sm:mb-8">
@@ -78,7 +79,7 @@ const Clanky = () => {
                   06 — BLOG & RADY Z REALIT
                 </span>
               </div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-syne font-extrabold uppercase tracking-tight text-foreground leading-[1.05]">
+              <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-syne font-extrabold uppercase tracking-tight text-foreground leading-[1.1] sm:leading-[1.05]">
                 Všechny články a rady
               </h1>
             </div>
@@ -92,7 +93,7 @@ const Clanky = () => {
 
           {/* Articles Grid — identical to homepage Blog design system */}
           <Reveal group staggerChildren={0.06} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {allArticles.map((article) => (
+            {allArticles.map((article, index) => (
               <Link
                 key={article.slug}
                 to={`/blog/${article.slug}`}
@@ -108,7 +109,7 @@ const Clanky = () => {
                     <img
                       src={article.image}
                       alt={article.title}
-                      loading="lazy"
+                      loading={index < 3 ? "eager" : "lazy"}
                       className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                     />
                   </div>
@@ -149,7 +150,9 @@ const Clanky = () => {
       {/* Internal Conversion CTA Section */}
       <CTASection />
 
+      <div className="h-16 lg:hidden" aria-hidden="true" />
       <Footer />
+      <MobileCTABar />
     </div>
   );
 };
