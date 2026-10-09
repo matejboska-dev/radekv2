@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { ArrowRight, Phone } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { gsap, ScrollTrigger, prefersReducedMotion } from '@/lib/gsap';
-import radekPhoto from '@/assets/radek-vetrovsky.webp';
+import radekPhoto from '@/assets/radek-hero.webp';
 import bgPhoto from '@/assets/pribram-city.jpg';
 
 const HeroDesktop = () => {
@@ -89,11 +89,11 @@ const HeroDesktop = () => {
       {/* ═══════ LAYER 3: Radek portrait — on the right, IN FRONT of name text ═══════ */}
       <div
         data-hero="portrait"
-        className="pointer-events-none absolute inset-y-0 right-0 top-16 lg:top-20 z-20 flex justify-end items-end overflow-hidden pr-6 lg:pr-12 xl:pr-20 2xl:pr-28"
+        className="pointer-events-none absolute inset-y-0 right-0 top-16 lg:top-20 z-20 flex justify-end items-end pr-6 lg:pr-12 xl:pr-20 2xl:pr-28"
       >
         <div
           aria-hidden="true"
-          className="absolute right-0 bottom-0 h-[85%] w-[45%] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(20,42,59,0.7)_0%,transparent_70%)] blur-3xl"
+          className="absolute -right-[30%] bottom-0 h-[85%] w-[170%] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(20,42,59,0.7)_0%,transparent_70%)] blur-3xl"
         />
         <div
           aria-hidden="true"
@@ -102,7 +102,7 @@ const HeroDesktop = () => {
         <img
           src={radekPhoto}
           alt="Radek Větrovský, certifikovaný realitní makléř RE/MAX Příbram"
-          className="relative max-h-full h-[88vh] 2xl:h-[92vh] w-auto object-contain object-bottom drop-shadow-[0_16px_36px_rgba(0,0,0,0.45)] drop-shadow-[0_45px_85px_rgba(0,0,0,0.3)] [mask-image:linear-gradient(to_bottom,black_84%,transparent_100%)]"
+          className="relative max-h-full h-[88vh] 2xl:h-[92vh] w-auto object-contain object-bottom drop-shadow-[0_0_18px_rgba(255,255,255,0.2)] [mask-image:linear-gradient(to_bottom,black_84%,transparent_100%)]"
         />
       </div>
 

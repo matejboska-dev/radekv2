@@ -2,7 +2,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import { Phone, Mail } from 'lucide-react';
 import { Button } from './ui/button';
-import radekPhoto from '@/assets/radek-vetrovsky.webp';
+import radekPhoto from '@/assets/radek-hero.webp';
 import { useNavigate } from 'react-router-dom';
 
 const REMAX_LOGO = 'https://www.remax-czech.cz/bundles/daltenweb/img/logo/remax-cze_balon_logo_2.svg?20250618';

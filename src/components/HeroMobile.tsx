@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { gsap, prefersReducedMotion } from '@/lib/gsap';
-import radekPhoto from '@/assets/radek-vetrovsky.webp';
+import radekPhoto from '@/assets/radek-hero.webp';
 import bgPhoto from '@/assets/pribram-city.jpg';
 
 const HeroMobile = () => {
@@ -59,7 +59,7 @@ const HeroMobile = () => {
       {/* ═══════ LAYER 3: Radek portrait — centered, IN FRONT of name ═══════ */}
       <div
         data-hero="portrait"
-        className="absolute inset-x-0 bottom-0 z-20 flex justify-center"
+        className="absolute inset-x-0 bottom-[32svh] z-20 flex justify-center"
       >
         <div
           aria-hidden="true"
@@ -72,9 +72,15 @@ const HeroMobile = () => {
         <img
           src={radekPhoto}
           alt="Radek Větrovský, certifikovaný realitní makléř RE/MAX Příbram"
-          className="relative h-[70svh] max-h-[580px] w-auto object-contain object-bottom drop-shadow-[0_6px_18px_rgba(0,0,0,0.35)] drop-shadow-[0_24px_50px_rgba(0,0,0,0.22)] [mask-image:linear-gradient(to_bottom,black_78%,transparent_100%)]"
+          className="relative h-[52svh] max-h-[440px] w-auto object-contain object-bottom drop-shadow-[0_0_18px_rgba(255,255,255,0.2)] [mask-image:linear-gradient(to_bottom,black_70%,transparent_100%)]"
         />
       </div>
+
+      {/* Tmavý přechod pod textem: bílé tričko by jinak splývalo s bílým textem */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-[25] h-[52%] bg-gradient-to-t from-primary from-45% via-primary/85 via-70% to-transparent"
+      />
 
       {/* ═══════ LAYER 4: Content overlay — bottom text + CTA ═══════ */}
       <div className="relative z-30 flex min-h-[100svh] flex-col justify-end">
