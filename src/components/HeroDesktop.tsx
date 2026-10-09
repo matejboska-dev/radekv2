@@ -122,7 +122,7 @@ const HeroDesktop = () => {
               </h1>
               <p className="mt-4 text-xs leading-relaxed text-white/85 xl:text-sm">
                 <strong className="font-bold text-white">
-                  Pomohu Vám prodat nebo koupit nemovitost v Příbrami, Dobříši, Sedlčanech, Rožmitále pod Třemšínem, Březnici, Sedlci-Prčici a okolí.
+                  Pomohu Vám prodat nebo koupit nemovitost v Příbrami, Dobříši, Sedlčanech, Rožmitále pod Třemšínem, Březnici, Jincích a okolí.
                 </strong>{' '}
                 Od prvního odhadu až po podpis smlouvy se postarám o celý proces.
               </p>

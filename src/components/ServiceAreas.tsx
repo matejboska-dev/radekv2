@@ -28,9 +28,9 @@ const areas = [
     description: 'Jižně od Příbrami, s historickým centrem a renesančním zámkem.',
   },
   {
-    name: 'Sedlec-Prčice',
-    population: '3 000 obyvatel',
-    description: 'Na jihovýchodě okresu, známé jako „srdce Českého Meránu".',
+    name: 'Jince',
+    population: '2 500 obyvatel',
+    description: 'Městys severně od Příbrami, známý nalezišti kambrických trilobitů.',
   },
 ];
 

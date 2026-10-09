@@ -18,7 +18,7 @@ export function getServiceSchema(service: ServiceContent) {
         serviceType: service.name, description: service.intro, url,
         image: new URL(service.image, SITE_URL).href,
         provider: { '@id': `${SITE_URL}/#business` },
-        areaServed: ['Příbram', 'Dobříš', 'Sedlčany', 'Rožmitál pod Třemšínem', 'Březnice', 'Sedlec-Prčice'].map(name => ({ '@type': 'City', name })),
+        areaServed: ['Příbram', 'Dobříš', 'Sedlčany', 'Rožmitál pod Třemšínem', 'Březnice', 'Jince'].map(name => ({ '@type': 'City', name })),
       },
       {
         '@type': 'WebPage', '@id': `${url}#webpage`, url, name: service.title,
