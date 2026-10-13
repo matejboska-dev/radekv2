@@ -148,29 +148,6 @@ const About = () => {
           </Reveal>
         </div>
 
-        {/* ═══════ BOTTOM: Full-Width Editorial Typographic Manifesto ═══════ */}
-        <Reveal
-          group
-          staggerChildren={0.12}
-          className="mt-16 sm:mt-24 lg:mt-32 pt-10 sm:pt-14 lg:pt-16 border-t border-border"
-        >
-          <div className="max-w-4xl space-y-3 sm:space-y-4">
-            <RevealItem as="p" className="font-syne text-base sm:text-lg md:text-xl lg:text-2xl xl:text-[1.65rem] text-muted-foreground/75 uppercase leading-relaxed tracking-wider">
-              ÚSPĚŠNÝ PRODEJ NEMOVITOSTI POTŘEBUJE VÍC{' '}
-              <span className="font-extrabold text-primary">NEŽ JEN BĚŽNÝ INZERÁT.</span>
-            </RevealItem>
-            <RevealItem as="p" className="font-syne text-base sm:text-lg md:text-xl lg:text-2xl xl:text-[1.65rem] text-muted-foreground/75 uppercase leading-relaxed tracking-wider">
-              POTŘEBUJE STRATEGII.<br />
-              <span className="font-extrabold text-primary">ŠPIČKOVÝ MARKETING.</span>
-            </RevealItem>
-            <RevealItem as="p" className="font-syne text-base sm:text-lg md:text-xl lg:text-2xl xl:text-[1.65rem] text-muted-foreground/75 uppercase leading-relaxed tracking-wider">
-              A PARTNERA V ROHU,<br />
-              <span className="font-extrabold text-primary">
-                KTERÝ HÁJÍ VAŠE ZÁJMY OD PRVNÍHO DNE.
-              </span>
-            </RevealItem>
-          </div>
-        </Reveal>
       </div>
     </section>
   );
