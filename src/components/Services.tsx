@@ -71,7 +71,11 @@ const Services = () => {
             <RevealItem
               variant="fadeUp"
               key={service.title}
-              onClick={() => {
+              as="a"
+              href={service.path}
+              onClick={(event) => {
+                if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
+                event.preventDefault();
                 window.scrollTo(0, 0);
                 navigate(service.path);
               }}

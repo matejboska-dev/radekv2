@@ -3,6 +3,8 @@ import { motion, useReducedMotion, type HTMLMotionProps } from 'framer-motion';
 import { variantMap, stagger, type VariantName } from '@/lib/motion';
 
 type RevealProps = HTMLMotionProps<'div'> & {
+  /** Cíl odkazu, když je as="a". */
+  href?: string;
   /** Který pohyb použít. Výchozí: fadeUp. */
   variant?: VariantName;
   /** Zpoždění startu v sekundách. */

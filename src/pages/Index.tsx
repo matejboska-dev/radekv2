@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { smoothScrollTo } from '@/hooks/useSmoothScroll';
 import Header from '@/components/Header';
@@ -23,6 +23,15 @@ import { setPageMeta } from '@/lib/seo';
 
 const Index = () => {
   const location = useLocation();
+  // Render only one hero so the page has a single <h1>.
+  const [isDesktop, setIsDesktop] = useState(() => window.matchMedia('(min-width: 1024px)').matches);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 1024px)');
+    const onChange = () => setIsDesktop(mq.matches);
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, []);
 
   useEffect(() => {
     const cleanupMeta = setPageMeta(
@@ -51,12 +60,15 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Header />
       <main>
-        <div className="lg:hidden">
-          <HeroMobile />
-        </div>
-        <div className="hidden lg:block">
-          <HeroDesktop />
-        </div>
+        {isDesktop ? (
+          <div className="hidden lg:block">
+            <HeroDesktop />
+          </div>
+        ) : (
+          <div className="lg:hidden">
+            <HeroMobile />
+          </div>
+        )}
         <StatsBar />
         <Services />
         <EstimateComparison />
