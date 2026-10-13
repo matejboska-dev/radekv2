@@ -1,22 +1,23 @@
+import type { MouseEvent } from 'react';
 import { ArrowRight, Clock, ShieldCheck, TrendingUp, Building2 } from 'lucide-react';
 import { Button } from './ui/button';
 import { Reveal, RevealItem } from '@/components/anim/Reveal';
 import { useNavigate } from 'react-router-dom';
-import bytImage from '@/assets/property-byt-pribram.webp';
+import bytMilinskaImage from '@/assets/property-byt-milinska-pribram.webp';
 import dumBohutinImage from '@/assets/property-dum-bohutin.webp';
 import dumTynecImage from '@/assets/property-dum-tynec-nad-sazavou.webp';
-import bytBrodskaImage from '@/assets/property-byt-brodska-pribram.webp';
+import bytSachetniImage from '@/assets/property-byt-sachetni-pribram.webp';
 import bytCertakImage from '@/assets/property-byt-certak-pribram.jpg';
 
 // Featured flagship transaction
 const featuredProperty = {
-  title: 'Byt 3+kk, nám. 17. listopadu',
-  location: 'Příbram VII',
-  size: '61 m²',
-  resultBadge: 'PRODÁNO ZA 18 DNÍ',
+  title: 'Byt 3+1, Milínská',
+  location: 'Příbram',
+  size: '77 m²',
+  resultBadge: 'PRODÁNO ZA 37 DNÍ',
   description:
-    'Kompletní příprava, profesionální homestaging a videoprohlídka zajistily rychlý prodej za plnou inzerovanou cenu bez jediné slevy.',
-  image: bytImage,
+    'Světlý byt 3+1 s útulným zařízením. Kvalitní fotografie a správně nastavená cena přivedly kupce za pouhých pár týdnů.',
+  image: bytMilinskaImage,
 };
 
 // Secondary featured property
@@ -24,7 +25,7 @@ const secondaryProperty = {
   title: 'Rodinný dům, Bohutín',
   location: 'okres Příbram',
   size: '94 m² · Pozemek 820 m²',
-  resultBadge: 'PRODÁNO ZA 34 DNÍ',
+  resultBadge: 'PRODÁNO ZA 19 DNÍ',
   description:
     'Efektivní prezentace na sociálních sítích přilákala rodinu hledající klidné bydlení u Brd. Zajištěn kompletní právní servis a úschova.',
   image: dumBohutinImage,
@@ -33,21 +34,21 @@ const secondaryProperty = {
 // 3 Curated properties for the portfolio row
 const portfolioProperties = [
   {
-    id: 'brodska',
-    title: 'Byt 2+kk, Brodská',
+    id: 'sachetni',
+    title: 'Byt 3+kk, Šachetní',
     location: 'Příbram',
-    size: '54 m²',
-    resultBadge: 'PRODÁNO ZA 12 DNÍ',
+    size: '65 m²',
+    resultBadge: 'PRODÁNO ZA 8 DNÍ',
     description:
-      'Kupující byl nalezen z interní databáze čekajících klientů ještě před spuštěním masivní veřejné inzerce.',
-    image: bytBrodskaImage,
+      'Po kompletní rekonstrukci s moderní koupelnou se byt prodal během několika dní a bez zbytečných prodlev.',
+    image: bytSachetniImage,
   },
   {
     id: 'tynec',
     title: 'Rodinný dům, Týnec nad Sázavou',
     location: 'Středočeský kraj',
     size: '234 m² · Pozemek 1 150 m²',
-    resultBadge: 'PRODÁNO ZA 42 DNÍ',
+    resultBadge: 'PRODÁNO ZA 28 DNÍ',
     description:
       'Letecké video a virtuální prohlídka oslovily kupce z Prahy, kteří ocenili detailní přehled o stavu nemovitosti ještě před prohlídkou.',
     image: dumTynecImage,
@@ -57,7 +58,7 @@ const portfolioProperties = [
     title: 'Byt 2+1, Pod Čertovým pahorkem',
     location: 'Příbram',
     size: '58 m²',
-    resultBadge: 'PRODÁNO ZA 21 DNÍ',
+    resultBadge: 'PRODÁNO ZA 25 DNÍ',
     description:
       'Díky správně nastavené cenové strategii a kvalitním fotografiím proběhl celý obchod hladce a bez zbytečných prodlev.',
     image: bytCertakImage,
@@ -75,7 +76,9 @@ const Properties = () => {
   const navigate = useNavigate();
 
 
-  const goToProdano = () => {
+  const goToProdano = (event: MouseEvent<HTMLElement>) => {
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
+    event.preventDefault();
     window.scrollTo(0, 0);
     navigate('/prodano');
   };
@@ -105,31 +108,14 @@ const Properties = () => {
         </Reveal>
 
         {/* Track record / Key metrics bar */}
-        <Reveal group staggerChildren={0.08} className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-10 md:mb-14">
-          {metrics.map((metric, idx) => {
-            const Icon = metric.icon;
-            return (
-              <RevealItem
-                variant="fadeUp"
-                key={idx}
-                className="flex items-center gap-2.5 sm:gap-3 p-3 sm:p-4 rounded-xl border border-border/80 bg-muted/40 backdrop-blur-sm"
-              >
-                <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                  <Icon className="w-4 h-4" />
-                </div>
-                <span className="text-xs sm:text-sm font-semibold text-foreground leading-tight">
-                  {metric.label}
-                </span>
-              </RevealItem>
-            );
-          })}
-        </Reveal>
 
         {/* Row 1: Featured Flagship Case (7 cols) + Secondary High-Impact Case (5 cols) */}
         <Reveal group staggerChildren={0.15} className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 mb-6 lg:mb-8">
           {/* ═══════ Featured Large Card ═══════ */}
           <RevealItem
             variant="fadeUp"
+            as="a"
+            href="/prodano"
             onClick={goToProdano}
             className="group cursor-pointer flex flex-col bg-card rounded-2xl md:rounded-3xl p-4 sm:p-5 border border-border/80 hover:border-secondary/30 hover:shadow-2xl transition-all duration-500 lg:col-span-7"
           >
@@ -170,6 +156,8 @@ const Properties = () => {
           {/* ═══════ Secondary Card ═══════ */}
           <RevealItem
             variant="fadeUp"
+            as="a"
+            href="/prodano"
             onClick={goToProdano}
             className="group cursor-pointer flex flex-col bg-card rounded-2xl md:rounded-3xl p-4 sm:p-5 border border-border/80 hover:border-secondary/30 hover:shadow-2xl transition-all duration-500 lg:col-span-5"
           >
@@ -214,6 +202,8 @@ const Properties = () => {
             <RevealItem
               variant="fadeUp"
               key={prop.id}
+              as="a"
+              href="/prodano"
               onClick={goToProdano}
               className="group cursor-pointer flex flex-col bg-card rounded-2xl md:rounded-3xl p-4 sm:p-5 border border-border/80 hover:border-secondary/30 hover:shadow-xl transition-all duration-500"
             >
@@ -253,13 +243,15 @@ const Properties = () => {
         {/* Secondary Link to All Properties */}
         <Reveal variant="fade" className="text-center mt-10">
           <Button
+            asChild
             variant="outline"
             size="lg"
-            onClick={goToProdano}
             className="group text-base border-2 hover:border-secondary hover:text-secondary h-auto min-h-12 w-full max-w-sm whitespace-normal px-6 py-3 text-center sm:w-auto sm:max-w-none rounded-xl transition-all"
           >
-            Zobrazit všechny prodané nemovitosti
-            <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1.5 transition-transform" />
+            <a href="/prodano" onClick={goToProdano}>
+              Zobrazit všechny prodané nemovitosti
+              <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1.5 transition-transform" />
+            </a>
           </Button>
         </Reveal>
       </div>

@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Maximize2, Tag, ArrowLeft } from 'lucide-react';
+import { MapPin, Maximize2, Clock, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import MobileCTABar from '@/components/MobileCTABar';
-import { setPageMeta, injectJsonLd } from '@/lib/seo';
+import { setPageMeta, injectJsonLd, BASE_URL } from '@/lib/seo';
 import bytImage from '@/assets/property-byt-pribram.webp';
 import dumImage from '@/assets/property-dum-pribram.webp';
 import byt31Image from '@/assets/property-byt31-pribram.webp';
@@ -23,14 +23,35 @@ import bytZdaborImage from '@/assets/property-byt-zdabor-slunna-pribram.webp';
 import bytBeneseImage from '@/assets/property-byt-edvarda-benese-pribram.webp';
 import dumTynecImage from '@/assets/property-dum-tynec-nad-sazavou.webp';
 import dumBohutinImage from '@/assets/property-dum-bohutin.webp';
+import bytRynecekImage from '@/assets/property-byt-rynecek-pribram.webp';
+import chataKamykImage from '@/assets/property-chata-kamyk-nad-vltavou.webp';
 
 const properties = [
+  {
+    id: 18,
+    title: 'Chata, Kamýk nad Vltavou',
+    location: 'Kamýk nad Vltavou',
+    size: '89 m²',
+    status: 'Prodáno',
+    days: 122,
+    image: chataKamykImage,
+  },
+  {
+    id: 17,
+    title: 'Byt 2+kk, Příbram',
+    location: 'Ryneček, Příbram',
+    size: '40 m²',
+    status: 'Prodáno',
+    days: 15,
+    image: bytRynecekImage,
+  },
   {
     id: 16,
     title: 'Rodinný dům, Bohutín',
     location: 'Bohutín, okres Příbram',
     size: '94 m²',
     status: 'Prodáno',
+    days: 19,
     image: dumBohutinImage,
   },
   {
@@ -39,6 +60,7 @@ const properties = [
     location: 'Týnec nad Sázavou',
     size: '234 m²',
     status: 'Prodáno',
+    days: 28,
     image: dumTynecImage,
   },
   {
@@ -47,6 +69,7 @@ const properties = [
     location: 'Brodská, Příbram',
     size: '54 m²',
     status: 'Prodáno',
+    days: 46,
     image: bytBrodskaImage,
   },
   {
@@ -55,6 +78,7 @@ const properties = [
     location: 'Zdaboř – Slunná, Příbram',
     size: '45 m²',
     status: 'Prodáno',
+    days: 13,
     image: bytZdaborImage,
   },
   {
@@ -63,6 +87,7 @@ const properties = [
     location: 'Edvarda Beneše, Příbram',
     size: '60 m²',
     status: 'Prodáno',
+    days: 7,
     image: bytBeneseImage,
   },
   {
@@ -71,6 +96,7 @@ const properties = [
     location: 'Pod Čertovým pahorkem, Příbram',
     size: '58 m²',
     status: 'Prodáno',
+    days: 25,
     image: bytCertakImage,
   },
   {
@@ -79,6 +105,7 @@ const properties = [
     location: 'Petra Bezruče, Příbram',
     size: '59 m²',
     status: 'Prodáno',
+    days: 9,
     image: bytBezruceImage,
   },
   {
@@ -87,6 +114,7 @@ const properties = [
     location: 'nám. 17. listopadu, Příbram VII',
     size: '61 m²',
     status: 'Prodáno',
+    days: 18,
     image: bytImage,
   },
   {
@@ -95,6 +123,7 @@ const properties = [
     location: 'Rožmitálská, Příbram VI – Březové Hory',
     size: '141 m²',
     status: 'Prodáno',
+    days: 21,
     image: dumImage,
   },
   {
@@ -103,6 +132,7 @@ const properties = [
     location: 'tř. Osvobození, Příbram VII',
     size: '75 m²',
     status: 'Prodáno',
+    days: 14,
     image: byt31Image,
   },
   {
@@ -111,6 +141,7 @@ const properties = [
     location: 'Rožmitálská, Příbram VI – Březové Hory',
     size: '20 m²',
     status: 'Prodáno',
+    days: 52,
     image: garazImage,
   },
   {
@@ -119,6 +150,7 @@ const properties = [
     location: 'Jelence, okres Příbram',
     size: '224 m²',
     status: 'Prodáno',
+    days: 15,
     image: jelenceImage,
   },
   {
@@ -127,6 +159,7 @@ const properties = [
     location: 'Ve Dvoře, Příbram',
     size: '23 m²',
     status: 'Prodáno',
+    days: 4,
     image: bytVeDvoreImage,
   },
   {
@@ -135,6 +168,7 @@ const properties = [
     location: 'Mariánská, Příbram',
     size: '27 m²',
     status: 'Prodáno',
+    days: 35,
     image: bytMarianskaImage,
   },
   {
@@ -143,6 +177,7 @@ const properties = [
     location: 'Čechovská, Příbram',
     size: '47 m²',
     status: 'Prodáno',
+    days: 12,
     image: bytCechovskaImage,
   },
   {
@@ -151,9 +186,12 @@ const properties = [
     location: 'Bratří Čapků, Příbram',
     size: '64 m²',
     status: 'Prodáno',
+    days: 21,
     image: bytCapkuImage,
   },
 ];
+
+const daysLabel = (n: number) => `${n} ${n === 1 ? 'den' : n >= 2 && n <= 4 ? 'dny' : 'dní'}`;
 
 const Prodano = () => {
   const navigate = useNavigate();
@@ -173,6 +211,25 @@ const Prodano = () => {
       ],
     });
 
+    const cleanupList = injectJsonLd({
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: 'Prodané nemovitosti v Příbrami a okolí',
+      url: `${BASE_URL}/prodano`,
+      about: { '@id': `${BASE_URL}/#business` },
+      mainEntity: {
+        '@type': 'ItemList',
+        numberOfItems: properties.length,
+        itemListElement: properties.map((property, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          url: `${BASE_URL}/prodano#nemovitost-${property.id}`,
+          name: `${property.title} – ${property.location}, ${property.size}, prodáno za ${property.days} dní`,
+          image: new URL(property.image, BASE_URL).href,
+        })),
+      },
+    });
+
     if (window.location.hash.startsWith('#nemovitost-')) {
       document.getElementById(window.location.hash.slice(1))?.scrollIntoView({ block: 'start', behavior: 'instant' });
     } else {
@@ -182,6 +239,7 @@ const Prodano = () => {
     return () => {
       cleanupMeta();
       cleanupBreadcrumb();
+      cleanupList();
     };
   }, []);
 
@@ -221,6 +279,7 @@ const Prodano = () => {
             </p>
           </motion.div>
 
+          <h2 className="sr-only">Seznam prodaných nemovitostí</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
             {properties.map((property, index) => (
               <motion.div
@@ -234,13 +293,17 @@ const Prodano = () => {
                 <div className="relative aspect-[16/11] w-full overflow-hidden rounded-t-xl bg-muted">
                   <img
                     src={property.image}
-                    alt={`${property.title} – ${property.location}`}
+                    alt={`${property.title} – ${property.location}, ${property.size}, prodáno za ${daysLabel(property.days)}`}
                     loading={index < 3 ? "eager" : "lazy"}
                     className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent pointer-events-none" />
                 </div>
                 <div className="p-5 md:p-6">
+                  <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-secondary bg-secondary/10 px-2.5 py-0.5 rounded-full border border-secondary/20 mb-3">
+                    <Clock className="w-3.5 h-3.5" />
+                    Prodáno za {daysLabel(property.days)}
+                  </span>
                   <h3 className="text-lg font-bold font-syne text-foreground mb-2 group-hover:text-secondary transition-colors leading-tight">
                     {property.title}
                   </h3>
