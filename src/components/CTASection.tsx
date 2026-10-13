@@ -68,7 +68,7 @@ const CTASection = () => {
             <div className="absolute inset-x-[-15%] bottom-[10%] h-[65%] rounded-full bg-white/20 blur-3xl" />
             <img
               src={radekCta}
-              alt=""
+              alt="Radek Větrovský, realitní makléř RE/MAX Příbram"
               width={720}
               height={1080}
               loading="lazy"

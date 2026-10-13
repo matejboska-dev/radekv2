@@ -6,6 +6,12 @@ const NotFound = () => {
 
   useEffect(() => {
     console.error("404 Error: User attempted to access non-existent route:", location.pathname);
+    const robots = document.querySelector<HTMLMetaElement>('meta[name="robots"]');
+    const prev = robots?.content ?? 'index, follow';
+    if (robots) robots.content = 'noindex, follow';
+    return () => {
+      if (robots) robots.content = prev;
+    };
   }, [location.pathname]);
 
   return (

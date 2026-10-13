@@ -3,5 +3,22 @@
   "framework": "vite",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/blog/5-tipu-pro-rychlejsi-prodej-bytu",
+      "destination": "/sluzby/prodej-nemovitosti-pribram",
+      "permanent": true
+    },
+    {
+      "source": "/blog/pruvodce-hypotekou-pro-zacatecniky",
+      "destination": "/blog/hypoteky-cerven-2026-dopad-na-prodej-pribram",
+      "permanent": true
+    }
+  ]
 }

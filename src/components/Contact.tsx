@@ -154,7 +154,7 @@ const Contact = () => {
               <div className="absolute inset-x-[-12%] bottom-[8%] h-[70%] rounded-full bg-[radial-gradient(circle,rgba(20,42,59,0.12)_0%,transparent_70%)] blur-2xl" />
               <img
                 src={radekKontakt}
-                alt=""
+                alt="Radek Větrovský, realitní makléř RE/MAX Příbram"
                 width={720}
                 height={1080}
                 loading="lazy"
