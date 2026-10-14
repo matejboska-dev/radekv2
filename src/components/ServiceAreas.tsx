@@ -1,11 +1,13 @@
-import { MapPin } from 'lucide-react';
+import { ArrowRight, MapPin } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { Reveal, RevealItem } from '@/components/anim/Reveal';
 
-const areas = [
+const areas: { name: string; population: string; description: string; href?: string }[] = [
   {
     name: 'Příbram',
     population: '33 000 obyvatel',
     description: 'Přirozené centrum Podbrdska, známé hornickou historií a poutním místem Svatá Hora.',
+    href: '/lokality/pribram',
   },
   {
     name: 'Dobříš',
@@ -58,28 +60,44 @@ const ServiceAreas = () => {
         </Reveal>
 
         <Reveal group staggerChildren={0.08} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-          {areas.map((area) => (
-            <RevealItem
-              variant="fadeUp"
-              key={area.name}
-              className="flex flex-col gap-2 rounded-2xl border border-border/80 bg-card p-5 sm:p-6"
-            >
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                  <MapPin className="w-4 h-4" />
+          {areas.map((area) => {
+            const card = (
+              <>
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                    <MapPin className="w-4 h-4" />
+                  </div>
+                  <h3 className="text-lg font-bold font-syne text-foreground leading-tight">
+                    {area.name}
+                  </h3>
                 </div>
-                <h3 className="text-lg font-bold font-syne text-foreground leading-tight">
-                  {area.name}
-                </h3>
-              </div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-secondary">
-                {area.population}
-              </p>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                {area.description}
-              </p>
-            </RevealItem>
-          ))}
+                <p className="text-xs font-semibold uppercase tracking-wider text-secondary">
+                  {area.population}
+                </p>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {area.description}
+                </p>
+                {area.href && (
+                  <span className="mt-auto inline-flex items-center gap-1.5 pt-2 text-xs font-bold uppercase tracking-wider text-secondary">
+                    Nemovitosti v Příbrami
+                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                  </span>
+                )}
+              </>
+            );
+            const cardClass = 'flex flex-col gap-2 rounded-2xl border border-border/80 bg-card p-5 sm:p-6';
+            return (
+              <RevealItem variant="fadeUp" key={area.name} className="h-full">
+                {area.href ? (
+                  <Link to={area.href} className={`${cardClass} group h-full transition-all duration-300 hover:border-secondary/40 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary`}>
+                    {card}
+                  </Link>
+                ) : (
+                  <div className={`${cardClass} h-full`}>{card}</div>
+                )}
+              </RevealItem>
+            );
+          })}
         </Reveal>
       </div>
     </section>

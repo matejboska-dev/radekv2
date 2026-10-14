@@ -36,7 +36,7 @@ import { setPageMeta, injectJsonLd } from '@/lib/seo';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import radekOdhad from '@/assets/radek-odhad.webp';
-import { trackServiceEvent } from '@/lib/service-tracking';
+import { trackServiceEvent, type TrackedPage } from '@/lib/service-tracking';
 
 const contactInfo = [
   { icon: Phone, label: 'Telefon', value: '+420 721 855 854', href: 'tel:+420721855854' },
@@ -137,8 +137,14 @@ const OdhadNemovitosti = () => {
 
       if (error || data?.error || data?.success !== true) throw error || new Error('Contact request failed');
 
-      if (new URLSearchParams(window.location.search).get('zdroj') === 'sluzba-prodej') {
-        trackServiceEvent('service_lead_submitted', 'prodej', 'estimate_form');
+      const estimateSources = new Map<string, TrackedPage>([
+        ['sluzba-prodej', 'prodej'],
+        ['lokalita-pribram', 'lokalita-pribram'],
+        ['clanek-prodej', 'clanek-prodej'],
+      ]);
+      const trackedSource = estimateSources.get(new URLSearchParams(window.location.search).get('zdroj') ?? '');
+      if (trackedSource) {
+        trackServiceEvent('service_lead_submitted', trackedSource, 'estimate_form');
       }
 
       setIsSubmitted(true);

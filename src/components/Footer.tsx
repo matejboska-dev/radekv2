@@ -53,6 +53,7 @@ const Footer = ({ staticContent = false }: { staticContent?: boolean }) => {
                 { label: 'Reference', href: '#properties' },
                 { label: 'Kontakt', href: '#contact' },
                 { label: 'Odhad zdarma', href: '/odhad-nemovitosti' },
+                { label: 'Nemovitosti v Příbrami', href: '/lokality/pribram' },
                 { label: 'Ochrana osobních údajů', href: '/gdpr' },
                 { label: 'Zpracování osobních údajů', href: '/zpracovani-osobnich-udaju' },
               ].map((link) => (

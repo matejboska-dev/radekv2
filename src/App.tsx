@@ -34,6 +34,8 @@ const BlogHypotecniSazby = lazy(() => import("./pages/BlogHypotecniSazby"));
 const BlogNaCoPozorKoupe = lazy(() => import("./pages/BlogNaCoPozorKoupe"));
 const BlogProdatRodinnyDum = lazy(() => import("./pages/BlogProdatRodinnyDum"));
 const BlogKolikSiMuzuDovolit = lazy(() => import("./pages/BlogKolikSiMuzuDovolit"));
+const BlogProdejNemovitostiKrokZaKrokem = lazy(() => import("./pages/BlogProdejNemovitostiKrokZaKrokem"));
+const LokalitaPribram = lazy(() => import("./pages/LokalitaPribram"));
 const Clanky = lazy(() => import("./pages/Clanky"));
 const ProdejNemovitosti = lazy(() => import("./pages/ProdejNemovitosti"));
 const PronajemNemovitosti = lazy(() => import("./pages/PronajemNemovitosti"));
@@ -88,12 +90,14 @@ const App = () => (
             <Route path="/blog/na-co-si-dat-pozor-koupe-nemovitosti-pribram" element={<BlogNaCoPozorKoupe />} />
             <Route path="/blog/jak-prodat-rodinny-dum-pribram" element={<BlogProdatRodinnyDum />} />
             <Route path="/blog/kolik-si-muzu-dovolit-hypoteka-pribram" element={<BlogKolikSiMuzuDovolit />} />
+            <Route path="/blog/prodej-nemovitosti-pribram-krok-za-krokem" element={<BlogProdejNemovitostiKrokZaKrokem />} />
             <Route path="/gdpr" element={<GDPR />} />
             <Route path="/zpracovani-osobnich-udaju" element={<ZpracovaniOsobnichUdaju />} />
             <Route path="/radek-vetrovsky-realitni-makler-pribram" element={<RadekVetrovskyPribram />} />
             <Route path="/sluzby/prodej-nemovitosti-pribram" element={<ProdejNemovitosti />} />
             <Route path="/sluzby/pronajem-nemovitosti-pribram" element={<PronajemNemovitosti />} />
             <Route path="/sluzby/koupe-nemovitosti-pribram" element={<KoupeNemovitosti />} />
+            <Route path="/lokality/pribram" element={<LokalitaPribram />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

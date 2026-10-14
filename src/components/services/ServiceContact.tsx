@@ -2,9 +2,16 @@ import { useRef, useState, type FormEvent } from 'react';
 import { ArrowRight, Check, LoaderCircle, Mail, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import type { ServiceContent } from '@/data/services';
-import { trackServiceEvent } from '@/lib/service-tracking';
+import { trackServiceEvent, type TrackedPage } from '@/lib/service-tracking';
 
-export default function ServiceContact({ service }: { service: ServiceContent }) {
+/** Texty a identifikace potřebné pro kontaktní formulář; stránky služeb předávají celý ServiceContent. */
+export type ContactContent = Pick<ServiceContent, 'name' | 'contactTitle' | 'contactText' | 'nextStep' | 'messagePlaceholder' | 'primaryHref'> & {
+  id: TrackedPage;
+  /** Předmět zprávy pro makléře, výchozí je "{name} v Příbrami". */
+  subject?: string;
+};
+
+export default function ServiceContact({ service }: { service: ContactContent }) {
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const sending = useRef(false);
 
@@ -26,7 +33,7 @@ export default function ServiceContact({ service }: { service: ServiceContent })
         body: {
           formType: 'contact', name, phone,
           email: String(fields.get('email') || '').trim(),
-          message: `${service.name} v Příbrami\n\n${String(fields.get('message') || '').trim()}`,
+          message: `${service.subject ?? `${service.name} v Příbrami`}\n\n${String(fields.get('message') || '').trim()}`,
         },
       });
       if (error || data?.error || data?.success !== true) throw new Error('Contact request failed');
@@ -51,7 +58,7 @@ export default function ServiceContact({ service }: { service: ServiceContent })
               <p className="text-xs font-bold uppercase tracking-[0.16em] text-white/80">Co bude po odeslání</p>
               <p className="mt-2 text-sm leading-relaxed text-white/85">{service.nextStep}</p>
             </div>
-            {service.id === 'prodej' && <Link to={service.primaryHref} onClick={() => trackServiceEvent('service_cta_click', service.id, 'contact_estimate')} className="service-button mt-7">Chci odhad zdarma <ArrowRight className="h-5 w-5" aria-hidden="true" /></Link>}
+            {(service.id === 'prodej' || service.id === 'lokalita-pribram') && <Link to={service.primaryHref} onClick={() => trackServiceEvent('service_cta_click', service.id, 'contact_estimate')} className="service-button mt-7">Chci odhad zdarma <ArrowRight className="h-5 w-5" aria-hidden="true" /></Link>}
             <address className="mt-9 hidden space-y-4 not-italic lg:block">
               <p className="font-syne text-xl font-bold">Radek Větrovský</p>
               <a className="flex min-h-11 items-center gap-3 text-lg font-bold hover:underline" href="tel:+420721855854"><Phone className="h-5 w-5 shrink-0" aria-hidden="true" />+420 721 855 854</a>

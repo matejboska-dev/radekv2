@@ -10,6 +10,16 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
+# AI vyhledávače (citace v ChatGPT Search, Claude a Perplexity). Trénovací boty (GPTBot, ClaudeBot) řeší pravidlo níže.
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
 User-agent: *
 Allow: /
 

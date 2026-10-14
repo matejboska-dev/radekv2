@@ -24,9 +24,11 @@ import BlogHypotecniSazby from '@/pages/BlogHypotecniSazby';
 import BlogNaCoPozorKoupe from '@/pages/BlogNaCoPozorKoupe';
 import BlogProdatRodinnyDum from '@/pages/BlogProdatRodinnyDum';
 import BlogKolikSiMuzuDovolit from '@/pages/BlogKolikSiMuzuDovolit';
+import BlogProdejNemovitostiKrokZaKrokem from '@/pages/BlogProdejNemovitostiKrokZaKrokem';
 import GDPR from '@/pages/GDPR';
 import ZpracovaniOsobnichUdaju from '@/pages/ZpracovaniOsobnichUdaju';
 import RadekVetrovskyPribram from '@/pages/RadekVetrovskyPribram';
+import LokalitaPribram from '@/pages/LokalitaPribram';
 
 // Content routes prerendered at build time. Keep in sync with the routes in App.tsx.
 export const prerenderRoutes = [
@@ -52,9 +54,11 @@ export const prerenderRoutes = [
   { path: '/blog/na-co-si-dat-pozor-koupe-nemovitosti-pribram', Component: BlogNaCoPozorKoupe },
   { path: '/blog/jak-prodat-rodinny-dum-pribram', Component: BlogProdatRodinnyDum },
   { path: '/blog/kolik-si-muzu-dovolit-hypoteka-pribram', Component: BlogKolikSiMuzuDovolit },
+  { path: '/blog/prodej-nemovitosti-pribram-krok-za-krokem', Component: BlogProdejNemovitostiKrokZaKrokem },
   { path: '/gdpr', Component: GDPR },
   { path: '/zpracovani-osobnich-udaju', Component: ZpracovaniOsobnichUdaju },
   { path: '/radek-vetrovsky-realitni-makler-pribram', Component: RadekVetrovskyPribram },
+  { path: '/lokality/pribram', Component: LokalitaPribram },
 ];
 
 /** Mounts a page in the (jsdom) document so route effects set head metadata and JSON-LD,

@@ -82,6 +82,7 @@ export const serviceContent: Record<ServiceId, ServiceContent> = {
       { q: 'Pomůžete i s prodejem a koupí navazujícího bydlení?', a: 'Ano. Společně probereme, kdy potřebujete prodat, kdy se můžete stěhovat a jak do sebe oba obchody zapadají. Podle situace navážeme také službou zastoupení při koupi. Termíny, financování a předání je vhodné řešit ještě před zveřejněním nabídky.' },
     ],
     articles: [
+      { title: 'Prodej nemovitosti krok za krokem', text: 'Devět kroků od ceny po předání klíčů, s daty z mých prodejů.', href: '/blog/prodej-nemovitosti-pribram-krok-za-krokem' },
       { title: 'Jak prodat rodinný dům', text: 'Příprava, prezentace a postup prodeje na Příbramsku.', href: '/blog/jak-prodat-rodinny-dum-pribram' },
       { title: 'Jak správně ocenit nemovitost', text: 'Co porovnávat a proč nestačí cena sousedního inzerátu.', href: '/blog/jak-spravne-ocenit-nemovitost' },
       { title: 'Rezervace a úschova kupní ceny', text: 'Souvislosti mezi dohodou, smlouvami a dokončením obchodu.', href: '/blog/rezervacni-smlouva-uschova-kupni-ceny-pribram-2026' },

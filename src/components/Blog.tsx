@@ -2,6 +2,7 @@ import { Calendar, ArrowRight, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Reveal, RevealItem } from '@/components/anim/Reveal';
 import exkluzivniImage from '@/assets/exkluzivni-smlouva-makler-pribram.webp';
+import prodejKrokZaKrokemImage from '@/assets/blog/prodej-predani-klicu.webp';
 const penbImage = 'https://www.panfitinka.cz/storage/app/media/blog/pasivni%20vs%20nizkoen/trida_energeticke_narocnosti.png';
 const hypotekyImage = 'https://images.unsplash.com/photo-1768839720586-71b7ff8b5c59?w=400&h=300&fit=crop&q=80';
 const katastrImage = 'https://images.unsplash.com/photo-1763729805496-b5dbf7f00c79?w=400&h=300&fit=crop&q=80';
@@ -15,6 +16,14 @@ const naCoPozorKoupeImage = 'https://images.unsplash.com/photo-1560518883-ce0905
 const kolikSiMuzuDovolitImage = 'https://images.unsplash.com/photo-1554224155-1696413565d3?w=400&h=300&fit=crop&q=80';
 
 export const allArticles = [
+  {
+    title: 'Prodej nemovitosti v Příbrami krok za krokem (2026)',
+    excerpt: 'Devět kroků od ceny po předání klíčů: dokumenty, poplatky, vklad do katastru (22 dnů) a doba prodeje z mých prodejů.',
+    date: '13. října 2026',
+    readTime: '13 min čtení',
+    image: prodejKrokZaKrokemImage,
+    slug: 'prodej-nemovitosti-pribram-krok-za-krokem',
+  },
   {
     title: 'Hypoteční sazby a Příbram: aktuální přehled (aktualizováno měsíčně)',
     excerpt: 'Aktuální hypoteční sazby: sjednaná 4,90 % (ČBA Hypomonitor), nabízená 5,42 % (Swiss Life Hypoindex). Vývoj v roce 2026 a splátky bytů a domů v Příbrami.',
